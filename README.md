@@ -16,10 +16,12 @@ EventTech, Hardware & IoT, AI/Data/Blockchain, R&D).
 | **2 — UX** | Wireframes home (desktop + mobile), Groupe, Expertise, Solution, Case study, Partenaires · Arbitrage mobile | ✅ Livrée |
 | **3 — UI** | Direction artistique · Design system · Tokens · Bibliothèque de composants · Motion guidelines | ✅ Livrée |
 | **4 — Technique** | Architecture Next.js · Modèle de données CMS · API · SEO · Analytics · Sécurité · Performance | ✅ Livrée |
-| **5 — Développement** | Implémentation | ⏸ **En attente de validation des phases 1 à 4** |
+| **5 — Développement** | Site Next.js bilingue complet : 45 pages par langue, design system, composants, SEO, formulaires | ✅ Livrée |
 
-> Le développement n'a volontairement pas été démarré : le brief impose la validation
-> des phases précédentes (§50). Les points à trancher sont réunis dans le document 13.
+> Les huit points bloquants du document 13 (charte graphique officielle, qualification
+> juridique des partenaires, validation des indicateurs, photographies, captures produit,
+> gouvernance) restent ouverts. Le site est construit pour rester cohérent sans eux :
+> les sections concernées se masquent au lieu d'afficher des données non validées.
 
 ---
 
@@ -60,6 +62,54 @@ EventTech, Hardware & IoT, AI/Data/Blockchain, R&D).
    Sans autorisation écrite, il n'apparaît pas.
 
 ---
+
+## Le site
+
+```bash
+npm install
+npm run dev        # http://localhost:3000 → redirige vers /fr
+npm run build      # 90 pages statiques
+npm run typecheck
+```
+
+**Stack** — Next.js 16 (App Router, Server Components), TypeScript strict, Tailwind CSS 4
+adossé aux tokens, aucune dépendance UI tierce.
+
+**Arborescence**
+
+```
+src/
+├── app/[locale]/       accueil · groupe (+5) · expertises (+8) · solutions (+7)
+│                       technologies (+6) · réalisations · impact · partenaires
+│                       actualités · carrières · investisseurs · contact · informations
+├── components/         ui · layout · blocks · graphics · forms
+├── content/            données typées, calquées sur le modèle CMS du document 11
+├── lib/                i18n (table de routage) · seo · content (couche de publication)
+└── types/
+```
+
+**Bilingue** — `src/lib/i18n/routes.ts` est la source unique : elle alimente le routeur,
+le middleware de réécriture, le sélecteur de langue, les `hreflang` et le sitemap.
+Les slugs sont localisés : `/fr/solutions/cartes-usb-securisees` ↔ `/en/solutions/secure-usb-cards`.
+
+**Les règles de gouvernance sont du code, pas des consignes** — `src/lib/content/queries.ts`
+est le seul point d'accès aux données. Un indicateur sans valeur, source, période et
+validateur n'est jamais envoyé au client ; un partenaire sans type de relation, référence
+contractuelle et autorisation écrite de logo non plus. Les sections concernées disparaissent
+et les grilles se recomposent. Aujourd'hui : aucun indicateur publié, aucun partenaire publié,
+une réalisation publiée. La page Leadership renvoie 404 et son lien n'apparaît pas dans le menu.
+
+**Contenu → CMS** — `src/content/` reproduit le modèle de données du document 11. Le passage
+à Sanity consiste à remplacer l'implémentation de `queries.ts` ; aucun composant n'est touché.
+
+**Écarts assumés par rapport aux documents de conception**
+
+| Écart | Raison |
+|---|---|
+| Pas de Framer Motion | Révélations au scroll et micro-interactions en CSS + `IntersectionObserver` : mêmes règles (doc 09), zéro dépendance, budget JS préservé |
+| Contenu en modules typés plutôt qu'un CMS branché | Sanity demande un projet et des identifiants ; le modèle et la couche d'accès sont prêts |
+| Pas de photographies | Bloquant B5 : aucune image de banque générique ne sera utilisée (doc 06) |
+| Formulaire de contact | Validation serveur, honeypot et anti-soumission trop rapide en place ; l'acheminement attend `CONTACT_WEBHOOK_URL` et l'annonce clairement plutôt que de simuler un envoi |
 
 ## Prochaine étape
 
