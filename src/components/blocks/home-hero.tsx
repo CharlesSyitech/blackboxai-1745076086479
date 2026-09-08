@@ -1,29 +1,45 @@
 import Link from "next/link"
-import { ButtonLink, Container, Eyebrow } from "@/components/ui/primitives"
+import { ButtonLink, Container } from "@/components/ui/primitives"
 import { site } from "@/content/site"
 
+export interface HeroNode {
+  id: string
+  label: string
+  hint: string
+  href: string
+}
+
+/**
+ * Opening statement. Ink surface, one soft light source, and the Group's
+ * actual ecosystem turning around its core — the diagram is the argument,
+ * not decoration: one core, seven platforms, one shared foundation.
+ */
 export function HomeHero({
   title,
   subtitle,
   primaryCta,
   secondaryCta,
   verticals,
+  nodes,
+  foundation,
 }: {
   title: string
   subtitle: string
   primaryCta: { label: string; href: string }
   secondaryCta: { label: string; href: string }
   verticals: { label: string; href: string }[]
+  nodes: HeroNode[]
+  foundation: string[]
 }) {
   return (
-    <section className="border-b border-line bg-page">
-      <Container size="wide" className="pt-14 pb-10 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-          <div className="flex flex-col gap-7">
-            <Eyebrow>{site.name}</Eyebrow>
-            <h1 className="type-display-xl max-w-[19ch]">{title}</h1>
-            <p className="type-body-lg max-w-[52ch] text-muted">{subtitle}</p>
-            <div className="mt-2 flex flex-wrap gap-3">
+    <section data-theme="dark" className="grain relative overflow-hidden bg-page">
+      <Container size="wide" className="relative pt-12 pb-16 md:pt-16 md:pb-20 lg:pt-20 lg:pb-24">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div className="stage flex flex-col gap-7">
+            <p className="type-overline text-accent">{site.name}</p>
+            <h1 className="type-display-xl max-w-[16ch] text-ink">{title}</h1>
+            <p className="type-body-lg max-w-[54ch] text-muted">{subtitle}</p>
+            <div className="mt-1 flex flex-wrap gap-3">
               <ButtonLink href={primaryCta.href} variant="accent" size="lg">
                 {primaryCta.label}
               </ButtonLink>
@@ -31,65 +47,118 @@ export function HomeHero({
                 {secondaryCta.label}
               </ButtonLink>
             </div>
+            <p className="type-overline pt-2 text-faint">{site.signature}</p>
           </div>
 
-          <HeroDiagram />
+          <OrbitalEcosystem nodes={nodes} foundation={foundation} />
         </div>
       </Container>
 
-      {/* The multi-vertical proof, in the first screen. */}
-      <div className="border-t border-line-soft">
-        <Container size="wide">
-          <ul className="flex snap-x snap-mandatory gap-x-6 gap-y-2 overflow-x-auto py-4 md:flex-wrap md:justify-between md:overflow-visible">
-            {verticals.map((vertical) => (
-              <li key={vertical.href} className="snap-start whitespace-nowrap">
-                <Link
-                  href={vertical.href}
-                  className="type-overline text-muted transition-colors hover:text-ink"
-                >
-                  {vertical.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </div>
+      <VerticalsMarquee verticals={verticals} />
     </section>
   )
 }
 
-/**
- * Abstract representation of the Group's structure: one core, several
- * platforms, one shared technology base underneath. Pure SVG, no motion loop.
- */
-function HeroDiagram() {
-  const nodes = Array.from({ length: 7 }, (_, index) => {
-    const angle = (-90 + (360 / 7) * index) * (Math.PI / 180)
-    return { x: 50 + 33 * Math.cos(angle), y: 50 + 33 * Math.sin(angle) }
-  })
+function polar(index: number, total: number, radius: number) {
+  const angle = (-90 + (360 / total) * index) * (Math.PI / 180)
+  return { x: 50 + radius * Math.cos(angle), y: 50 + radius * Math.sin(angle) }
+}
+
+function OrbitalEcosystem({ nodes, foundation }: { nodes: HeroNode[]; foundation: string[] }) {
+  const points = nodes.map((node, index) => ({ node, ...polar(index, nodes.length, 36) }))
 
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[520px]" aria-hidden="true">
-      <svg viewBox="0 0 100 100" className="h-full w-full">
-        <defs>
-          <radialGradient id="hero-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.16" />
-            <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <circle cx="50" cy="50" r="46" fill="url(#hero-core)" />
-        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-line-soft)" strokeDasharray="0.8 2" />
-        <circle cx="50" cy="50" r="33" fill="none" stroke="var(--color-line-soft)" />
-        <circle cx="50" cy="50" r="20" fill="none" stroke="var(--color-line-soft)" strokeDasharray="0.8 2" />
-        {nodes.map((node, index) => (
-          <g key={index}>
-            <line x1="50" y1="50" x2={node.x} y2={node.y} stroke="var(--color-line)" strokeWidth="0.3" />
-            <circle cx={node.x} cy={node.y} r="2.6" fill="var(--color-page)" stroke="var(--color-line-strong)" strokeWidth="0.5" />
+    <div className="relative mx-auto aspect-square w-full max-w-[560px]">
+      <div className="halo left-1/2 top-1/2 h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2" />
+
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
+        <circle
+          className="orbit-ring"
+          cx="50"
+          cy="50"
+          r="44"
+          fill="none"
+          stroke="var(--color-line)"
+          strokeWidth="0.25"
+          strokeDasharray="0.6 2.4"
+        />
+        <circle cx="50" cy="50" r="36" fill="none" stroke="var(--color-line-soft)" strokeWidth="0.25" />
+
+        {points.map(({ node, x, y }, index) => (
+          <g key={node.id}>
+            <line x1="50" y1="50" x2={x} y2={y} stroke="var(--color-line-soft)" strokeWidth="0.25" />
+            {/* A pulse travelling from the core to each platform. */}
+            <line
+              className="orbit-pulse"
+              x1="50"
+              y1="50"
+              x2={x}
+              y2={y}
+              stroke="var(--color-accent)"
+              strokeWidth="0.5"
+              strokeLinecap="round"
+              style={{ animationDelay: `${index * 0.45}s` }}
+            />
           </g>
         ))}
-        <circle cx="50" cy="50" r="6.5" fill="var(--color-brand)" />
-        <circle cx="50" cy="50" r="9.5" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
+
+        <circle className="orbit-core" cx="50" cy="50" r="9" fill="var(--color-accent)" opacity="0.22" />
+        <circle cx="50" cy="50" r="6.5" fill="var(--color-raised)" stroke="var(--color-accent)" strokeWidth="0.4" />
       </svg>
+
+      {/* Real links, positioned by the same maths that draws the spokes. */}
+      <ul className="absolute inset-0">
+        {points.map(({ node, x, y }, index) => (
+          <li
+            key={node.id}
+            className="orbit-node absolute"
+            style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${400 + index * 70}ms` }}
+          >
+            <Link
+              href={node.href}
+              className="group block -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised/85 px-3 py-2 text-center backdrop-blur-sm transition-colors hover:border-accent"
+            >
+              <span className="block text-[0.78rem] font-semibold whitespace-nowrap text-ink">{node.label}</span>
+              <span className="type-overline block text-[0.6rem] text-faint">{node.hint}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <p className="type-overline absolute inset-x-0 bottom-0 text-center text-faint">
+        {foundation.join(" · ")}
+      </p>
+    </div>
+  )
+}
+
+/**
+ * The seven verticals, in continuous motion. This is the proof that closes
+ * the "mono-product" reading within the first screen. Pauses on hover and
+ * on keyboard focus, and holds still under reduced-motion.
+ */
+function VerticalsMarquee({ verticals }: { verticals: { label: string; href: string }[] }) {
+  return (
+    <div className="marquee relative border-t border-line-soft py-4">
+      <div className="flex w-max min-w-full gap-10 overflow-hidden">
+        <ul className="marquee-track flex shrink-0 items-center gap-10 pr-10" aria-label={undefined}>
+          {[...verticals, ...verticals].map((vertical, index) => (
+            <li key={`${vertical.href}-${index}`} className="flex items-center gap-10 whitespace-nowrap">
+              <Link
+                href={vertical.href}
+                className="type-overline text-faint transition-colors hover:text-accent"
+                aria-hidden={index >= verticals.length}
+                tabIndex={index >= verticals.length ? -1 : undefined}
+              >
+                {vertical.label}
+              </Link>
+              <span aria-hidden="true" className="text-accent/50">
+                ◆
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

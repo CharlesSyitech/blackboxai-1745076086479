@@ -125,7 +125,7 @@
   .type-display-xl {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: clamp(2.25rem, 1.5rem + 3.4vw, 3.875rem);
+    font-size: clamp(2.25rem, 1.35rem + 3.2vw, 3.625rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
   }
@@ -229,4 +229,113 @@
     opacity: 1 !important;
     transform: none !important;
   }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Depth, texture and orchestrated entrances.
+   Every animation below either reveals structure, signals state
+   or guides attention — none decorate (docs/09).
+   ───────────────────────────────────────────────────────────── */
+
+/* Fine grain lifts the large ink surfaces off flat black without
+   introducing a gradient. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* A single soft light source behind the hero core. Not a brand gradient:
+   it exists to give the diagram somewhere to sit. */
+.halo {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 22%, transparent) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* Staged entrance for the hero: each line arrives after the one above,
+   once, on load. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.js .stage > * {
+  animation: rise 700ms var(--ease-entrance) backwards;
+}
+.js .stage > *:nth-child(1) { animation-delay: 60ms; }
+.js .stage > *:nth-child(2) { animation-delay: 150ms; }
+.js .stage > *:nth-child(3) { animation-delay: 240ms; }
+.js .stage > *:nth-child(4) { animation-delay: 330ms; }
+.js .stage > *:nth-child(5) { animation-delay: 420ms; }
+
+/* Orbital ecosystem: the ring turns slowly, the spokes pulse outward
+   from the core. The motion says "one core, many platforms". */
+@keyframes orbit { to { transform: rotate(360deg); } }
+@keyframes spoke {
+  0%   { stroke-dashoffset: 42; opacity: 0; }
+  25%  { opacity: 0.9; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(1.06); }
+}
+.orbit-ring { transform-origin: 50% 50%; animation: orbit 90s linear infinite; }
+.orbit-pulse { stroke-dasharray: 6 36; animation: spoke 3.6s var(--ease-standard) infinite; }
+.orbit-core { transform-origin: 50% 50%; animation: breathe 6s ease-in-out infinite; }
+
+/* Node entrance, staggered from the centre outward. */
+@keyframes pop { from { opacity: 0; transform: translate(-50%, -50%) scale(0.94); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.js .orbit-node { animation: pop 600ms var(--ease-entrance) backwards; }
+
+/* Continuous band of verticals — the multi-vertical proof, in motion. */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 42s linear infinite; will-change: transform; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+
+/* Reading-progress rule under the header. */
+.progress-rail { transform-origin: 0 50%; transform: scaleX(var(--progress, 0)); }
+
+/* Cards gain an accent rule on approach rather than a heavier shadow. */
+.lift {
+  position: relative;
+  transition: transform 220ms var(--ease-standard), border-color 220ms var(--ease-standard),
+    box-shadow 220ms var(--ease-standard);
+}
+.lift::before {
+  content: "";
+  position: absolute;
+  inset-inline: -1px;
+  top: -1px;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 260ms var(--ease-entrance);
+}
+.lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--color-line-strong); }
+.lift:hover::before, .lift:focus-visible::before { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring, .orbit-pulse, .orbit-core, .marquee-track,
+  .js .stage > *, .js .orbit-node {
+    animation: none !important;
+  }
+  .js .stage > * { opacity: 1; transform: none; }
+  .lift:hover { transform: none; }
+}
+
+/* Inspecting one node dims the rest, so the relation being examined reads
+   clearly. No JavaScript involved. */
+.graph-focus:has(a:hover) a:not(:hover),
+.graph-focus:has(a:focus-visible) a:not(:focus-visible) {
+  opacity: 0.45;
+  transition: opacity 200ms var(--ease-standard);
 }

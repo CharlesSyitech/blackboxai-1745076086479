@@ -80,6 +80,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           label: expertise.name[locale],
           href: path(locale, "expertise", expertise.slug[locale]),
         }))}
+        nodes={solutions.map((solution) => ({
+          id: solution.id,
+          label: solution.name,
+          hint: solution.vertical,
+          href: path(locale, "solutions", solution.slug[locale]),
+        }))}
+        foundation={technologies.map((technology) => technology.name[locale])}
       />
 
       {/* 2 — About */}

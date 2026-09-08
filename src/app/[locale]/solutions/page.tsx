@@ -42,7 +42,7 @@ export default async function SolutionsIndex({ params }: { params: Promise<{ loc
             <li key={solution.id}>
               <Link
                 href={path(locale, "solutions", solution.slug[locale])}
-                className="group flex h-full flex-col gap-4 rounded-lg border border-line p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:p-9"
+                className="lift group flex h-full flex-col gap-4 overflow-hidden rounded-lg border border-line p-7 md:p-9"
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-display text-xl font-extrabold tracking-[-0.02em]">{solution.name}</span>

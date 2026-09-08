@@ -37,7 +37,7 @@ export function EcosystemGraph({
 
   return (
     <div>
-      <div className="relative hidden aspect-[16/11] w-full lg:block">
+      <div className="graph-focus relative hidden aspect-[16/11] w-full lg:block">
         <svg
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
@@ -54,17 +54,30 @@ export function EcosystemGraph({
             strokeDasharray="1 2"
             vectorEffect="non-scaling-stroke"
           />
-          {points.map(({ node, x, y }) => (
-            <line
-              key={node.id}
-              x1="50"
-              y1="50"
-              x2={x}
-              y2={y}
-              stroke="var(--color-line)"
-              strokeWidth="1"
-              vectorEffect="non-scaling-stroke"
-            />
+          {points.map(({ node, x, y }, index) => (
+            <g key={node.id}>
+              <line
+                x1="50"
+                y1="50"
+                x2={x}
+                y2={y}
+                stroke="var(--color-line)"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+              />
+              <line
+                className="orbit-pulse"
+                x1="50"
+                y1="50"
+                x2={x}
+                y2={y}
+                stroke="var(--color-accent)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+                style={{ animationDelay: `${index * 0.5}s` }}
+              />
+            </g>
           ))}
         </svg>
 
@@ -79,7 +92,7 @@ export function EcosystemGraph({
             key={node.id}
             href={node.href}
             style={{ left: `${x}%`, top: `${y}%` }}
-            className="group absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised px-4 py-3 text-center transition-all duration-200 hover:-translate-y-[calc(50%+2px)] hover:border-line-strong hover:shadow-md"
+            className="group absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised px-4 py-3 text-center transition-all duration-200 hover:-translate-y-[calc(50%+2px)] hover:border-accent hover:shadow-md"
           >
             <span className="block text-[0.82rem] font-semibold text-ink">{node.label}</span>
             {node.hint ? <span className="mt-0.5 block text-[0.7rem] text-muted">{node.hint}</span> : null}

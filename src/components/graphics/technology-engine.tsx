@@ -29,19 +29,32 @@ export function TechnologyEngine({
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="relative hidden aspect-[16/9] w-full md:block">
+      <div className="graph-focus relative hidden aspect-[16/9] w-full md:block">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" className="absolute inset-0 h-full w-full">
-          {points.map(({ node, x, y }) => (
-            <line
-              key={node.id}
-              x1="50"
-              y1="50"
-              x2={x}
-              y2={y}
-              stroke="var(--color-line)"
-              strokeWidth="1"
-              vectorEffect="non-scaling-stroke"
-            />
+          {points.map(({ node, x, y }, index) => (
+            <g key={node.id}>
+              <line
+                x1="50"
+                y1="50"
+                x2={x}
+                y2={y}
+                stroke="var(--color-line)"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+              />
+              <line
+                className="orbit-pulse"
+                x1={x}
+                y1={y}
+                x2="50"
+                y2="50"
+                stroke="var(--color-accent)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                vectorEffect="non-scaling-stroke"
+                style={{ animationDelay: `${index * 0.4}s` }}
+              />
+            </g>
           ))}
           <circle cx="50" cy="50" r="0.6" fill="var(--color-accent)" />
         </svg>

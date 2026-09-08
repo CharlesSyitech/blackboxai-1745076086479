@@ -51,7 +51,7 @@ export function ExpertiseSection({
       <SectionHeader eyebrow={t.home.expertiseEyebrow} title={t.home.expertiseTitle} />
       <ul className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {expertises.map((expertise, index) => (
-          <Reveal as="li" key={expertise.id} delay={Math.min(index, 5) * 60} className="rounded-lg border border-line bg-page">
+          <Reveal as="li" key={expertise.id} delay={Math.min(index, 5) * 60} className="lift overflow-hidden rounded-lg border border-line bg-page">
             <Link
               href={hrefFor(expertise)}
               className="group flex h-full flex-col gap-4 rounded-lg p-6 transition-colors hover:bg-surface md:p-8"

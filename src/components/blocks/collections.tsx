@@ -24,7 +24,7 @@ export function CaseStudyCard({
     <Link
       href={href}
       className={
-        "group flex h-full flex-col gap-4 rounded-lg border border-line bg-raised p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md md:p-8 " +
+        "lift group flex h-full flex-col gap-4 overflow-hidden rounded-lg border border-line bg-raised p-6 md:p-8 " +
         (featured ? "lg:col-span-2" : "")
       }
     >
@@ -169,7 +169,7 @@ export function NewsTeaser({
         <li key={item.id}>
           <Link
             href={hrefFor(item)}
-            className="flex h-full flex-col gap-3 rounded-lg border border-line bg-raised p-6 transition-colors hover:border-line-strong"
+            className="lift group flex h-full flex-col gap-3 overflow-hidden rounded-lg border border-line bg-raised p-6"
           >
             <span className="type-overline text-accent-ink">{item.category}</span>
             <span className="type-h4">{item.title[locale]}</span>

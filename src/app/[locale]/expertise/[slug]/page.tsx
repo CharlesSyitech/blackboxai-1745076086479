@@ -111,7 +111,7 @@ export default async function ExpertisePage({
               <li key={solution.id}>
                 <Link
                   href={path(locale, "solutions", solution.slug[locale])}
-                  className="group flex h-full flex-col gap-3 rounded-lg border border-line p-6 transition-colors hover:border-line-strong"
+                  className="lift group flex h-full flex-col gap-3 overflow-hidden rounded-lg border border-line p-6"
                 >
                   <span className="font-display text-lg font-bold">{solution.name}</span>
                   <span className="text-sm text-muted">{solution.positioning[locale]}</span>

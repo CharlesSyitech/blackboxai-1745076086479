@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useId, useRef, useState } from "react"
+import type React from "react"
 import { LocaleSwitcher } from "@/components/layout/locale-switcher"
 import type { Locale } from "@/lib/i18n/routes"
 import { cn } from "@/lib/utils/format"
@@ -40,14 +41,22 @@ export function Header({
   }
 }) {
   const [scrolled, setScrolled] = useState(false)
+  const [progress, setProgress] = useState(0)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
+  // Only the homepage opens on an ink surface, so only there does the header
+  // start transparent and inherit the dark palette.
+  const overInk = pathname === `/${locale}` && !scrolled && !mobileOpen
   const headerRef = useRef<HTMLElement | null>(null)
   const menuId = useId()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24)
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0)
+    }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -81,11 +90,12 @@ export function Header({
   return (
     <header
       ref={headerRef}
+      {...(overInk ? { "data-theme": "dark" as const } : {})}
       className={cn(
-        "sticky top-0 z-50 border-b transition-colors duration-200",
-        scrolled || openMenu || mobileOpen
-          ? "border-line bg-page/95 backdrop-blur"
-          : "border-transparent bg-page",
+        "sticky top-0 z-50 border-b transition-colors duration-300",
+        overInk
+          ? "border-transparent bg-page text-ink"
+          : "border-line bg-page/90 backdrop-blur-md",
       )}
       onMouseLeave={() => setOpenMenu(null)}
     >
@@ -201,7 +211,14 @@ export function Header({
           >
             <span className="sr-only">{mobileOpen ? strings.close : strings.openMenu}</span>
             <svg viewBox="0 0 20 20" aria-hidden="true" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-              {mobileOpen ? (
+              <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px overflow-hidden">
+        <div
+          className="progress-rail h-full bg-accent"
+          style={{ "--progress": progress } as React.CSSProperties}
+        />
+      </div>
+
+      {mobileOpen ? (
                 <path d="M4 4l12 12M16 4L4 16" strokeLinecap="round" />
               ) : (
                 <path d="M3 6h14M3 10h14M3 14h14" strokeLinecap="round" />
@@ -209,6 +226,13 @@ export function Header({
             </svg>
           </button>
         </div>
+      </div>
+
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px overflow-hidden">
+        <div
+          className="progress-rail h-full bg-accent"
+          style={{ "--progress": progress } as React.CSSProperties}
+        />
       </div>
 
       {mobileOpen ? (
