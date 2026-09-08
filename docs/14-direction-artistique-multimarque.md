@@ -11,8 +11,8 @@
 
 | # | Élément | Conséquence tant qu'il manque |
 |---|---|---|
-| **L1** | **Les logos officiels des 7 marques** | Annoncés comme fournis, mais aucun fichier n'est arrivé. Aucune identité ne peut être respectée à la lettre. |
-| **L2** | **Les couleurs officielles de chaque marque** | Les sites `sydica.art`, `sytium.tech` et `kultix.art` sont **inaccessibles depuis l'environnement de build** (bloqués par le proxy réseau). Impossible d'en extraire les palettes réelles. Les palettes ci-dessous sont **provisoires**. |
+| **L1** | **Logos — 4 reçus sur 7** | Syitech Group, Sydica, Sytium et KultiX sont exploités et leurs palettes relevées. Manquent **SyitEx** et **Syitech R&D**. Un cinquième fichier est arrivé en blanc sur blanc, illisible : la marque concernée reste à identifier. |
+| **L2** | **Valeurs hexadécimales exactes** | Les couleurs sont **relevées à l'œil sur des logos rasterisés**, pas échantillonnées sur des sources vectorielles. Une charte ou des SVG permettraient de les figer. Les sites produits restent inaccessibles depuis l'environnement de build. |
 | **L3** | **Photographies** — artistes, concerts, studios, équipes, dirigeant, hardware, événements | Le brief demande des images fortes en pleine largeur. Aucune ne sera inventée ni tirée d'une banque générique. |
 | **L4** | **Vidéo corporate** | La section vidéo (§9) est structurée et administrable, mais vide. |
 | **L5** | **Captures produit réelles** — Sytium, Sydica, KultiX | Les animations d'interface (§20) supposent de vrais écrans. |
@@ -55,26 +55,29 @@ relation est officiellement rattachée — **jamais** sur une page dédiée (§1
 Chaque univers est décrit par quatre entrées : registre, matière, lumière, mouvement.
 La palette est **provisoire** dans tous les cas.
 
-### 2.1 SYITECH GROUP — *l'autorité*
+### 2.1 SYITECH GROUP — *l'autorité* · **palette officielle**
 - **Registre** : institutionnel, technologique, international. Se tient au-dessus, ne rivalise pas avec ses marques.
-- **Matière** : grain fin sur l'encre, grilles techniques discrètes, verre légèrement dépoli.
-- **Lumière** : une source unique, chaude, basse. Jamais de dégradé de marque.
+- **Matière** : grain fin sur l'encre, motif de circuit repris de l'icône du logo.
+- **Lumière** : une source unique, froide, basse. Jamais de dégradé de marque.
 - **Mouvement** : lent et ample. Rien ne se précipite.
-- Palette provisoire : ink `#060B14` · surface `#061428` · primaire `#12305D` · accent `#E39A2B`
+- Palette : ink `#060B14` · surface `#0A1A3C` · primaire `#10265C` · **accent cyan `#2FD2F0`** · accent sur fond clair `#0A6C82`
+- **Correction appliquée au site :** l'ambre `#E39A2B` était un substitut inventé faute de charte. Il est retiré : l'identité est navy + cyan.
 
-### 2.2 SYDICA — *l'émotion*
+### 2.2 SYDICA — *l'émotion* · **palette officielle**
 - **Registre** : musique, culture, créateurs, Afrique contemporaine. Le seul univers autorisé à être chaud et saturé.
 - **Matière** : formes d'onde, pochettes flottantes, grain de scène, halo de projecteur.
 - **Lumière** : colorée, mobile, venant du côté — l'éclairage d'un concert.
 - **Mouvement** : pulsé. Waveform réactive, transitions d'album, player flottant persistant.
-- Palette provisoire : ink `#150A22` · primaire `#A855F7` · accent `#F0507A`
+- Palette : ink `#1B1435` · primaire `#8A5AD4` · wordmark `#3D2E6E` · **accent turquoise `#56D8DC`**
+- **Correction :** l'accent n'est pas chaud. Le point du logo est turquoise, pas corail.
 
-### 2.3 SYTIUM — *la maîtrise*
-- **Registre** : SaaS international haut de gamme. Sobre, dense, professionnel.
+### 2.3 SYTIUM — *la maîtrise* · **palette officielle**
+- **Registre** : SaaS international haut de gamme. **Strictement monochrome.**
 - **Matière** : interfaces réelles, grilles de données, courbes de graphes.
 - **Lumière** : neutre, frontale, sans effet — on lit des chiffres.
 - **Mouvement** : les modules se composent, les courbes se tracent, la donnée circule.
-- Palette provisoire : ink `#0B1F33` · primaire `#1E6FE0` · accent `#22C1B0`
+- Palette : ink `#0A0A0A` · primaire `#EDEDEA` · accent `#FFFFFF`
+- **Correction :** aucun bleu SaaS. Le logo est noir et blanc cassé. C'est une direction plus distinctive que ce que j'avais supposé : **sur les pages Sytium, la couleur ne vient que des données affichées.**
 
 ### 2.4 SYDICARD — *la confiance*
 - **Registre** : finance premium. Retenue absolue : ce produit n'est pas encore ouvert.
@@ -84,12 +87,13 @@ La palette est **provisoire** dans tous les cas.
 - Palette provisoire : ink `#07130F` · primaire `#17A673` · accent `#C8A24A`
 - **Contrainte** : le libellé *En développement* accompagne la marque partout. Aucun CTA d'ouverture de compte.
 
-### 2.5 KULTIX — *le live*
+### 2.5 KULTIX — *le live* · **palette officielle**
 - **Registre** : événementiel premium. Immersif sans devenir agressif — pas de codes festival.
 - **Matière** : foule en contre-jour, billets, QR, structures de scène.
-- **Lumière** : forte, ponctuelle, chaude.
+- **Lumière** : forte, ponctuelle, froide.
 - **Mouvement** : génération de billet, scan, plan de salle, flux d'entrée.
-- Palette provisoire : ink `#14091B` · primaire `#FF5A3C` · accent `#FFC24B`
+- Palette : ink `#0A0A0A` · navy `#0B1A38` · **primaire violet `#8A3FFB`**
+- **Correction :** aucune couleur chaude. Le logo est violet vif sur noir — l'élégance demandée est déjà dans la marque.
 
 ### 2.6 SYITEX — *la matière*
 - **Registre** : technologie physique. Précision industrielle.
@@ -343,8 +347,9 @@ qualification exacte de la relation reste inchangée et prioritaire.
 ## 10. Séquencement proposé
 
 ```
-ÉTAPE 0 — Validation de ce document          ← nous sommes ici
-ÉTAPE 1 — Réception des logos et palettes officielles (L1, L2)
+ÉTAPE 0 — Validation de ce document
+ÉTAPE 1 — Logos : 4 reçus, palettes relevées et appliquées au Groupe  ← nous sommes ici
+          Restent SyitEx, Syitech R&D, et le 5e fichier à identifier
 ÉTAPE 2 — Design system multi-marques + BrandProvider + mega-menu
 ÉTAPE 3 — Landing cinématique (7 slides) + carte d'écosystème
 ÉTAPE 4 — Pages produit par marque

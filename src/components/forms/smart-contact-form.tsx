@@ -152,7 +152,7 @@ export function SmartContactForm({ t, locale }: { t: Dictionary; locale: "fr" | 
             <button
               type="submit"
               disabled={pending}
-              className="inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 font-medium text-ink-900 transition-colors hover:bg-amber-600 disabled:opacity-60"
+              className="inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 font-medium text-ink-900 transition-colors hover:bg-accent-hover disabled:opacity-60"
               aria-busy={pending}
             >
               {t.contact.submit}

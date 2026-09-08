@@ -1,6 +1,6 @@
 {
   "$description": "Multi-brand token set. The Group owns the structure; each brand owns its palette. Components read product.<brand>.* and re-skin automatically.",
-  "$status": "PROVISIONAL — every palette below is a placeholder. No official logo or brand colour was supplied, and the live product sites are unreachable from the build environment. Replace the `primary`, `accent` and `ink` values per brand; nothing else changes.",
+  "$status": "Palettes des marques SYITECH GROUP, SYDICA, SYTIUM et KULTIX relevees sur les logos officiels fournis le 2026-09-08. ATTENTION : valeurs lues a l'oeil sur des logos rasterises, pas echantillonnees sur des fichiers sources. A confirmer contre la charte ou des SVG. SYITEX et SYITECH R&D restent provisoires : aucun logo recu.",
   "$version": "0.1.0-draft",
   "brands": {
     "group": {
@@ -9,9 +9,18 @@
       "universe": "Premium · institutionnel · technologique · international",
       "status": "live",
       "website": null,
-      "palette": { "ink": "#060B14", "surface": "#061428", "primary": "#12305D", "accent": "#E39A2B", "onAccent": "#060B14" },
+      "palette": {
+        "ink": "#060B14",
+        "surface": "#0A1A3C",
+        "primary": "#10265C",
+        "accent": "#2FD2F0",
+        "accentInk": "#0A6C82",
+        "onAccent": "#060B14"
+      },
       "texture": "Grain fin, une source lumineuse unique, grilles techniques discrètes",
-      "motion": "Lent, ample, maîtrisé"
+      "motion": "Lent, ample, maîtrisé",
+      "source": "logo officiel",
+      "notes": "Navy profond + cyan. Le cyan porte 'GROUP' et l'icone circuit. Aucun ambre dans l'identite."
     },
     "sydica": {
       "name": "Sydica",
@@ -19,40 +28,78 @@
       "universe": "Émotion · scène · Afrique contemporaine · création",
       "status": "live",
       "website": "https://sydica.art",
-      "palette": { "ink": "#150A22", "surface": "#20102F", "primary": "#A855F7", "accent": "#F0507A", "onAccent": "#150A22" },
-      "texture": "Formes d'onde, pochettes flottantes, grain de scène, lumière colorée",
-      "motion": "Pulsé sur le rythme : waveform, transitions d'album, player flottant"
+      "palette": {
+        "ink": "#1B1435",
+        "surface": "#251B47",
+        "primary": "#8A5AD4",
+        "accent": "#56D8DC",
+        "accentInk": "#0B6E72",
+        "onAccent": "#1B1435",
+        "wordmark": "#3D2E6E"
+      },
+      "texture": "Formes d'onde (presentes dans l'icone), pochettes flottantes, grain de scene",
+      "motion": "Pulsé sur le rythme : waveform, transitions d'album, player flottant",
+      "source": "logo officiel",
+      "notes": "Violet de l'icone, pourpre profond du wordmark, point turquoise en accent. L'accent n'est pas chaud : c'est un turquoise."
     },
     "sytium": {
       "name": "Sytium",
       "role": "Enterprise Technology — ERP, finance, RH, BI, IA",
-      "universe": "SaaS premium · sobre · data-driven · hautement professionnel",
+      "universe": "SaaS premium monochrome — noir et blanc casse, aucune couleur d'accent",
       "status": "live",
       "website": "https://sytium.tech",
-      "palette": { "ink": "#0B1F33", "surface": "#12293F", "primary": "#1E6FE0", "accent": "#22C1B0", "onAccent": "#0B1F33" },
+      "palette": {
+        "ink": "#0A0A0A",
+        "surface": "#171717",
+        "primary": "#EDEDEA",
+        "accent": "#FFFFFF",
+        "accentInk": "#0A0A0A",
+        "onAccent": "#0A0A0A"
+      },
       "texture": "Interfaces réelles, grilles de données, lignes de graphes",
-      "motion": "Modules qui se composent, courbes qui se tracent, flux de données"
+      "motion": "Modules qui se composent, courbes qui se tracent, flux de données",
+      "source": "logo officiel",
+      "notes": "Identite strictement monochrome : wordmark blanc casse, pastille noire au chevron blanc. C'est une direction plus distinctive qu'un bleu SaaS. La couleur, sur les pages Sytium, vient des donnees affichees, pas de la marque."
     },
     "sydicard": {
       "name": "SydiCard",
       "role": "FinTech — paiements, wallet, inclusion financière, reversements créateurs",
       "universe": "Finance premium · confiance · matière métallique",
       "status": "coming_soon",
-      "statusLabel": { "fr": "En développement", "en": "Coming soon" },
+      "statusLabel": {
+        "fr": "En développement",
+        "en": "Coming soon"
+      },
       "website": null,
-      "palette": { "ink": "#07130F", "surface": "#0D2019", "primary": "#17A673", "accent": "#C8A24A", "onAccent": "#07130F" },
+      "palette": {
+        "ink": "#07130F",
+        "surface": "#0D2019",
+        "primary": "#17A673",
+        "accent": "#C8A24A",
+        "onAccent": "#07130F"
+      },
       "texture": "Carte en volume, reflets métalliques, flux de transaction",
-      "motion": "Rotation lente de la carte, pulsations de paiement, flux wallet"
+      "motion": "Rotation lente de la carte, pulsations de paiement, flux wallet",
+      "source": "provisoire — aucun logo recu"
     },
     "kultix": {
       "name": "KultiX",
       "role": "EventTech — billetterie, contrôle d'accès, expérience live",
-      "universe": "Live · immersif · élégant — jamais le registre festival agressif",
+      "universe": "Live premium — violet vif sur noir, jamais les codes festival",
       "status": "live",
       "website": "https://kultix.art",
-      "palette": { "ink": "#14091B", "surface": "#20112B", "primary": "#FF5A3C", "accent": "#FFC24B", "onAccent": "#14091B" },
+      "palette": {
+        "ink": "#0A0A0A",
+        "surface": "#0B1A38",
+        "primary": "#8A3FFB",
+        "accent": "#8A3FFB",
+        "accentInk": "#5B18C4",
+        "onAccent": "#FFFFFF"
+      },
       "texture": "Foule en contre-jour, billets, QR, lumières de scène",
-      "motion": "Génération de billet, scan, plan de salle, flux d'entrée"
+      "motion": "Génération de billet, scan, plan de salle, flux d'entrée",
+      "source": "logo officiel",
+      "notes": "Violet vif du fanion et du point, navy profond de la hampe du K, noir du wordmark. Aucune couleur chaude."
     },
     "syitex": {
       "name": "SyitEx",
@@ -60,9 +107,16 @@
       "universe": "Industriel · matière · précision · technologie physique",
       "status": "live",
       "website": null,
-      "palette": { "ink": "#0A0F14", "surface": "#131C24", "primary": "#4A6B82", "accent": "#00C2FF", "onAccent": "#0A0F14" },
+      "palette": {
+        "ink": "#0A0F14",
+        "surface": "#131C24",
+        "primary": "#4A6B82",
+        "accent": "#00C2FF",
+        "onAccent": "#0A0F14"
+      },
       "texture": "Macro produit, circuits, puces, matière métallique",
-      "motion": "Rotation produit, vue éclatée, transfert de données"
+      "motion": "Rotation produit, vue éclatée, transfert de données",
+      "source": "provisoire — aucun logo recu"
     },
     "rd": {
       "name": "Syitech R&D",
@@ -70,15 +124,34 @@
       "universe": "DeepTech · expérimental — la page la plus artistique du site",
       "status": "live",
       "website": null,
-      "signature": { "fr": "Là où Syitech construit demain.", "en": "Where Syitech builds tomorrow." },
-      "palette": { "ink": "#05070A", "surface": "#0C1116", "primary": "#35F0B0", "accent": "#8B7CFF", "onAccent": "#05070A" },
+      "signature": {
+        "fr": "Là où Syitech construit demain.",
+        "en": "Where Syitech builds tomorrow."
+      },
+      "palette": {
+        "ink": "#05070A",
+        "surface": "#0C1116",
+        "primary": "#35F0B0",
+        "accent": "#8B7CFF",
+        "onAccent": "#05070A"
+      },
       "texture": "Maillage numérique, nœuds interactifs, diagrammes techniques, traces lumineuses",
-      "motion": "Systèmes de particules, nœuds réactifs, visualisation de données"
+      "motion": "Systèmes de particules, nœuds réactifs, visualisation de données",
+      "source": "provisoire — aucun logo recu"
     }
   },
   "scrollJourney": {
     "$description": "Section 25 of the brief: the palette shifts as the visitor descends through the brands. These are the stops the background interpolates between.",
-    "stops": ["group", "sydica", "sytium", "sydicard", "kultix", "syitex", "rd", "group"]
+    "stops": [
+      "group",
+      "sydica",
+      "sytium",
+      "sydicard",
+      "kultix",
+      "syitex",
+      "rd",
+      "group"
+    ]
   },
   "contract": {
     "$description": "Rules that hold whichever palettes replace these.",
@@ -87,7 +160,8 @@
       "A brand accent never carries text on a light ground unless its measured ratio allows it; each brand declares an `onAccent` colour for that purpose.",
       "The Group palette is never applied on top of a product page: a product page runs entirely in its own tokens.",
       "A product logo always carries the Group endorsement; a partner logo never enters the brand architecture.",
-      "SydiCard renders its status label on every surface where it appears. No call to action may suggest the service is open."
+      "SydiCard renders its status label on every surface where it appears. No call to action may suggest the service is open.",
+      "Ni le cyan Syitech (#2FD2F0) ni le turquoise Sydica (#56D8DC) ne portent de texte sur fond clair : chaque marque declare un `accentInk` assombri pour cet usage, verifie par scripts/check-contrast.mjs."
     ]
   }
 }

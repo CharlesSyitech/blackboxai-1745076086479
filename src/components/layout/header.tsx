@@ -195,7 +195,7 @@ export function Header({
         <div className="flex items-center gap-3">
           <Link
             href={cta.href}
-            className="hidden min-h-11 items-center rounded-md bg-accent px-5 text-[0.9rem] font-medium text-ink-900 transition-colors hover:bg-amber-600 lg:inline-flex"
+            className="hidden min-h-11 items-center rounded-md bg-accent px-5 text-[0.9rem] font-medium text-ink-900 transition-colors hover:bg-accent-hover lg:inline-flex"
           >
             {cta.label}
           </Link>
