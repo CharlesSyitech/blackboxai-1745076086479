@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { InViewStage } from "@/components/ui/motion"
 
 export interface EngineNode {
   id: string
@@ -29,18 +30,25 @@ export function TechnologyEngine({
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="graph-focus relative hidden aspect-[16/9] w-full md:block">
+      <InViewStage className="graph-focus relative hidden aspect-[16/9] w-full md:block">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" className="absolute inset-0 h-full w-full">
           {points.map(({ node, x, y }, index) => (
             <g key={node.id}>
               <line
+                className="draw"
                 x1="50"
                 y1="50"
                 x2={x}
                 y2={y}
-                stroke="var(--color-line)"
+                stroke="var(--color-line-strong)"
                 strokeWidth="1"
                 vectorEffect="non-scaling-stroke"
+                style={
+                  {
+                    "--len": Math.hypot(x - 50, y - 50),
+                    "--draw-delay": `${index * 80}ms`,
+                  } as React.CSSProperties
+                }
               />
               <line
                 className="orbit-pulse"
@@ -63,17 +71,19 @@ export function TechnologyEngine({
           <span className="type-overline text-accent">{center}</span>
         </div>
 
-        {points.map(({ node, x, y }) => (
+        {points.map(({ node, x, y }, index) => (
           <Link
             key={node.id}
             href={node.href}
-            style={{ left: `${x}%`, top: `${y}%` }}
-            className="absolute w-36 -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised px-3 py-2.5 text-center transition-colors hover:border-accent"
+            style={
+              { left: `${x}%`, top: `${y}%`, "--settle-delay": `${450 + index * 80}ms` } as React.CSSProperties
+            }
+            className="settle absolute w-36 -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised px-3 py-2.5 text-center transition-colors hover:border-accent"
           >
             <span className="type-overline text-ink">{node.label}</span>
           </Link>
         ))}
-      </div>
+      </InViewStage>
 
       <ul className="grid grid-cols-2 gap-3 md:hidden">
         {technologies.map((node) => (

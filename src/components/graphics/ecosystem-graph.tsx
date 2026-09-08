@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { InViewStage } from "@/components/ui/motion"
 
 export interface GraphNode {
   id: string
@@ -37,7 +38,7 @@ export function EcosystemGraph({
 
   return (
     <div>
-      <div className="graph-focus relative hidden aspect-[16/11] w-full lg:block">
+      <InViewStage className="graph-focus relative hidden aspect-[16/11] w-full lg:block">
         <svg
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
@@ -57,13 +58,20 @@ export function EcosystemGraph({
           {points.map(({ node, x, y }, index) => (
             <g key={node.id}>
               <line
+                className="draw"
                 x1="50"
                 y1="50"
                 x2={x}
                 y2={y}
-                stroke="var(--color-line)"
+                stroke="var(--color-line-strong)"
                 strokeWidth="1"
                 vectorEffect="non-scaling-stroke"
+                style={
+                  {
+                    "--len": Math.hypot(x - 50, y - 50),
+                    "--draw-delay": `${index * 90}ms`,
+                  } as React.CSSProperties
+                }
               />
               <line
                 className="orbit-pulse"
@@ -87,18 +95,20 @@ export function EcosystemGraph({
           </div>
         </div>
 
-        {points.map(({ node, x, y }) => (
+        {points.map(({ node, x, y }, index) => (
           <Link
             key={node.id}
             href={node.href}
-            style={{ left: `${x}%`, top: `${y}%` }}
-            className="group absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised px-4 py-3 text-center transition-all duration-200 hover:-translate-y-[calc(50%+2px)] hover:border-accent hover:shadow-md"
+            style={
+              { left: `${x}%`, top: `${y}%`, "--settle-delay": `${500 + index * 90}ms` } as React.CSSProperties
+            }
+            className="settle group absolute w-40 -translate-x-1/2 -translate-y-1/2 rounded-md border border-line bg-raised px-4 py-3 text-center transition-all duration-200 hover:-translate-y-[calc(50%+2px)] hover:border-accent hover:shadow-md"
           >
             <span className="block text-[0.82rem] font-semibold text-ink">{node.label}</span>
             {node.hint ? <span className="mt-0.5 block text-[0.7rem] text-muted">{node.hint}</span> : null}
           </Link>
         ))}
-      </div>
+      </InViewStage>
 
       <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:hidden">
         {nodes.map((node) => (

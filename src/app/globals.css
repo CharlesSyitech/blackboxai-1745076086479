@@ -339,3 +339,87 @@
   opacity: 0.45;
   transition: opacity 200ms var(--ease-standard);
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Orchestrated reveals. Each one still answers to structure:
+   the headline arrives line by line, diagrams draw their own
+   connections, grids arrive in reading order.
+   ───────────────────────────────────────────────────────────── */
+
+/* Headline: each word rises out of its own mask. */
+@keyframes word-rise {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+.js .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.js .word > span {
+  display: inline-block;
+  animation: word-rise 900ms var(--ease-entrance) backwards;
+}
+
+/* Section titles: wiped upward when they come into view. */
+.js .mask-up {
+  clip-path: inset(0 0 105% 0);
+  transition: clip-path 900ms var(--ease-entrance);
+}
+.js .mask-up[data-visible="true"] {
+  clip-path: inset(0 0 -10% 0);
+}
+
+/* Diagrams draw their own connections on arrival — the line between two
+   things appearing is the point being made. */
+.js .draw {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+}
+.js [data-stage="true"] .draw {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1400ms var(--ease-entrance) var(--draw-delay, 0ms);
+}
+
+/* Nodes settle in after the line that reaches them. */
+@keyframes node-settle {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.js .settle { opacity: 0; }
+.js [data-stage="true"] .settle {
+  animation: node-settle 700ms var(--ease-entrance) var(--settle-delay, 0ms) forwards;
+}
+
+/* Pointer-reactive depth on the hero diagram. Subtle by design: it should
+   feel like the object has volume, not like the page is moving. */
+.tilt {
+  transform: perspective(1200px) rotateX(calc(var(--ty, 0) * -5deg)) rotateY(calc(var(--tx, 0) * 5deg));
+  transition: transform 400ms var(--ease-standard);
+  will-change: transform;
+}
+
+/* A single sheen crossing a button on hover. */
+.sweep { position: relative; overflow: hidden; isolation: isolate; }
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 24%, rgb(255 255 255 / 0.22) 50%, transparent 76%);
+  transform: translateX(-110%);
+  transition: transform 750ms var(--ease-standard);
+  pointer-events: none;
+}
+.sweep:hover::after, .sweep:focus-visible::after { transform: translateX(110%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .word > span,
+  .js [data-stage="true"] .settle { animation: none !important; }
+  .js .settle { opacity: 1; }
+  .js .mask-up { clip-path: none !important; transition: none !important; }
+  .js .draw { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+  .tilt { transform: none !important; }
+  .sweep::after { display: none; }
+}

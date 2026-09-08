@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Tilt, WordReveal } from "@/components/ui/motion"
 import { ButtonLink, Container } from "@/components/ui/primitives"
 import { site } from "@/content/site"
 
@@ -37,7 +38,7 @@ export function HomeHero({
         <div className="grid items-center gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div className="stage flex flex-col gap-7">
             <p className="type-overline text-accent">{site.name}</p>
-            <h1 className="type-display-xl max-w-[16ch] text-ink">{title}</h1>
+            <WordReveal as="h1" text={title} delay={120} className="type-display-xl max-w-[16ch] text-ink" />
             <p className="type-body-lg max-w-[54ch] text-muted">{subtitle}</p>
             <div className="mt-1 flex flex-wrap gap-3">
               <ButtonLink href={primaryCta.href} variant="accent" size="lg">
@@ -50,7 +51,9 @@ export function HomeHero({
             <p className="type-overline pt-2 text-faint">{site.signature}</p>
           </div>
 
-          <OrbitalEcosystem nodes={nodes} foundation={foundation} />
+          <Tilt>
+            <OrbitalEcosystem nodes={nodes} foundation={foundation} />
+          </Tilt>
         </div>
       </Container>
 

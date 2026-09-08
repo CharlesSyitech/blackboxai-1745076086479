@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { MaskUp } from "@/components/ui/motion"
 import type { ReactNode } from "react"
 import { cn } from "@/lib/utils/format"
 
@@ -67,8 +68,8 @@ export function ButtonLink({ href, children, variant = "primary", size = "md", c
     lg: "min-h-13 px-6 text-base",
   }
   const variants = {
-    accent: "bg-accent text-ink-900 hover:bg-amber-600",
-    primary: "bg-brand text-page hover:opacity-90",
+    accent: "sweep bg-accent text-ink-900 hover:bg-amber-600",
+    primary: "sweep bg-brand text-page hover:opacity-90",
     secondary: "border border-line text-ink hover:border-line-strong",
     ghost: "text-ink hover:text-accent-ink px-0",
   }
@@ -121,7 +122,9 @@ export function SectionHeader({
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
       <div className="flex w-full flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-        <h2 className={cn("type-h2 max-w-[22ch]", align === "center" && "mx-auto")}>{title}</h2>
+        <MaskUp className={cn("type-h2 max-w-[22ch]", align === "center" && "mx-auto")} as="h2">
+          {title}
+        </MaskUp>
         {action ? <div className="shrink-0">{action}</div> : null}
       </div>
       {intro ? (
