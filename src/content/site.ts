@@ -3,6 +3,11 @@ import type { I18n } from "@/types/content"
 export const site = {
   name: "Syitech Group",
   signature: "Technology. Ecosystems. Impact.",
+  /** Descriptor carried under the wordmark in the official logo. */
+  descriptor: {
+    fr: "Groupe Système d'Innovation Technologique",
+    en: "Groupe Système d'Innovation Technologique",
+  } satisfies I18n,
   baseline: {
     fr: "Nous construisons les technologies qui transforment les économies.",
     en: "Building the technologies that transform economies.",

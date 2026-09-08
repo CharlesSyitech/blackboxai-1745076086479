@@ -204,8 +204,19 @@ export interface CountryPresence {
   isPublic: boolean
 }
 
+export interface TimelineFigure {
+  label: I18n
+  value: I18n
+  /** An objective is not a result. Forward-looking targets stay unpublished. */
+  kind: "achieved" | "objective"
+  isPublic: boolean
+}
+
 export interface TimelineEntry {
   year: string
+  /** Short label for the year, e.g. "Création", "Année Challenge". */
   title: I18n
   body: I18n
+  figures?: TimelineFigure[]
+  isPublic: boolean
 }

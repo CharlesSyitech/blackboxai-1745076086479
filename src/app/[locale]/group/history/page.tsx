@@ -2,8 +2,9 @@ import { notFound } from "next/navigation"
 import { PageHero } from "@/components/layout/page-hero"
 import { Prose, Section } from "@/components/ui/primitives"
 import { getDictionary } from "@/content/dictionaries"
-import { timeline } from "@/content/corporate"
+import { Timeline } from "@/components/blocks/timeline"
 import { group } from "@/content/group"
+import { getTimeline } from "@/lib/content/queries"
 import { buildMetadata } from "@/lib/seo/metadata"
 import { isLocale, path } from "@/lib/i18n/routes"
 
@@ -22,6 +23,7 @@ export default async function HistoryPage({ params }: { params: Promise<{ locale
   const { locale } = await params
   if (!isLocale(locale)) notFound()
   const t = getDictionary(locale)
+  const entries = getTimeline()
 
   return (
     <>
@@ -39,19 +41,9 @@ export default async function HistoryPage({ params }: { params: Promise<{ locale
       <Section>
         <Prose paragraphs={group.model[locale]} />
       </Section>
-      {timeline.length > 0 ? (
+      {entries.length > 0 ? (
         <Section tone="surface">
-          <ol className="flex flex-col">
-            {timeline.map((entry) => (
-              <li key={entry.year} className="grid gap-4 border-t border-line py-8 md:grid-cols-[120px_1fr] md:gap-12">
-                <span className="type-overline text-accent-ink">{entry.year}</span>
-                <div className="flex flex-col gap-2">
-                  <span className="type-h3">{entry.title[locale]}</span>
-                  <span className="measure text-muted">{entry.body[locale]}</span>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <Timeline entries={entries} locale={locale} />
         </Section>
       ) : null}
     </>

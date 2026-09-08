@@ -80,7 +80,8 @@
       },
       "texture": "Carte en volume, reflets métalliques, flux de transaction",
       "motion": "Rotation lente de la carte, pulsations de paiement, flux wallet",
-      "source": "provisoire — aucun logo recu"
+      "source": "provisoire — aucun logo recu",
+      "nameConflict": "Le document de timeline officiel nomme la solution de paiement 'Syitech Pay' et la dit lancee en 2025, alors que le brief la nomme 'SydiCard' et la declare en developpement. Nom et statut a trancher : tant que ce n'est pas fait, le site ecrit 'la solution de paiement du Groupe' et n'affirme aucun statut."
     },
     "kultix": {
       "name": "KultiX",
@@ -116,7 +117,9 @@
       },
       "texture": "Macro produit, circuits, puces, matière métallique",
       "motion": "Rotation produit, vue éclatée, transfert de données",
-      "source": "provisoire — aucun logo recu"
+      "source": "sans logo — traitement typographique provisoire",
+      "logo": null,
+      "wordmarkTreatment": "Aucun logo n'existe a ce jour. La marque est posee en traitement typographique dans le systeme du Groupe : wordmark en Manrope, descripteur en mono, endossement 'by Syitech Group'. A remplacer des qu'un logo existe."
     },
     "rd": {
       "name": "Syitech R&D",
@@ -137,7 +140,9 @@
       },
       "texture": "Maillage numérique, nœuds interactifs, diagrammes techniques, traces lumineuses",
       "motion": "Systèmes de particules, nœuds réactifs, visualisation de données",
-      "source": "provisoire — aucun logo recu"
+      "source": "sans logo — traitement typographique provisoire",
+      "logo": null,
+      "wordmarkTreatment": "Aucun logo n'existe a ce jour. La marque est posee en traitement typographique dans le systeme du Groupe : wordmark en Manrope, descripteur en mono, endossement 'by Syitech Group'. A remplacer des qu'un logo existe."
     }
   },
   "scrollJourney": {

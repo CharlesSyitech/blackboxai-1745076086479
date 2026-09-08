@@ -1,5 +1,5 @@
 import { caseStudies } from "@/content/case-studies"
-import { awards, countries, jobs, news, patents, people } from "@/content/corporate"
+import { awards, countries, jobs, news, patents, people, timeline } from "@/content/corporate"
 import { expertises } from "@/content/expertises"
 import { kpis } from "@/content/kpis"
 import { partners } from "@/content/partners"
@@ -143,6 +143,20 @@ export function getAwards() {
 /** Only granted patents are ever counted as "patents". */
 export function getPatents(status?: "filed" | "pending" | "granted") {
   return patents.filter((patent) => patent.isPublic && (status ? patent.status === status : true))
+}
+
+/**
+ * Timeline entries, with their figures filtered independently: an unpublished
+ * figure disappears while its year stays, and an objective never leaves the
+ * server unless it has been explicitly cleared.
+ */
+export function getTimeline() {
+  return timeline
+    .filter((entry) => entry.isPublic)
+    .map((entry) => {
+      const figures = entry.figures?.filter((figure) => figure.isPublic) ?? []
+      return figures.length > 0 ? { ...entry, figures } : { ...entry, figures: undefined }
+    })
 }
 
 export function getCountries() {
