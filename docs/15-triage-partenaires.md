@@ -1,7 +1,7 @@
 # 15 — Triage de la planche partenaires
 
 > Planche fournie le 2026-09-09. **Aucun logo n'a été publié.**
-> Les 34 organisations identifiées sont enregistrées dans `src/content/partners.ts`
+> Les 32 organisations retenues sont enregistrées dans `src/content/partners.ts`
 > en `isPublic: false`, catégorisées, avec la raison du blocage.
 
 ---
@@ -14,7 +14,7 @@ des relations du tout.
 
 | Ce qu'on y trouve | Ce que c'est | Où ça va |
 |---|---|---|
-| ~34 organisations tierces | Relations de natures très diverses | Page Partenaires, **après qualification une par une** |
+| 32 organisations tierces | Relations de natures très diverses | Page Partenaires, **après qualification une par une** |
 | **KultiX et Sydica** | **Vos propres marques** | Nulle part dans les partenaires — voir §2 |
 | Bloc média de droite (27 titres) | Couverture presse | Rubrique distincte « Ils parlent de nous » — voir §3 |
 | Encart **Visa / Mastercard** | **Une question interne** — voir §4 | Nulle part |
@@ -72,7 +72,7 @@ validateur. Tant qu'ils manquent, il n'est pas affiché.
 
 ---
 
-## 6. Les 34 organisations, par niveau de risque
+## 6. Les 32 organisations, par niveau de risque
 
 ### 6.1 Risque élevé — publication exclue sans autorisation formelle
 
@@ -88,7 +88,11 @@ validateur. Tant qu'ils manquent, il n'est pas affiché.
 ### 6.2 Programmes d'accompagnement — à ne jamais présenter en partenariat stratégique
 
 Business France · Marseille Innovation · Accélérateur M · ANIMA Investment Network ·
-La Métropole Aix-Marseille-Provence · KEDGE Business School
+La Métropole Aix-Marseille-Provence · KEDGE Business School · Eurobiomed
+
+**Eurobiomed** — lecture corrigée par Syitech (j'avais lu « Euroquomed »). Pôle de compétitivité
+santé, rattaché à l'écosystème d'innovation avec les autres acteurs marseillais de la planche.
+Catégorisation à confirmer.
 
 Le brief est explicite : *un programme d'accélération n'est pas un investisseur*. Le libellé
 exact — `Program` — doit apparaître à l'écran.
@@ -103,10 +107,8 @@ préciser si l'organisation est **partenaire technologique**, **établissement a
 
 ### 6.4 Culture, technologie, recherche — à qualifier
 
-Nidal Production · Clape Babiwood · Magnus Création · La Fabrique · Bock · HG ·
-NCI · Terrabo · Euroquomed · 2N Academy · VH Vades · SODEPCI · CEP
-
-Deux noms sont d'une lecture incertaine sur la planche (**HG**, **Euroquomed**) : à confirmer.
+Nidal Production · Clape Babiwood · La Fabrique · Bock · NCI · Terrabo ·
+2N Academy · VH Vades · SODEPCI · CEP
 
 ---
 
@@ -134,8 +136,9 @@ BURIDA aujourd'hui.
 
 | | |
 |---|---|
-| Organisations enregistrées | 34 |
+| Organisations enregistrées | 32 |
 | Publiées | **1** — BURIDA, en texte, sans logo |
 | Titres de presse mis de côté | 27 |
 | Marques propres retirées de la liste | 2 — KultiX, Sydica |
+| Retirées à la demande de Syitech | 2 — HG/EG, Magnus Création |
 | Éléments écartés | Encart Visa/Mastercard, « +4K Artistes » |

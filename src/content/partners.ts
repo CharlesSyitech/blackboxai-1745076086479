@@ -71,10 +71,8 @@ export const partners: Partner[] = [
   draft("sacem", "Sacem", "culture_music", HIGH_RISK),
   draft("nidal-production", "Nidal Production", "culture_music", TO_QUALIFY),
   draft("clape-babiwood", "Clape Babiwood Productions", "culture_music", TO_QUALIFY),
-  draft("magnus-creation", "Magnus Création", "culture_music", TO_QUALIFY),
   draft("la-fabrique", "La Fabrique", "culture_music", TO_QUALIFY),
   draft("bock", "Bock", "culture_music", TO_QUALIFY),
-  draft("hg", "HG", "culture_music", "Marque non identifiée avec certitude sur la planche. Nom exact à confirmer."),
 
   // ── Finance et paiements ──────────────────────────────────────────────────
   draft("visa", "Visa", "finance_payments", HIGH_RISK + " Apparaît sur la planche dans un encart intitulé « Choisir entre VISA et MasterCard ? » : c'est une question interne, pas une relation."),
@@ -97,7 +95,6 @@ export const partners: Partner[] = [
   draft("cfao", "CFAO", "technology_innovation", HIGH_RISK),
   draft("nci", "NCI", "technology_innovation", TO_QUALIFY),
   draft("terrabo", "Terrabo", "technology_innovation", TO_QUALIFY),
-  draft("euroquomed", "Euroquomed", "technology_innovation", "Nom à confirmer : lecture incertaine sur la planche."),
 
   // ── Recherche, éducation et programmes ────────────────────────────────────
   draft("2n-academy", "2N Academy", "research_education", TO_QUALIFY),
@@ -110,6 +107,7 @@ export const partners: Partner[] = [
   draft("accelerateur-m", "Accélérateur M", "international_ecosystem", PROGRAMME),
   draft("anima", "ANIMA Investment Network", "international_ecosystem", PROGRAMME),
   draft("metropole-amp", "La Métropole Aix-Marseille-Provence", "international_ecosystem", PROGRAMME),
+  draft("eurobiomed", "Eurobiomed", "international_ecosystem", "Pôle de compétitivité santé. Rattaché à l'écosystème d'innovation, avec les autres acteurs marseillais de la planche — catégorisation à confirmer."),
 ]
 
 /**
