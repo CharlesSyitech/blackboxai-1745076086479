@@ -27,6 +27,8 @@ import {
   getSolutions,
   getTechnologies,
 } from "@/lib/content/queries"
+import { brandLogos, heroLayers, productCards } from "@/content/assets"
+import { hasAsset } from "@/lib/content/assets"
 import { buildMetadata } from "@/lib/seo/metadata"
 import { isLocale, path, type Locale } from "@/lib/i18n/routes"
 
@@ -80,6 +82,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         primaryCta={{ label: t.cta.discoverGroup, href: path(locale, "group") }}
         videoCta={t.cta.watchFilm}
         cursorLabel={t.cta.exploreInnovation}
+        assets={{
+          background: hasAsset(heroLayers.background.src),
+          network: hasAsset(heroLayers.network.src),
+          portrait: hasAsset(heroLayers.portrait.src),
+          hud: hasAsset(heroLayers.hud.src),
+          glow: hasAsset(heroLayers.glow.src),
+        }}
         nodes={solutions.map((solution) => ({
           id: solution.id,
           label: solution.name,
@@ -89,7 +98,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
 
       {/* 2 — The six brands, as one band */}
-      <BrandBand locale={locale} label={t.nav.brands} />
+      <BrandBand
+        locale={locale}
+        label={t.nav.brands}
+        assets={Object.fromEntries(
+          Object.keys(productCards).map((id) => [
+            id,
+            {
+              logo: Boolean(brandLogos[id]) && hasAsset(brandLogos[id] as string),
+              visual: hasAsset(productCards[id] as string),
+            },
+          ]),
+        )}
+      />
 
       {/* 3 — The figures rule. Values supplied by Syitech Group; see
               src/content/home-figures.ts for their provenance. */}

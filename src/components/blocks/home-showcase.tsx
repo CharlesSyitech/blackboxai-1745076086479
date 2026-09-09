@@ -7,10 +7,12 @@ import {
   ParallaxLayer,
   TechParticles,
 } from "@/components/blocks/hero-interactive"
+import { AssetLayer } from "@/components/blocks/asset-layer"
 import { BrandSignature } from "@/components/graphics/brand-signature"
 import { WordReveal } from "@/components/ui/motion"
 import { Badge, ButtonLink, Container } from "@/components/ui/primitives"
 import type { BrandId } from "@/content/brands"
+import { brandLogos, heroLayers, productCards } from "@/content/assets"
 import { brandCards, heroRail, homeFigures } from "@/content/home-figures"
 import type { Locale } from "@/lib/i18n/routes"
 import { path } from "@/lib/i18n/routes"
@@ -40,6 +42,7 @@ export function ShowcaseHero({
   videoCta,
   cursorLabel,
   nodes,
+  assets,
 }: {
   locale: Locale
   eyebrow: string
@@ -51,30 +54,53 @@ export function ShowcaseHero({
   videoCta: string
   cursorLabel: string
   nodes: { id: string; label: string; hint: string; href: string }[]
+  /** Which hero planes have been supplied, resolved on the server. */
+  assets: Record<"background" | "network" | "portrait" | "hud" | "glow", boolean>
 }) {
   return (
     <section data-theme="dark" className="grain hero-grain relative overflow-hidden bg-page">
-      {/* The visual runs to the right edge, as in the composition. */}
+      {/* The visual runs to the right edge, as in the composition. Each plane
+          is its own supplied file, moving by its own factor — that separation
+          is what produces depth. A plane whose file has not arrived renders
+          nothing; none of them is stood in for. */}
       <div className="showcase-hero-visual" aria-hidden="true">
         <HeroInteractive className="h-full w-full">
-          <ParallaxLayer depth={0.15} idle="zoom">
-            <div className="showcase-hero-glow" />
+          <ParallaxLayer depth={heroLayers.background.depth}>
+            <AssetLayer asset={heroLayers.background} present={assets.background} position="center right" />
           </ParallaxLayer>
-          <ParallaxLayer depth={0.25} idle="drift">
-            <TechParticles nodes={heroField} />
+
+          <ParallaxLayer depth={heroLayers.network.depth} idle="drift">
+            <AssetLayer asset={heroLayers.network} present={assets.network} fit="contain" />
+            {!assets.network ? <TechParticles nodes={heroField} /> : null}
           </ParallaxLayer>
-          <ParallaxLayer depth={0.45} idle="float">
-            {/* Held square and centred: stretched to the panel's ratio the
-                orbit stops being a circle and its chips leave the frame. */}
-            <div className="showcase-orbit-frame">
-              <HeroPortrait>
-                <ShowcaseOrbit nodes={nodes} />
-              </HeroPortrait>
-            </div>
+
+          <ParallaxLayer depth={heroLayers.portrait.depth} idle="float">
+            {assets.portrait ? (
+              // Held to the ±8px of travel the art direction fixes; the
+              // figure reacts, it is never swung around.
+              <div className="showcase-hero-portrait">
+                <HeroPortrait src={heroLayers.portrait.src} alt={heroLayers.portrait.alt} />
+              </div>
+            ) : (
+              <div className="showcase-orbit-frame">
+                <HeroPortrait>
+                  <ShowcaseOrbit nodes={nodes} />
+                </HeroPortrait>
+              </div>
+            )}
           </ParallaxLayer>
-          <ParallaxLayer depth={0.65}>
+
+          <ParallaxLayer depth={heroLayers.hud.depth} idle="drift">
+            <AssetLayer asset={heroLayers.hud} present={assets.hud} fit="contain" />
+          </ParallaxLayer>
+
+          {/* Light is its own plane, never baked into the portrait, so it can
+              follow the pointer independently. */}
+          <ParallaxLayer depth={heroLayers.glow.depth}>
+            <AssetLayer asset={heroLayers.glow} present={assets.glow} />
             <HeroSheen />
           </ParallaxLayer>
+
           <ParallaxLayer depth={0.85}>
             <InteractiveCursor label={cursorLabel} />
           </ParallaxLayer>
@@ -154,21 +180,50 @@ function ShowcaseOrbit({ nodes }: { nodes: { id: string; label: string; href: st
 
 /* ── 2. The six brands ──────────────────────────────────────────────────── */
 
-export function BrandBand({ locale, label }: { locale: Locale; label: string }) {
+export function BrandBand({
+  locale,
+  label,
+  assets,
+}: {
+  locale: Locale
+  label: string
+  /** Which logos and card visuals have been supplied, keyed by brand. */
+  assets: Record<string, { logo: boolean; visual: boolean }>
+}) {
   return (
     <section aria-label={label} className="showcase-band">
       {brandCards.map((card) => {
         const href = card.href ? path(locale, "solutions", card.href) : path(locale, "brands")
+        const supplied = assets[card.brandId] ?? { logo: false, visual: false }
+        const logoSrc = brandLogos[card.brandId]
+        const visualSrc = productCards[card.brandId]
         return (
           <article key={card.brandId} data-brand={card.brandId} className="showcase-card">
             <Link href={href} className="showcase-card-link">
               <header className="flex flex-col gap-3">
-                <span className="showcase-card-name">{card.name}</span>
+                {/* The brand's own mark where it exists. Never redrawn, never
+                    recoloured; the wordmark stands in only until it arrives. */}
+                {supplied.logo && logoSrc ? (
+                  <span className="showcase-card-logo">
+                    <AssetLayer
+                      asset={{ src: logoSrc, alt: card.name }}
+                      present
+                      fit="contain"
+                      position="left center"
+                    />
+                  </span>
+                ) : (
+                  <span className="showcase-card-name">{card.name}</span>
+                )}
                 <span className="showcase-card-headline">{card.headline[locale]}</span>
               </header>
 
               <div className="showcase-card-visual">
-                <BrandSignature brand={card.brandId as BrandId} />
+                {supplied.visual && visualSrc ? (
+                  <AssetLayer asset={{ src: visualSrc, alt: "" }} present className="showcase-card-image" />
+                ) : (
+                  <BrandSignature brand={card.brandId as BrandId} />
+                )}
                 {card.badge ? (
                   <span className="showcase-card-badge">
                     <Badge tone="warn">{card.badge[locale]}</Badge>

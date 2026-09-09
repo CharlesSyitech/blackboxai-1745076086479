@@ -41,5 +41,10 @@ jobs:
       - name: Brand CSS is generated from brands.json
         run: npm run check:brand-css
 
+      # Reports which supplied assets are in place. Does not fail while they
+      # are still awaited — only if one that WAS present has disappeared.
+      - name: Assets
+        run: npm run check:assets
+
       - name: Build
         run: npm run build

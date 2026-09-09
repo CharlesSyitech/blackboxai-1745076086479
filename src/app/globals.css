@@ -1212,3 +1212,11 @@
   transform: translate(-50%, -50%);
 }
 .showcase-orbit-frame > .hero-portrait { height: 100%; width: 100%; }
+
+/* The supplied brand mark sits where the wordmark stood, at a fixed height so
+   marks of different proportions align across the band. */
+.showcase-card-logo { display: block; height: 34px; }
+.showcase-card-image { border-radius: var(--radius-sm); aspect-ratio: 4 / 3; }
+/* The portrait plane, held to the travel the art direction fixes. */
+.showcase-hero-portrait { position: absolute; inset: 0; }
+.showcase-hero-portrait > .hero-portrait { height: 100%; width: 100%; }
