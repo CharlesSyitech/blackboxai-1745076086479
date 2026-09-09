@@ -64,7 +64,7 @@
     "sydicard": {
       "name": "SydiCard",
       "role": "FinTech — paiements, wallet, inclusion financière, reversements créateurs",
-      "universe": "Finance premium · confiance · matière métallique",
+      "universe": "Noir absolu, wordmark blanc, point turquoise. Extension financiere de l'univers Sydica.",
       "status": "coming_soon",
       "statusLabel": {
         "fr": "En développement",
@@ -72,16 +72,32 @@
       },
       "website": null,
       "palette": {
-        "ink": "#07130F",
-        "surface": "#0D2019",
-        "primary": "#17A673",
-        "accent": "#C8A24A",
-        "onAccent": "#07130F"
+        "ink": "#000000",
+        "surface": "#101010",
+        "primary": "#FFFFFF",
+        "accent": "#5BDFE8",
+        "accentInk": "#0B6E74",
+        "onAccent": "#000000"
       },
       "texture": "Carte en volume, reflets métalliques, flux de transaction",
       "motion": "Rotation lente de la carte, pulsations de paiement, flux wallet",
-      "source": "provisoire — aucun logo recu",
-      "nameConflict": "Le document de timeline officiel nomme la solution de paiement 'Syitech Pay' et la dit lancee en 2025, alors que le brief la nomme 'SydiCard' et la declare en developpement. Nom et statut a trancher : tant que ce n'est pas fait, le site ecrit 'la solution de paiement du Groupe' et n'affirme aucun statut."
+      "source": "logo officiel",
+      "nameConflict": "Le document de timeline officiel nomme la solution de paiement 'Syitech Pay' et la dit lancee en 2025, alors que le brief la nomme 'SydiCard' et la declare en developpement. Nom et statut a trancher : tant que ce n'est pas fait, le site ecrit 'la solution de paiement du Groupe' et n'affirme aucun statut.",
+      "notes": "Le turquoise du point est quasi identique a celui de Sydica : les deux marques se repondent, ce qui est coherent — SydiCard est decrite comme integree a l'ecosysteme Sydica. Endossement 'By Syitech Group' porte dans le logo lui-meme.",
+      "description": {
+        "fr": "Carte Visa prepayee intelligente developpee par Syitech Group et integree a l'ecosysteme Sydica : paiement des royalties en monnaie locale, transferts vers mobile money et banque, usages evenementiels et billetterie, acces a des contenus et avantages pour les fans."
+      },
+      "regulatory": {
+        "level": "critical",
+        "why": "Une carte Visa prepayee suppose un emetteur agree et un sponsor BIN. Syitech Group est fournisseur de technologie : le site ne doit jamais laisser entendre que le Groupe emet la carte, detient les fonds ou opere un service de paiement.",
+        "namedThirdParties": [
+          "Visa",
+          "Wave",
+          "Orange Money",
+          "MTN"
+        ],
+        "namedThirdPartiesStatus": "Cites dans le document produit. AUCUN n'est publiable tant que la direction juridique n'a pas qualifie la relation et obtenu l'autorisation d'usage de marque. Nommer Visa sur un site public sans accord est un risque de marque, pas un detail."
+      }
     },
     "kultix": {
       "name": "KultiX",
@@ -104,8 +120,8 @@
     },
     "syitex": {
       "name": "SyitEx",
-      "role": "Hardware & IoT — Secure USB, dispositifs connectés, distribution physique",
-      "universe": "Industriel · matière · précision · technologie physique",
+      "role": "Intelligence decisionnelle appliquee a l'economie culturelle",
+      "universe": "Data et prediction : evaluation, valorisation et prevision du potentiel economique des artistes et des actifs culturels",
       "status": "live",
       "website": null,
       "palette": {
@@ -113,13 +129,39 @@
         "surface": "#131C24",
         "primary": "#4A6B82",
         "accent": "#00C2FF",
+        "accentInk": "#00647F",
         "onAccent": "#0A0F14"
       },
-      "texture": "Macro produit, circuits, puces, matière métallique",
-      "motion": "Rotation produit, vue éclatée, transfert de données",
-      "source": "sans logo — traitement typographique provisoire",
+      "texture": "Classements, comparaisons d'artistes, courbes de tendance, forecast",
+      "motion": "Scores qui se composent, courbes de prevision qui se tracent, comparaisons qui basculent",
+      "source": "provisoire — aucun logo recu ; univers redefini d'apres la description fournie",
       "logo": null,
-      "wordmarkTreatment": "Aucun logo n'existe a ce jour. La marque est posee en traitement typographique dans le systeme du Groupe : wordmark en Manrope, descripteur en mono, endossement 'by Syitech Group'. A remplacer des qu'un logo existe."
+      "wordmarkTreatment": "Aucun logo n'existe a ce jour. La marque est posee en traitement typographique dans le systeme du Groupe : wordmark en Manrope, descripteur en mono, endossement 'by Syitech Group'. A remplacer des qu'un logo existe.",
+      "notes": "CORRECTION MAJEURE. Le brief ecrit decrivait SyitEx comme la verticale hardware (Secure USB, IoT). C'est faux : SyitEx est une plateforme d'intelligence decisionnelle batie sur l'Artist Value Index (AVI). La verticale hardware se retrouve donc sans marque.",
+      "description": {
+        "fr": "Plateforme d'intelligence decisionnelle qui transforme les donnees de streaming, reseaux sociaux, ventes, billetterie et medias en indicateurs comparables. Au coeur, l'Artist Value Index agrege popularite numerique, performance commerciale, credibilite artistique, impact mediatique, rentabilite et potentiel futur en un score de valeur, ajustable au contexte d'investissement."
+      },
+      "tagline": {
+        "fr": "Evaluer. Anticiper. Decider. — L'intelligence predictive au service de l'economie culturelle.",
+        "en": "SyitEx — Turn cultural data into investment intelligence."
+      },
+      "audiences": [
+        "Labels",
+        "Producteurs",
+        "Promoteurs d'evenements",
+        "Marques",
+        "Investisseurs",
+        "Organismes de gestion collective",
+        "Institutions financieres",
+        "Creator Economy"
+      ],
+      "surfaces": [
+        "Dashboard analytique web et mobile",
+        "Moteur de prevision 6-12 mois",
+        "Scoring sectoriel",
+        "API d'integration des indices"
+      ],
+      "ipStatus": "Un document de brevet est mentionne. Statut a qualifier : depose, en cours d'examen ou delivre. Les trois ne se disent pas de la meme facon (doc 03)."
     },
     "rd": {
       "name": "Syitech R&D",
@@ -168,5 +210,25 @@
       "SydiCard renders its status label on every surface where it appears. No call to action may suggest the service is open.",
       "Ni le cyan Syitech (#2FD2F0) ni le turquoise Sydica (#56D8DC) ne portent de texte sur fond clair : chaque marque declare un `accentInk` assombri pour cet usage, verifie par scripts/check-contrast.mjs."
     ]
-  }
+  },
+  "openQuestions": [
+    {
+      "id": "Q-HARDWARE",
+      "severity": "blocking",
+      "question": "SyitEx n'etant pas la verticale hardware, sous quelle marque vivent les Cartes USB securisees, USB Connect et l'IoT ? Trois options : capacites du Groupe sans marque propre, marque a nommer, ou retrait du site.",
+      "impact": "Architecture de marque, navigation, sitemap, page d'accueil"
+    },
+    {
+      "id": "Q-PAY-NAME",
+      "severity": "blocking",
+      "question": "La timeline nomme la solution de paiement 'Syitech Pay' et la dit lancee en 2025 ; le logo et le brief disent 'SydiCard'. Nom et statut a trancher.",
+      "impact": "Nommage, statut affiche, mentions reglementaires"
+    },
+    {
+      "id": "Q-VISA",
+      "severity": "blocking",
+      "question": "Visa, Wave, Orange Money et MTN sont cites dans le document SydiCard. Ces relations sont-elles contractualisees, et l'usage de leurs marques est-il autorise par ecrit ?",
+      "impact": "Page SydiCard, page Partenaires, risque de marque"
+    }
+  ]
 }

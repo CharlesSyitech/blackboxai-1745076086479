@@ -79,13 +79,21 @@ La palette est **provisoire** dans tous les cas.
 - Palette : ink `#0A0A0A` · primaire `#EDEDEA` · accent `#FFFFFF`
 - **Correction :** aucun bleu SaaS. Le logo est noir et blanc cassé. C'est une direction plus distinctive que ce que j'avais supposé : **sur les pages Sytium, la couleur ne vient que des données affichées.**
 
-### 2.4 SYDICARD — *la confiance*
-- **Registre** : finance premium. Retenue absolue : ce produit n'est pas encore ouvert.
-- **Matière** : carte en volume, reflets métalliques, profondeur.
+### 2.4 SYDICARD — *la confiance* · **palette officielle**
+- **Registre** : finance premium. Retenue absolue.
+- **Matière** : noir absolu, wordmark blanc, motif de tramé formant la carte. Volume, reflets, profondeur.
 - **Lumière** : rasante sur la tranche de la carte.
 - **Mouvement** : rotation lente, pulsations de transaction, flux wallet.
-- Palette provisoire : ink `#07130F` · primaire `#17A673` · accent `#C8A24A`
-- **Contrainte** : le libellé *En développement* accompagne la marque partout. Aucun CTA d'ouverture de compte.
+- Palette : ink `#000000` · primaire `#FFFFFF` · **accent turquoise `#5BDFE8`**
+- **Observation** : le turquoise est quasi identique à celui de Sydica. Les deux marques se répondent — ce qui est
+  juste, puisque SydiCard est décrite comme *intégrée à l'écosystème Sydica*. C'est l'extension financière d'un
+  univers culturel, pas une marque financière isolée.
+- **Contrainte réglementaire renforcée.** Le document produit décrit une **carte Visa prépayée**, le paiement de
+  royalties en monnaie locale et des transferts vers Wave, Orange Money et MTN. Émettre une carte Visa suppose un
+  établissement agréé et un sponsor BIN. Le site ne doit **jamais** laisser entendre que le Groupe émet la carte,
+  détient les fonds ou opère un service de paiement. Aucun CTA d'ouverture de compte.
+- **Visa, Wave, Orange Money, MTN ne sont pas publiables** tant que la relation n'est pas qualifiée et l'usage de
+  marque autorisé par écrit. Nommer Visa sur un site public sans accord est un risque de marque, pas un détail.
 
 ### 2.5 KULTIX — *le live* · **palette officielle**
 - **Registre** : événementiel premium. Immersif sans devenir agressif — pas de codes festival.
@@ -95,12 +103,28 @@ La palette est **provisoire** dans tous les cas.
 - Palette : ink `#0A0A0A` · navy `#0B1A38` · **primaire violet `#8A3FFB`**
 - **Correction :** aucune couleur chaude. Le logo est violet vif sur noir — l'élégance demandée est déjà dans la marque.
 
-### 2.6 SYITEX — *la matière*
-- **Registre** : technologie physique. Précision industrielle.
-- **Matière** : macro produit, circuits, puces, métal brossé.
-- **Lumière** : dure, dirigée, contrastée — photographie de produit.
-- **Mouvement** : rotation produit, vue éclatée, transfert de données.
-- Palette provisoire : ink `#0A0F14` · primaire `#4A6B82` · accent `#00C2FF`
+### 2.6 SYITEX — *la décision* · **univers entièrement redéfini**
+
+> **Correction majeure.** Le brief écrit décrivait SyitEx comme la verticale hardware — Secure USB, IoT,
+> technologie physique. C'est faux. SyitEx est une **plateforme d'intelligence décisionnelle** appliquée à
+> l'économie culturelle. Conséquence directe : **la verticale hardware se retrouve sans marque.** Voir §11.
+
+- **Ce que c'est** : évaluation, valorisation et prévision du potentiel économique des artistes et des actifs
+  culturels. Les données de streaming, réseaux sociaux, ventes, billetterie et médias deviennent des indicateurs
+  comparables. Au cœur, l'**Artist Value Index** agrège popularité numérique, performance commerciale, crédibilité
+  artistique, impact médiatique, rentabilité et potentiel futur en un score ajustable au contexte d'investissement.
+- **À qui** : labels, producteurs, promoteurs, marques, investisseurs, organismes de gestion collective,
+  institutions financières, Creator Economy.
+- **Surfaces** : dashboard analytique web et mobile, moteur de prévision 6–12 mois, scoring sectoriel, API.
+- **Registre** : analytique, sobre, dense. Le registre est celui d'un terminal financier appliqué à la culture —
+  ni le SaaS généraliste, ni l'esthétique culturelle de Sydica.
+- **Matière** : classements, comparaisons d'artistes, courbes de tendance, forecast.
+- **Mouvement** : les scores se composent, les courbes de prévision se tracent, les comparaisons basculent.
+- **Accroche retenue** (proposée par Syitech) : *Évaluer. Anticiper. Décider. — L'intelligence prédictive au
+  service de l'économie culturelle.* Version anglaise : *Turn cultural data into investment intelligence.*
+- Palette **provisoire** : ink `#0A0F14` · primaire `#4A6B82` · accent `#00C2FF` — aucun logo reçu.
+- **Propriété intellectuelle** : un document de brevet est mentionné. Statut à qualifier — déposé, en cours
+  d'examen ou délivré. Les trois ne se disent pas de la même façon (doc 03 §8).
 
 ### 2.7 SYITECH R&D — *la recherche*
 - **Registre** : DeepTech expérimental. La page la plus libre du site.
@@ -341,6 +365,28 @@ qualification exacte de la relation reste inchangée et prioritaire.
 | R&D | Promu de expertise à **marque** |
 | Header | Transparent puis navigation en verre au scroll ; mega-menu visuel par marque |
 | Footer | Liens externes directs vers `sydica.art`, `sytium.tech`, `kultix.art` ; SydiCard marqué *Coming Soon* |
+
+---
+
+## 11. Questions bloquantes ouvertes
+
+| # | Question | Ce qu'elle bloque |
+|---|---|---|
+| **Q-HARDWARE** | SyitEx n'étant pas la verticale hardware, **sous quelle marque vivent les Cartes USB sécurisées, USB Connect et l'IoT ?** Trois options : capacités du Groupe sans marque propre · une marque à nommer · retrait du site. | Architecture de marque, navigation, sitemap, page d'accueil |
+| **Q-PAY-NAME** | La timeline nomme la solution de paiement **Syitech Pay**, lancée en 2025 ; le logo et le brief disent **SydiCard**. Nom et statut sont contradictoires. | Nommage, statut affiché, mentions réglementaires |
+| **Q-VISA** | **Visa, Wave, Orange Money et MTN** sont cités dans le document SydiCard. Relations contractualisées ? Usage de marque autorisé par écrit ? | Page SydiCard, page Partenaires, risque de marque |
+| **Q-BURIDA** | La timeline 2019 mentionne un « contrat stratégique avec le BURIDA ». Qualification confirmée ? | Fiche partenaire BURIDA |
+
+**Recommandation sur Q-HARDWARE.** Rattacher Cartes USB, USB Connect et IoT au Groupe comme **capacités**, sans
+marque dédiée, jusqu'à décision. C'est cohérent avec l'histoire — 2018 « lancement des cartes USB » est l'acte
+fondateur du Groupe, pas d'une filiale — et cela évite de créer une marque de plus sans identité.
+
+---
+
+## 12. Endossement de marque — tranché
+
+Le logo SydiCard porte **« By Syitech Group »**. C'est la formule officielle : elle est adoptée pour toutes les
+marques du portefeuille, à la place de « a Syitech Group company » (question Q2 du doc 00, désormais close).
 
 ---
 
