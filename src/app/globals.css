@@ -974,14 +974,23 @@
 .showcase-hero-visual {
   position: absolute;
   inset: 0 0 0 auto;
-  width: min(58%, 900px);
+  width: min(62%, 980px);
   pointer-events: none;
-  /* Fades into the statement rather than ending on a hard seam. */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 34%);
+  /* Fades into the statement rather than ending on a hard seam. The fade is
+     short: pulled too far across the panel it washes the figure out, which is
+     what buried her on the first pass. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 26%);
 }
 .showcase-hero-visual .hero-stage { height: 100%; width: 100%; }
 .showcase-hero-visual a { pointer-events: auto; }
+
+.showcase-hero-layer-glow {
+  position: absolute;
+  inset: 6% 4% auto auto;
+  width: 62%;
+  aspect-ratio: 1;
+}
 
 .showcase-hero-glow {
   position: absolute;
@@ -1276,3 +1285,131 @@
   cursor: pointer;
 }
 .film-dialog-close:hover { background: rgb(255 255 255 / 0.08); }
+
+/* Each plane is placed, not stretched across the frame. Left to fill the whole
+   panel the figure was cropped to a face and the HUD ran straight across it —
+   the scene has to read as a person standing IN a field, not as a collage. */
+.showcase-hero-figure {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(76%, 620px);
+}
+.showcase-hero-figure > .hero-portrait { height: 100%; width: 100%; }
+.showcase-hero-figure .hero-portrait-image { height: 100%; object-fit: contain; object-position: center bottom; }
+
+.showcase-hero-layer-network {
+  position: absolute;
+  inset: 4% auto auto 0;
+  width: 66%;
+  aspect-ratio: 1;
+}
+.showcase-hero-layer-hud {
+  position: absolute;
+  inset: auto auto 2% 0;
+  width: 58%;
+  aspect-ratio: 1;
+}
+
+/* The rail crosses the image, so it carries its own ground rather than
+   competing with whatever pixel happens to sit behind each word. */
+.showcase-rail {
+  padding: 0.9rem 0 0.9rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(to right, color-mix(in srgb, var(--color-page) 78%, transparent), transparent);
+  backdrop-filter: blur(2px);
+}
+
+/* hero-woman.webp is described as a cut-out but is not one: measured, its
+   bottom edge is fully opaque and its left and right edges sit at 229-255 —
+   only the top corners are keyed. Composited as-is it shows a hard rectangle
+   through the scene. These masks dissolve that rectangle into the field
+   without touching the file; a properly cut-out portrait makes them a no-op. */
+.showcase-hero-figure .hero-portrait-image {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 22%),
+    linear-gradient(to top, transparent 0%, #000 14%),
+    linear-gradient(to left, transparent 0%, #000 8%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 22%),
+    linear-gradient(to top, transparent 0%, #000 14%),
+    linear-gradient(to left, transparent 0%, #000 8%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* 5 — The ecosystem. The globe sits behind the whole band, the brands turn
+   around the Group, the verticals read down the side. */
+.showcase-ecosystem {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-page);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.showcase-ecosystem-globe {
+  position: absolute;
+  inset: -20% -10% -30% 18%;
+  pointer-events: none;
+  /* Without this the globe ends on a hard vertical edge across the band. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+}
+.showcase-ecosystem-globe img { height: 100%; object-fit: cover; }
+
+.showcase-ecosystem-ring {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+}
+.showcase-ecosystem-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  border: 1px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-page) 82%, transparent);
+  backdrop-filter: blur(3px);
+  padding: 0 0.75rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.showcase-ecosystem-chip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-raised) 88%, transparent);
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  backdrop-filter: blur(2px);
+  transition: border-color 200ms var(--ease-standard);
+}
+.showcase-ecosystem-chip:hover { border-color: var(--color-accent); }
+
+.showcase-ecosystem-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--color-line-soft);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+@media (max-width: 1023px) {
+  .showcase-ecosystem-list { border-left: 0; padding-left: 0; }
+  .showcase-ecosystem-globe { inset: 0; opacity: 0.5; }
+}

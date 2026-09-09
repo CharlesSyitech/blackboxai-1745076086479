@@ -1,21 +1,17 @@
 import { notFound } from "next/navigation"
 import { CollectionSection, ImpactDashboard, NewsTeaser, PartnerWall, WorkGrid } from "@/components/blocks/collections"
-import { BrandBand, FigureRule, GroupStatement, ShowcaseHero } from "@/components/blocks/home-showcase"
+import { BrandBand, EcosystemShowcase, FigureRule, GroupStatement, ShowcaseHero } from "@/components/blocks/home-showcase"
 import {
   AboutSection,
   CaseStudyFeature,
-  EcosystemSection,
   EngineSection,
   ExpertiseSection,
   FinalCta,
-  FintechSection,
-  MobileSolutionsDigest,
   SolutionSpotlight,
 } from "@/components/blocks/home-sections"
 import { Section, SectionHeader } from "@/components/ui/primitives"
-import { StatsRow } from "@/components/ui/stats"
 import { getDictionary, type Dictionary } from "@/content/dictionaries"
-import { homeKpiKeys, impactKpiKeys } from "@/content/kpis"
+import { impactKpiKeys } from "@/content/kpis"
 import { partnerCategoryOrder } from "@/content/partners"
 import { site } from "@/content/site"
 import {
@@ -134,80 +130,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         filmCloseLabel={t.home.filmClose}
       />
 
-      {/* 3 — Key figures. Renders only what Finance and Legal have cleared. */}
-      <HomeStats locale={locale} t={t} />
+      {/* 5 — The ecosystem, closing the composition */}
+      <EcosystemShowcase
+        locale={locale}
+        eyebrow={t.home.ecoEyebrow}
+        lines={[t.home.ecoLine1, t.home.ecoLine2, t.home.ecoLine3]}
+        body={t.home.ecoBody}
+        cta={{ label: t.home.ecoCta, href: path(locale, "brands") }}
+        verticals={[
+          ...expertises.map((expertise) => expertise.name[locale]),
+          ...technologies.slice(0, 3).map((technology) => technology.name[locale]),
+        ].slice(0, 8)}
+        globe={productCards.rd as string}
+        hasGlobe={hasAsset(productCards.rd as string)}
+      />
 
-      {/* 4 — Expertise */}
+      {/* 6 — Expertise */}
       <ExpertiseSection
         t={t}
         locale={locale}
         expertises={expertises}
         hrefFor={(expertise) => path(locale, "expertise", expertise.slug[locale])}
-      />
-
-      {/* 5 — Ecosystem */}
-      <div id="ecosystem">
-        <EcosystemSection
-          t={t}
-          centerLabel={site.name}
-          nodes={solutions.map((solution) => ({
-            id: solution.id,
-            label: solution.name,
-            hint: solution.vertical,
-            href: path(locale, "solutions", solution.slug[locale]),
-          }))}
-          foundation={technologies.map((technology) => technology.name[locale])}
-        />
-      </div>
-
-      {/* 6, 7, 9 — Product spotlights (consolidated on mobile) */}
-      {sytium ? (
-        <SolutionSpotlight
-          solution={sytium}
-          locale={locale}
-          t={t}
-          href={solutionHref("sytium")}
-          tone="ink"
-          className="hidden lg:block"
-        />
-      ) : null}
-      {sydica ? (
-        <SolutionSpotlight
-          solution={sydica}
-          locale={locale}
-          t={t}
-          href={solutionHref("sydica")}
-          className="hidden lg:block"
-        />
-      ) : null}
-
-      {/* 8 — FinTech */}
-      {fintech ? (
-        <FintechSection
-          t={t}
-          locale={locale}
-          solution={fintech}
-          href={solutionHref("fintech")}
-          disclaimer={site.regulatoryDisclaimer[locale]}
-        />
-      ) : null}
-
-      {kultix ? (
-        <SolutionSpotlight
-          solution={kultix}
-          locale={locale}
-          t={t}
-          href={solutionHref("kultix")}
-          tone="surface"
-          className="hidden lg:block"
-        />
-      ) : null}
-
-      <MobileSolutionsDigest
-        solutions={solutions.filter((solution) => solution.featuredOnHome)}
-        locale={locale}
-        title={locale === "fr" ? "Nos solutions" : "Our solutions"}
-        hrefFor={(solution) => path(locale, "solutions", solution.slug[locale])}
       />
 
       {/* 10 — Case study */}
@@ -293,16 +236,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   )
 }
 
-function HomeStats({ locale, t }: { locale: Locale; t: Dictionary }) {
-  // The section itself disappears when nothing is publishable — no empty grid,
-  // no dash, no "coming soon".
-  if (getKpis(homeKpiKeys).length === 0) return null
-  return (
-    <Section padding="tight">
-      <StatsRow keys={homeKpiKeys} locale={locale} labels={{ source: t.labels.source, period: t.labels.period }} />
-    </Section>
-  )
-}
 
 function ImpactSection({
   locale,

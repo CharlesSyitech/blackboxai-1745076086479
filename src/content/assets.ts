@@ -52,7 +52,8 @@ export const heroLayers = {
     alt: "",
     depth: 0.12,
     fit: "cover",
-    position: "center right",
+    position: "72% 62%",
+    opacity: 0.85,
   },
   /** The African network the subject stands in. */
   network: {
@@ -85,6 +86,7 @@ export const heroLayers = {
     depth: 0.62,
     composite: "screen",
     fit: "contain",
+    opacity: 0.62,
   },
   /** Light, kept off the portrait so it can follow the pointer on its own. */
   glow: {
@@ -94,7 +96,7 @@ export const heroLayers = {
     depth: 0.78,
     composite: "screen",
     fit: "contain",
-    opacity: 0.55,
+    opacity: 0.5,
   },
 } satisfies Record<string, AssetSlot>
 

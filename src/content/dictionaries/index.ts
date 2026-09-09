@@ -56,6 +56,13 @@ const fr = {
     statementBody:
       "Depuis 2018, nous concevons et déployons des solutions technologiques dans la culture, les entreprises, la finance et l'innovation. Notre ambition est claire : faire émerger depuis l'Afrique des technologies qui créent de la valeur à l'échelle mondiale.",
     filmPlace: "Abidjan, Côte d'Ivoire",
+    ecoEyebrow: "Notre écosystème",
+    ecoLine1: "Une technologie.",
+    ecoLine2: "Plusieurs solutions.",
+    ecoLine3: "Un impact réel.",
+    ecoBody:
+      "Des solutions complémentaires, connectées par une même vision : accélérer la transformation numérique en Afrique et au-delà.",
+    ecoCta: "Explorer notre écosystème",
     filmPending: "Le film de présentation sera publié ici.",
     filmClose: "Fermer le lecteur",
     heroTitle: "Nous construisons les technologies qui transforment les économies africaines.",
@@ -244,6 +251,13 @@ const en: Dictionary = {
     statementBody:
       "Since 2018 we have designed and deployed technology across culture, enterprise, finance and innovation. Our ambition is plain: to build, from Africa, technology that creates value at world scale.",
     filmPlace: "Abidjan, Côte d'Ivoire",
+    ecoEyebrow: "Our ecosystem",
+    ecoLine1: "One technology.",
+    ecoLine2: "Several solutions.",
+    ecoLine3: "Real impact.",
+    ecoBody:
+      "Complementary solutions, connected by a single vision: accelerating digital transformation across Africa and beyond.",
+    ecoCta: "Explore our ecosystem",
     filmPending: "The presentation film will be published here.",
     filmClose: "Close the player",
     heroTitle: "We build the technologies that transform African economies.",

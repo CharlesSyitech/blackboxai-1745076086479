@@ -71,7 +71,9 @@ export function ShowcaseHero({
           </ParallaxLayer>
 
           <ParallaxLayer depth={heroLayers.network.depth} idle="drift">
-            <AssetLayer asset={heroLayers.network} present={assets.network} />
+            <div className="showcase-hero-layer-network">
+              <AssetLayer asset={heroLayers.network} present={assets.network} />
+            </div>
             {!assets.network ? <TechParticles nodes={heroField} /> : null}
           </ParallaxLayer>
 
@@ -79,7 +81,7 @@ export function ShowcaseHero({
             {assets.portrait ? (
               // Held to the ±8px of travel the art direction fixes; the
               // figure reacts, it is never swung around.
-              <div className="showcase-hero-portrait">
+              <div className="showcase-hero-figure">
                 <HeroPortrait src={heroLayers.portrait.src} alt={heroLayers.portrait.alt} />
               </div>
             ) : (
@@ -92,13 +94,17 @@ export function ShowcaseHero({
           </ParallaxLayer>
 
           <ParallaxLayer depth={heroLayers.hud.depth} idle="drift">
-            <AssetLayer asset={heroLayers.hud} present={assets.hud} />
+            <div className="showcase-hero-layer-hud">
+              <AssetLayer asset={heroLayers.hud} present={assets.hud} />
+            </div>
           </ParallaxLayer>
 
           {/* Light is its own plane, never baked into the portrait, so it can
               follow the pointer independently. */}
           <ParallaxLayer depth={heroLayers.glow.depth}>
-            <AssetLayer asset={heroLayers.glow} present={assets.glow} />
+            <div className="showcase-hero-layer-glow">
+              <AssetLayer asset={heroLayers.glow} present={assets.glow} />
+            </div>
             <HeroSheen />
           </ParallaxLayer>
 
@@ -108,7 +114,7 @@ export function ShowcaseHero({
         </HeroInteractive>
       </div>
 
-      <Container size="wide" className="relative z-2 py-16 md:py-20 lg:py-28">
+      <Container size="wide" className="relative z-2 flex min-h-[34rem] items-center py-16 md:min-h-[38rem] md:py-20 lg:min-h-[42rem] lg:py-24">
         <div className="stage flex max-w-[46rem] flex-col gap-7">
           <p className="type-overline text-faint">{eyebrow}</p>
           <h1 className="type-display-xl text-ink">
@@ -349,6 +355,102 @@ export function GroupStatement({
             )}
             <span className="showcase-film-place">{filmPlace}</span>
           </div>
+        </div>
+      </Container>
+    </section>
+  )
+}
+
+/* ── 5. The ecosystem ───────────────────────────────────────────────────── */
+
+/**
+ * The closing statement of the composition: one technology, several
+ * solutions, one impact — the brands turning around the Group over the globe,
+ * with the verticals listed alongside.
+ *
+ * The globe is the supplied R&D visual, the only real photograph of one in the
+ * pack; the marks around it are set in each brand's own palette rather than
+ * drawn from the board extractions, which are not cleared to stand for a brand.
+ */
+export function EcosystemShowcase({
+  locale,
+  eyebrow,
+  lines,
+  body,
+  cta,
+  verticals,
+  globe,
+  hasGlobe,
+}: {
+  locale: Locale
+  eyebrow: string
+  /** Three lines; the last one carries the accent. */
+  lines: [string, string, string]
+  body: string
+  cta: { label: string; href: string }
+  verticals: string[]
+  globe: string
+  hasGlobe: boolean
+}) {
+  const ring = brandCards.map((card, index) => {
+    const angle = (-90 + (360 / brandCards.length) * index) * (Math.PI / 180)
+    return { card, x: 50 + 34 * Math.cos(angle), y: 50 + 34 * Math.sin(angle) }
+  })
+
+  return (
+    <section data-theme="dark" className="grain showcase-ecosystem">
+      {hasGlobe ? (
+        <div className="showcase-ecosystem-globe" aria-hidden="true">
+          <AssetLayer asset={{ src: globe, alt: "", composite: "screen", opacity: 0.5 }} present />
+        </div>
+      ) : null}
+
+      <Container size="wide" className="relative">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr_0.55fr] lg:items-center lg:gap-12">
+          <div className="flex flex-col gap-6">
+            <p className="type-overline text-faint">{eyebrow}</p>
+            {/* Each statement holds its own line: `text-wrap: balance` would
+                still break them mid-phrase in the narrow column. */}
+            <h2 className="type-h1 max-w-[16ch] text-ink">
+              <span className="block">{lines[0]}</span>
+              <span className="block">{lines[1]}</span>
+              <span className="block text-accent-ink">{lines[2]}</span>
+            </h2>
+            <p className="type-body-lg measure text-muted">{body}</p>
+            <div>
+              <ButtonLink href={cta.href} variant="secondary" size="lg">
+                {cta.label}
+              </ButtonLink>
+            </div>
+          </div>
+
+          {/* The brands, turning around the Group. */}
+          <div className="showcase-ecosystem-ring">
+            <span className="showcase-ecosystem-core">{"Syitech Group"}</span>
+            <ul className="absolute inset-0">
+              {ring.map(({ card, x, y }) => (
+                <li
+                  key={card.brandId}
+                  data-brand={card.brandId}
+                  className="absolute"
+                  style={{ left: `${x}%`, top: `${y}%` }}
+                >
+                  <Link
+                    href={card.href ? path(locale, "solutions", card.href) : path(locale, "brands")}
+                    className="showcase-ecosystem-chip"
+                  >
+                    {card.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <ul className="showcase-ecosystem-list">
+            {verticals.map((vertical) => (
+              <li key={vertical}>{vertical}</li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>
