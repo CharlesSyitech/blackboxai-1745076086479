@@ -105,7 +105,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           Object.keys(productCards).map((id) => [
             id,
             {
-              logo: Boolean(brandLogoVariants[id]) && hasAsset(brandLogoVariants[id]!.onDark),
+              // A mark is shown only when the file exists AND is cleared to
+              // stand for the brand. See `verified` in src/content/assets.ts.
+              logo:
+                brandLogoVariants[id]?.verified === true &&
+                hasAsset(brandLogoVariants[id]!.onDark),
               visual: hasAsset(productCards[id] as string),
             },
           ]),

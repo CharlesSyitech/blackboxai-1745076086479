@@ -66,11 +66,11 @@ export function ShowcaseHero({
       <div className="showcase-hero-visual" aria-hidden="true">
         <HeroInteractive className="h-full w-full">
           <ParallaxLayer depth={heroLayers.background.depth}>
-            <AssetLayer asset={heroLayers.background} present={assets.background} position="center right" />
+            <AssetLayer asset={heroLayers.background} present={assets.background} />
           </ParallaxLayer>
 
           <ParallaxLayer depth={heroLayers.network.depth} idle="drift">
-            <AssetLayer asset={heroLayers.network} present={assets.network} fit="contain" />
+            <AssetLayer asset={heroLayers.network} present={assets.network} />
             {!assets.network ? <TechParticles nodes={heroField} /> : null}
           </ParallaxLayer>
 
@@ -91,7 +91,7 @@ export function ShowcaseHero({
           </ParallaxLayer>
 
           <ParallaxLayer depth={heroLayers.hud.depth} idle="drift">
-            <AssetLayer asset={heroLayers.hud} present={assets.hud} fit="contain" />
+            <AssetLayer asset={heroLayers.hud} present={assets.hud} />
           </ParallaxLayer>
 
           {/* Light is its own plane, never baked into the portrait, so it can
@@ -207,6 +207,7 @@ export function BrandBand({
                 {supplied.logo && logoSrc ? (
                   <span
                     className="showcase-card-logo"
+                    data-matte={mark?.matte}
                     style={{ "--content-height": mark?.contentHeight ?? 1 } as React.CSSProperties}
                   >
                     <AssetLayer

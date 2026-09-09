@@ -17,7 +17,7 @@ export function AssetLayer({
   asset,
   present,
   className,
-  fit = "cover",
+  fit,
   position,
 }: {
   asset: AssetSlot
@@ -39,8 +39,10 @@ export function AssetLayer({
         display: "block",
         width: "100%",
         height: "100%",
-        objectFit: fit,
-        ...(position ? { objectPosition: position } : {}),
+        objectFit: fit ?? asset.fit ?? "cover",
+        ...(position ?? asset.position ? { objectPosition: position ?? asset.position } : {}),
+        ...(asset.composite === "screen" ? { mixBlendMode: "screen" as const } : {}),
+        ...(asset.opacity !== undefined ? { opacity: asset.opacity } : {}),
       }}
     />
   )

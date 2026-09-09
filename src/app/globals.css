@@ -709,9 +709,12 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  /* Base travel chosen so each plane lands on the amount the asset pack's
+     README specifies: background ±2px, Africa ±4px, portrait ±7px, HUD ±10px,
+     glow ±14px, at the parallax factors manifest.json declares. */
   transform: translate3d(
-    calc(var(--px) * var(--depth) * 14px),
-    calc(var(--py) * var(--depth) * 9px),
+    calc(var(--px) * var(--depth) * 17px),
+    calc(var(--py) * var(--depth) * 11px),
     0
   );
   will-change: transform;
@@ -749,7 +752,6 @@
   transform: perspective(1400px)
     rotateY(calc(var(--px) * 2deg))
     rotateX(calc(var(--py) * -1.5deg))
-    translate3d(calc(var(--px) * 8px), calc(var(--py) * 5px), 0)
     scale(calc(1 + var(--energy) * 0.015));
   transform-style: preserve-3d;
   will-change: transform;
@@ -1225,6 +1227,10 @@
   margin-block: calc((30px - 30px / var(--content-height)) / 2);
 }
 .showcase-card-image { border-radius: var(--radius-sm); aspect-ratio: 4 / 3; }
+/* Black-backed marks: under `screen` black leaves the backdrop untouched, so
+   the flat backing disappears and only the artwork remains. The delivered file
+   is not altered. */
+.showcase-card-logo[data-matte="black"] img { mix-blend-mode: screen; }
 /* The portrait plane, held to the travel the art direction fixes. */
 .showcase-hero-portrait { position: absolute; inset: 0; }
 .showcase-hero-portrait > .hero-portrait { height: 100%; width: 100%; }
