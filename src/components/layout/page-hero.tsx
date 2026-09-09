@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Container, Eyebrow } from "@/components/ui/primitives"
+import type { BrandId } from "@/content/brands"
 
 export interface Crumb {
   label: string
@@ -44,6 +45,7 @@ export function PageHero({
   crumbLabel,
   aside,
   tone = "page",
+  brand,
 }: {
   eyebrow?: string
   title: string
@@ -52,12 +54,21 @@ export function PageHero({
   crumbLabel: string
   aside?: React.ReactNode
   tone?: "page" | "surface" | "ink"
+  /**
+   * Runs the hero in a brand's own tokens. A product is introduced in its own
+   * universe rather than in the Group's, which is the rule stated in
+   * design-system/brands.json; the body below stays on the shared neutral
+   * ground so long-form reading is unaffected.
+   */
+  brand?: BrandId
 }) {
   return (
     <section
-      {...(tone === "ink" ? { "data-theme": "dark" as const } : {})}
+      {...(brand ? { "data-brand": brand } : tone === "ink" ? { "data-theme": "dark" as const } : {})}
       className={
-        "border-b border-line " + (tone === "surface" ? "bg-surface" : "bg-page") + " text-ink"
+        "grain border-b border-line " +
+        (brand ? "bg-page" : tone === "surface" ? "bg-surface" : "bg-page") +
+        " text-ink"
       }
     >
       <Container size="wide" className="py-12 md:py-16 lg:py-20">

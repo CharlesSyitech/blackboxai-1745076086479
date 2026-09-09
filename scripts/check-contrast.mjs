@@ -10,6 +10,9 @@
 import { readFileSync } from "node:fs"
 
 const tokens = JSON.parse(readFileSync(new URL("../design-system/tokens.json", import.meta.url), "utf8"))
+const brandDoc = JSON.parse(readFileSync(new URL("../design-system/brands.json", import.meta.url), "utf8"))
+const brands = brandDoc.brands
+const statusTokens = brandDoc.statusTokens
 
 /** Resolves a "{primitive.color.navy.700}" reference to its hex value. */
 function resolve(reference) {
@@ -68,6 +71,72 @@ for (const pair of contract.forbidden ?? []) {
   checked += 1
   if (measured >= 4.5) {
     failures.push(`${fg} on ${bg} is listed as forbidden but now measures ${measured.toFixed(2)}:1 — update the contract`)
+  }
+}
+
+/**
+ * Every brand runs its own page in its own tokens, so each brand's semantic
+ * set is measured against ITS OWN ink and surface — never the Group's. This is
+ * the rule brands.json states in `contract.rules`; here it is enforced.
+ *
+ * `accent` only has to reach 3:1 (it draws marks and rules); `accentText` is
+ * the value allowed to carry words, so it owes the full 4.5:1. KultiX is why
+ * the two are separate: its violet is a legitimate graphic colour on black and
+ * an illegible one for body copy.
+ */
+const brandChecks = [
+  { token: "ink", against: ["page", "surface"], min: 4.5 },
+  { token: "muted", against: ["page", "surface"], min: 4.5 },
+  { token: "faint", against: ["page"], min: 3 },
+  { token: "accent", against: ["page", "surface"], min: 3 },
+  { token: "accentText", against: ["page", "surface"], min: 4.5 },
+]
+
+for (const [id, brand] of Object.entries(brands)) {
+  const semantic = brand.semantic
+  if (!semantic) {
+    failures.push(`brand ${id} declares no semantic token set`)
+    continue
+  }
+  for (const check of brandChecks) {
+    const fg = semantic[check.token]
+    if (!fg) {
+      failures.push(`brand ${id} is missing semantic.${check.token}`)
+      continue
+    }
+    for (const backgroundToken of check.against) {
+      const bg = semantic[backgroundToken]
+      const measured = ratio(fg, bg)
+      checked += 1
+      if (measured < check.min) {
+        failures.push(
+          `brand ${id}: ${check.token} ${fg} on ${backgroundToken} ${bg} — ${measured.toFixed(2)}:1, requires ${check.min}:1`,
+        )
+      }
+    }
+  }
+  // Status colours are shared across universes, so each one is measured
+  // against every brand's ground. SydiCard is the strict case: absolute black.
+  for (const [name, value] of Object.entries(statusTokens ?? {})) {
+    if (name.startsWith("$")) continue
+    for (const backgroundToken of ["page", "surface"]) {
+      const measured = ratio(value, semantic[backgroundToken])
+      checked += 1
+      if (measured < 4.5) {
+        failures.push(
+          `brand ${id}: status ${name} ${value} on ${backgroundToken} ${semantic[backgroundToken]} — ${measured.toFixed(2)}:1, requires 4.5:1`,
+        )
+      }
+    }
+  }
+
+  // Text set ON the accent (buttons, badges) uses the brand's own onAccent.
+  const onAccent = ratio(semantic.onAccent, semantic.accent)
+  checked += 1
+  if (onAccent < 4.5) {
+    failures.push(
+      `brand ${id}: onAccent ${semantic.onAccent} on accent ${semantic.accent} — ${onAccent.toFixed(2)}:1, requires 4.5:1`,
+    )
   }
 }
 

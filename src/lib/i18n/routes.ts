@@ -14,6 +14,7 @@ export function isLocale(value: string): value is Locale {
  */
 export const segments = {
   group: { fr: "groupe", en: "group" },
+  brands: { fr: "marques", en: "brands" },
   history: { fr: "histoire", en: "history" },
   "vision-mission": { fr: "vision-mission", en: "vision-mission" },
   governance: { fr: "gouvernance", en: "governance" },

@@ -9,8 +9,10 @@
     "typecheck": "tsc --noEmit",
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:content": "node scripts/check-content.mjs",
-    "check": "npm run typecheck && npm run check:contrast && npm run check:content",
-    "verify": "npm run check && npm run build"
+    "check": "npm run typecheck && npm run check:contrast && npm run check:brand-css && npm run check:content",
+    "verify": "npm run check && npm run build",
+    "build:brand-css": "node scripts/build-brand-css.mjs",
+    "check:brand-css": "node scripts/build-brand-css.mjs --check"
   },
   "dependencies": {
     "next": "^16.3.4",

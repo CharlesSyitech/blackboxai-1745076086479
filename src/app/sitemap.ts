@@ -40,6 +40,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   if (getPeople().length > 0) add((locale) => path(locale, "group", "leadership"), 0.5)
   if (getAwards().length > 0) add((locale) => path(locale, "group", "awards"), 0.4)
 
+  add((locale) => path(locale, "brands"), 0.8)
+
   add((locale) => path(locale, "expertise"), 0.8)
   for (const expertise of expertises) {
     add((locale) => path(locale, "expertise", expertise.slug[locale]), 0.7)

@@ -68,7 +68,7 @@ export function ButtonLink({ href, children, variant = "primary", size = "md", c
     lg: "min-h-13 px-6 text-base",
   }
   const variants = {
-    accent: "sweep bg-accent text-ink-900 hover:bg-accent-hover",
+    accent: "sweep bg-accent text-on-accent hover:bg-accent-hover",
     primary: "sweep bg-brand text-page hover:opacity-90",
     secondary: "border border-line text-ink hover:border-line-strong",
     ghost: "text-ink hover:text-accent-ink px-0",

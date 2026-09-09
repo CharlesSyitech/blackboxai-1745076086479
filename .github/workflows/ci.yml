@@ -38,5 +38,8 @@ jobs:
       - name: Content guards
         run: npm run check:content
 
+      - name: Brand CSS is generated from brands.json
+        run: npm run check:brand-css
+
       - name: Build
         run: npm run build

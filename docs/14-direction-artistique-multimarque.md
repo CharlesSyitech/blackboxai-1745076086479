@@ -406,3 +406,47 @@ marques du portefeuille, à la place de « a Syitech Group company » (question 
 
 Les étapes 2, 3 et 4 peuvent démarrer sur palettes provisoires : le remplacement des couleurs
 officielles ne coûtera qu'un fichier. Les étapes 5 et 6 sont réellement bloquées par les médias.
+
+---
+
+## 12. Système multi-marques — état livré
+
+L'étape 2 est faite, et l'étape 4 l'est partiellement.
+
+### 12.1 Le mécanisme
+
+Une marque n'est pas un composant : c'est une portée. `[data-brand="sydica"]` redéfinit les
+tokens sémantiques de la portée, exactement comme `[data-theme="dark"]`, et **aucun composant
+n'a de variante de marque** — ils lisent les tokens en vigueur. Descendre `/marques` traverse
+donc sept palettes sans une seule couleur écrite en dur dans un composant.
+
+Les blocs CSS ne sont pas écrits à la main : `npm run build:brand-css` les génère depuis
+`design-system/brands.json`, et `npm run check:brand-css` échoue en CI si `globals.css` a
+divergé. La palette et le rendu ne peuvent pas se désynchroniser.
+
+### 12.2 Le contrat de contraste, étendu aux sept univers
+
+`scripts/check-contrast.mjs` mesure désormais **chaque marque contre son propre fond**, jamais
+contre celui du Groupe — 140 paires au lieu de 27. Deux résultats ont changé le design :
+
+| Constat | Conséquence |
+|---|---|
+| Le violet KultiX `#8A3FFB` mesure **3,95:1** sur son noir | Suffisant pour un tracé (≥ 3:1), insuffisant pour du texte (≥ 4,5:1). Les tokens séparent donc `accent` (graphique) et `accentText` — `#A066FC` pour KultiX. |
+| Le texte posé **sur** l'accent était codé en dur en encre sombre | Illisible sur le violet KultiX. Il passe par `--color-on-accent`, que chaque marque déclare : blanc pour KultiX, encre pour les autres. |
+| Le badge « En développement » de SydiCard mesurait **3,87:1** sur le noir absolu | Les couleurs d'état viennent maintenant de `statusTokens`, communes aux sept univers sombres, et sont vérifiées contre le fond de chaque marque. |
+
+Aucune de ces trois erreurs n'était visible à l'œil sur une maquette. Elles l'étaient à la mesure.
+
+### 12.3 Les deux marques sans logo
+
+SyitEx et Syitech R&D sont posées en traitement typographique dans le système du Groupe, avec
+un filet d'accent sous le wordmark et **une mention explicite sur la page** indiquant que
+l'identité propre reste à venir. Aucune marque n'en emprunte une autre, aucun logo n'est inventé.
+
+### 12.4 Ce qui reste ouvert
+
+`Q-BRAND-SCOPE` dans `brands.json` : jusqu'où une page produit tourne-t-elle dans les tokens de
+sa marque ? Le hero y est aujourd'hui ; le corps de page reste sur le fond clair partagé et y
+affiche donc l'accent du Groupe — visible sur la page Sytium, dont l'identité est pourtant
+strictement monochrome. Trois options y sont posées ; c'est une décision de direction
+artistique, pas de développement.

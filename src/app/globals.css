@@ -44,6 +44,9 @@
   --color-accent: #2fd2f0;
   --color-accent-hover: #1aa8c4;
   --color-accent-ink: #0a6c82;
+  /* Text set ON the accent. Each brand overrides it; KultiX is why this is a
+     token and not a hardcoded ink — its violet needs white, not near-black. */
+  --color-on-accent: #060b14;
   --color-data: #0a7b7b;
   --color-ok: #12805c;
   --color-warn: #9a5b00;
@@ -81,6 +84,7 @@
   --color-accent: #2fd2f0;
   --color-accent-hover: #5adcf4;
   --color-accent-ink: #5adcf4;
+  --color-on-accent: #060b14;
   --color-data: #5fcfcb;
   --color-ok: #5bc79c;
   --color-warn: #f2c177;
@@ -91,6 +95,196 @@
   --shadow-lg: 0 24px 48px rgb(0 0 0 / 0.5);
   color-scheme: dark;
 }
+
+/* Brand universes. Same mechanism as the dark theme above: the semantic
+   tokens are redefined for the scope, and every component re-skins without a
+   single variant. A product page runs entirely in its own tokens — the Group
+   palette is never applied on top of it. */
+/* ▼ GENERATED — brand themes, from design-system/brands.json. Run `npm run build:brand-css`. */
+
+[data-brand="group"] {
+  /* Syitech Group — Premium · institutionnel · technologique · international */
+  --color-page: #060B14;
+  --color-surface: #0A1A3C;
+  --color-raised: #0B2142;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C3D3EA;
+  --color-faint: #7C9FD1;
+  --color-line: rgb(255 255 255 / 0.16);
+  --color-line-soft: rgb(255 255 255 / 0.08);
+  --color-line-strong: #2FD2F0;
+  --color-brand: #C3D3EA;
+  --color-brand-soft: rgb(255 255 255 / 0.08);
+  --color-accent: #2FD2F0;
+  --color-accent-hover: #2FD2F0;
+  --color-accent-ink: #2FD2F0;
+  --color-on-accent: #060B14;
+  --color-focus: #2FD2F0;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="sydica"] {
+  /* Sydica — Émotion · scène · Afrique contemporaine · création */
+  --color-page: #1B1435;
+  --color-surface: #251B47;
+  --color-raised: #312459;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C9BEE8;
+  --color-faint: #9A87C9;
+  --color-line: rgb(214 200 255 / 0.20);
+  --color-line-soft: rgb(214 200 255 / 0.10);
+  --color-line-strong: #56D8DC;
+  --color-brand: #C9BEE8;
+  --color-brand-soft: rgb(214 200 255 / 0.10);
+  --color-accent: #56D8DC;
+  --color-accent-hover: #56D8DC;
+  --color-accent-ink: #56D8DC;
+  --color-on-accent: #1B1435;
+  --color-focus: #56D8DC;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="sytium"] {
+  /* Sytium — SaaS premium monochrome — noir et blanc casse, aucune couleur d'accent */
+  --color-page: #0A0A0A;
+  --color-surface: #171717;
+  --color-raised: #1F1F1F;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #A3A3A0;
+  --color-faint: #7A7A77;
+  --color-line: rgb(255 255 255 / 0.18);
+  --color-line-soft: rgb(255 255 255 / 0.09);
+  --color-line-strong: #FFFFFF;
+  --color-brand: #A3A3A0;
+  --color-brand-soft: rgb(255 255 255 / 0.09);
+  --color-accent: #FFFFFF;
+  --color-accent-hover: #FFFFFF;
+  --color-accent-ink: #FFFFFF;
+  --color-on-accent: #0A0A0A;
+  --color-focus: #FFFFFF;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="sydicard"] {
+  /* SydiCard — Noir absolu, wordmark blanc, point turquoise. Extension financiere de l'univers Sydica. */
+  --color-page: #000000;
+  --color-surface: #101010;
+  --color-raised: #1A1A1A;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C8CDD0;
+  --color-faint: #8A9296;
+  --color-line: rgb(255 255 255 / 0.18);
+  --color-line-soft: rgb(255 255 255 / 0.09);
+  --color-line-strong: #5BDFE8;
+  --color-brand: #C8CDD0;
+  --color-brand-soft: rgb(255 255 255 / 0.09);
+  --color-accent: #5BDFE8;
+  --color-accent-hover: #5BDFE8;
+  --color-accent-ink: #5BDFE8;
+  --color-on-accent: #000000;
+  --color-focus: #5BDFE8;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="kultix"] {
+  /* KultiX — Live premium — violet vif sur noir, jamais les codes festival */
+  --color-page: #0A0A0A;
+  --color-surface: #0B1A38;
+  --color-raised: #14264B;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C4B0E8;
+  --color-faint: #9B7BD4;
+  --color-line: rgb(198 176 255 / 0.22);
+  --color-line-soft: rgb(198 176 255 / 0.11);
+  --color-line-strong: #8A3FFB;
+  --color-brand: #C4B0E8;
+  --color-brand-soft: rgb(198 176 255 / 0.11);
+  --color-accent: #8A3FFB;
+  --color-accent-hover: #A066FC;
+  --color-accent-ink: #A066FC;
+  --color-on-accent: #FFFFFF;
+  --color-focus: #A066FC;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="syitex"] {
+  /* SyitEx — Data et prediction : evaluation, valorisation et prevision du potentiel economique des artistes et des actifs culturels */
+  --color-page: #0A0F14;
+  --color-surface: #131C24;
+  --color-raised: #1B2731;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #A8BCCB;
+  --color-faint: #6E8698;
+  --color-line: rgb(168 188 203 / 0.20);
+  --color-line-soft: rgb(168 188 203 / 0.10);
+  --color-line-strong: #00C2FF;
+  --color-brand: #A8BCCB;
+  --color-brand-soft: rgb(168 188 203 / 0.10);
+  --color-accent: #00C2FF;
+  --color-accent-hover: #00C2FF;
+  --color-accent-ink: #00C2FF;
+  --color-on-accent: #0A0F14;
+  --color-focus: #00C2FF;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="rd"] {
+  /* Syitech R&D — DeepTech · expérimental — la page la plus artistique du site */
+  --color-page: #05070A;
+  --color-surface: #0C1116;
+  --color-raised: #131A21;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #A9B6C6;
+  --color-faint: #74839A;
+  --color-line: rgb(169 182 198 / 0.20);
+  --color-line-soft: rgb(169 182 198 / 0.10);
+  --color-line-strong: #8B7CFF;
+  --color-brand: #A9B6C6;
+  --color-brand-soft: rgb(169 182 198 / 0.10);
+  --color-accent: #8B7CFF;
+  --color-accent-hover: #8B7CFF;
+  --color-accent-ink: #8B7CFF;
+  --color-on-accent: #05070A;
+  --color-focus: #8B7CFF;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+/* ▲ END GENERATED brand themes */
 
 @layer base {
   * {
@@ -126,6 +320,80 @@
 }
 
 @layer components {
+  /* ── Brand signature motifs ───────────────────────────────────────────
+     One animation vocabulary, reused by all seven motifs. Everything runs on
+     transform / opacity / stroke-dashoffset, and the whole set is disabled
+     under prefers-reduced-motion by the global rule at the end of this file. */
+  .brand-signature .sig-pulse {
+    opacity: 0.35;
+    animation: sig-pulse 3.2s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-bar {
+    transform-origin: center;
+    animation: sig-bar 2.4s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-cell {
+    opacity: 0;
+    animation: sig-fade 0.6s var(--ease-entrance) forwards;
+  }
+  .brand-signature .sig-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: sig-draw 1.6s var(--ease-entrance) forwards;
+  }
+  .brand-signature .sig-appear {
+    opacity: 0;
+    animation: sig-fade 0.7s var(--ease-entrance) forwards;
+  }
+  .brand-signature .sig-float {
+    animation: sig-float 6s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-flow {
+    opacity: 0;
+    animation: sig-flow 2.8s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-scan {
+    animation: sig-scan 3.6s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-rise {
+    transform: scaleY(0);
+    animation: sig-rise 0.7s var(--ease-entrance) forwards;
+  }
+
+  @keyframes sig-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.25); }
+  }
+  @keyframes sig-bar {
+    0%, 100% { transform: scaleY(0.55); }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes sig-fade {
+    to { opacity: 1; }
+  }
+  @keyframes sig-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes sig-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes sig-flow {
+    0% { opacity: 0; transform: translate(0, 0); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: translate(26px, -22px); }
+  }
+  @keyframes sig-scan {
+    0%, 100% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 0.9; }
+    50% { transform: translateY(52px); opacity: 0.9; }
+    90% { opacity: 0; }
+  }
+  @keyframes sig-rise {
+    to { transform: scaleY(1); }
+  }
+
+
   .type-display-xl {
     font-family: var(--font-display);
     font-weight: 800;
@@ -417,6 +685,29 @@
   pointer-events: none;
 }
 .sweep:hover::after, .sweep:focus-visible::after { transform: translateX(110%); }
+
+/* Without motion the motifs must still be COMPLETE, not frozen at frame zero:
+   the pulses sit at full strength, the drawn paths are drawn, the bars are up,
+   and the two purely decorative loops (card flow, ticket scan) are removed
+   rather than left as an invisible artefact. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-signature .sig-pulse,
+  .brand-signature .sig-cell,
+  .brand-signature .sig-bar,
+  .brand-signature .sig-float,
+  .brand-signature .sig-rise,
+  .brand-signature .sig-appear,
+  .brand-signature .sig-draw {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+  .brand-signature .sig-flow,
+  .brand-signature .sig-scan {
+    display: none;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .js .word > span,

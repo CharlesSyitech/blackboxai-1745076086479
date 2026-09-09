@@ -5,6 +5,7 @@ import { ProcessFlow } from "@/components/graphics/process-flow"
 import { PageHero } from "@/components/layout/page-hero"
 import { Arrow, Badge, ButtonLink, Section, SectionHeader } from "@/components/ui/primitives"
 import { StatsRow } from "@/components/ui/stats"
+import { brandForSolution } from "@/content/brands"
 import { getDictionary } from "@/content/dictionaries"
 import { site } from "@/content/site"
 import { solutions } from "@/content/solutions"
@@ -52,12 +53,16 @@ export default async function SolutionPage({
   const expertise = getExpertises().find((item) => item.id === solution.expertise)
   const studies = getCaseStudiesForSolution(solution.id)
   const showRegulatory = solution.regulatoryStatus !== "not_applicable"
+  // Not every solution carries a brand: the secure USB cards are a Group
+  // capability, so that page stays in the Group's own identity.
+  const brand = brandForSolution(solution.id)
 
   return (
     <>
       <JsonLd data={softwareApplicationJsonLd(solution, locale)} />
 
       <PageHero
+        {...(brand ? { brand: brand.id } : { tone: "ink" as const })}
         eyebrow={`${solution.vertical} · ${t.labels.aSyitechSolution}`}
         title={solution.positioning[locale]}
         intro={solution.tagline[locale]}

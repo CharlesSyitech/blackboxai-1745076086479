@@ -1,6 +1,7 @@
 import { getDictionary } from "@/content/dictionaries"
 import type { NavChild, NavItem } from "@/components/layout/header"
 import type { FooterColumn } from "@/components/layout/footer"
+import { brands } from "@/content/brands"
 import { getLegalDocuments } from "@/content/legal"
 import { getAwards, getExpertises, getPeople, getSolutions } from "@/lib/content/queries"
 import { path, type Locale } from "@/lib/i18n/routes"
@@ -39,6 +40,15 @@ export function buildNavigation(locale: Locale) {
         { label: locale === "fr" ? "À propos" : "About", href: path(locale, "group") },
         ...groupChildren,
       ],
+    },
+    {
+      label: t.nav.brands,
+      href: path(locale, "brands"),
+      children: brands.map((brand) => ({
+        label: brand.name,
+        href: `${path(locale, "brands")}#${brand.id}`,
+        hint: brand.role[locale],
+      })),
     },
     {
       label: t.nav.expertise,

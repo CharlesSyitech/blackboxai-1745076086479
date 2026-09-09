@@ -3,6 +3,7 @@ import type { Locale } from "@/lib/i18n/routes"
 const fr = {
   nav: {
     group: "Le Groupe",
+    brands: "Marques",
     expertise: "Expertises",
     solutions: "Solutions",
     technology: "Technologie",
@@ -175,6 +176,7 @@ type Dictionary = typeof fr
 const en: Dictionary = {
   nav: {
     group: "The Group",
+    brands: "Brands",
     expertise: "Expertise",
     solutions: "Solutions",
     technology: "Technology",
