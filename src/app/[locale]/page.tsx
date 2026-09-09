@@ -129,6 +129,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         cta={{ label: t.cta.ourHistory, href: path(locale, "group", "history") }}
         filmLabel={t.cta.watchPresentation}
         filmPlace={t.home.filmPlace}
+        filmUrl={site.filmUrl}
+        filmPendingLabel={t.home.filmPending}
+        filmCloseLabel={t.home.filmClose}
       />
 
       {/* 3 — Key figures. Renders only what Finance and Legal have cleared. */}

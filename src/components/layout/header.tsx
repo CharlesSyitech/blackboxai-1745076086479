@@ -95,7 +95,15 @@ export function Header({
         "sticky top-0 z-50 border-b transition-colors duration-300",
         overInk
           ? "border-transparent bg-page text-ink"
-          : "border-line bg-page/90 backdrop-blur-md",
+          // `backdrop-blur` creates a containing block for every `position:
+          // fixed` descendant, so the mobile panel's `bottom-0` resolved
+          // against the HEADER instead of the viewport and the menu opened
+          // seven pixels tall. While it is open the header goes opaque, which
+          // removes the containing block and is what a full-screen menu wants
+          // anyway.
+          : mobileOpen
+            ? "border-line bg-page"
+            : "border-line bg-page/90 backdrop-blur-md",
       )}
       onMouseLeave={() => setOpenMenu(null)}
     >

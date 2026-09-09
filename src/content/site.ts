@@ -3,6 +3,14 @@ import type { I18n } from "@/types/content"
 export const site = {
   name: "Syitech Group",
   signature: "Technology. Ecosystems. Impact.",
+  /**
+   * The presentation film. Null until footage exists, and the homepage reads
+   * this rather than assuming: with no film it says so plainly instead of
+   * offering a play button that does nothing.
+   *
+   * Set it to a direct MP4/WebM URL and the player opens on the page.
+   */
+  filmUrl: null as string | null,
   /** Descriptor carried under the wordmark in the official logo. */
   descriptor: {
     fr: "Groupe Système d'Innovation Technologique",

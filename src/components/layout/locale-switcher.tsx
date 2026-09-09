@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from "next/navigation"
 import { locales, segments, type Locale, type RouteKey } from "@/lib/i18n/routes"
+import { translateSlug } from "@/lib/i18n/slug-map"
 
 /**
  * Keeps the visitor on the same page across languages by translating each
@@ -22,10 +23,19 @@ export function LocaleSwitcher({ locale, label }: { locale: Locale; label: strin
       )
       if (key) {
         translated.push(segments[key][target])
-      } else {
-        // Unknown segment: a content slug. Stop at the section index.
-        break
+        continue
       }
+      // Not a route segment, so it is a content slug. Translating it is what
+      // keeps the reader on the SAME page across languages; stopping here
+      // would drop them on the section index, which is what used to happen.
+      const slug = translateSlug(locale, target, part)
+      if (slug) {
+        translated.push(slug)
+        continue
+      }
+      // Genuinely unknown: fall back to the section index rather than build a
+      // URL that would 404.
+      break
     }
     return "/" + [target, ...translated].join("/")
   }

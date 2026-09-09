@@ -1234,3 +1234,45 @@
 /* The portrait plane, held to the travel the art direction fixes. */
 .showcase-hero-portrait { position: absolute; inset: 0; }
 .showcase-hero-portrait > .hero-portrait { height: 100%; width: 100%; }
+
+/* The film's dialog. `<dialog>` brings the modal behaviour, focus trapping and
+   Escape-to-close on its own; only the surface is styled here. */
+.showcase-film-pending {
+  position: relative;
+  max-width: 22ch;
+  text-align: center;
+  color: var(--color-muted);
+}
+.showcase-film-body {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+}
+.showcase-film-body:hover .showcase-film-play { background: var(--color-accent); }
+.showcase-film-body:hover .showcase-film-play::after { border-left-color: var(--color-on-accent); }
+.showcase-film-play { transition: background-color 200ms var(--ease-standard); }
+
+.film-dialog {
+  width: min(92vw, 1100px);
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: #000;
+  color: #fff;
+}
+.film-dialog::backdrop { background: rgb(0 0 0 / 0.72); }
+.film-dialog-video { display: block; width: 100%; height: auto; }
+.film-dialog-close {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  border: 0;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.film-dialog-close:hover { background: rgb(255 255 255 / 0.08); }

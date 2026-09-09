@@ -56,6 +56,8 @@ const fr = {
     statementBody:
       "Depuis 2018, nous concevons et déployons des solutions technologiques dans la culture, les entreprises, la finance et l'innovation. Notre ambition est claire : faire émerger depuis l'Afrique des technologies qui créent de la valeur à l'échelle mondiale.",
     filmPlace: "Abidjan, Côte d'Ivoire",
+    filmPending: "Le film de présentation sera publié ici.",
+    filmClose: "Fermer le lecteur",
     heroTitle: "Nous construisons les technologies qui transforment les économies africaines.",
     heroSubtitle:
       "Syitech Group conçoit des plateformes, infrastructures et technologies qui connectent entreprises, culture, finance et innovation afin d'accélérer la transformation numérique en Afrique et au-delà.",
@@ -242,6 +244,8 @@ const en: Dictionary = {
     statementBody:
       "Since 2018 we have designed and deployed technology across culture, enterprise, finance and innovation. Our ambition is plain: to build, from Africa, technology that creates value at world scale.",
     filmPlace: "Abidjan, Côte d'Ivoire",
+    filmPending: "The presentation film will be published here.",
+    filmClose: "Close the player",
     heroTitle: "We build the technologies that transform African economies.",
     heroSubtitle:
       "Syitech Group designs the platforms, infrastructure and technologies that connect business, culture, finance and innovation — accelerating digital transformation across Africa and beyond.",

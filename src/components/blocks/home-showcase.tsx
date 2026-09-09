@@ -8,6 +8,7 @@ import {
   TechParticles,
 } from "@/components/blocks/hero-interactive"
 import { AssetLayer } from "@/components/blocks/asset-layer"
+import { FilmPlayer } from "@/components/blocks/film-player"
 import { BrandSignature } from "@/components/graphics/brand-signature"
 import { WordReveal } from "@/components/ui/motion"
 import { Badge, ButtonLink, Container } from "@/components/ui/primitives"
@@ -302,6 +303,9 @@ export function GroupStatement({
   cta,
   filmLabel,
   filmPlace,
+  filmUrl,
+  filmPendingLabel,
+  filmCloseLabel,
 }: {
   eyebrow: string
   titleLead: string
@@ -310,6 +314,10 @@ export function GroupStatement({
   cta: { label: string; href: string }
   filmLabel: string
   filmPlace: string
+  /** Null until footage exists. */
+  filmUrl: string | null
+  filmPendingLabel: string
+  filmCloseLabel: string
 }) {
   return (
     <section id="film" className="showcase-statement">
@@ -332,10 +340,13 @@ export function GroupStatement({
               caption names where it was shot, as the composition does. */}
           <div data-theme="dark" className="showcase-film">
             <div className="showcase-film-surface" aria-hidden="true" />
-            <div className="showcase-film-body">
-              <span className="showcase-film-play" aria-hidden="true" />
-              <span className="showcase-film-label">{filmLabel}</span>
-            </div>
+            {/* A play button that opens nothing is worse than none: with no
+                film the block says so instead. */}
+            {filmUrl ? (
+              <FilmPlayer src={filmUrl} label={filmLabel} closeLabel={filmCloseLabel} />
+            ) : (
+              <p className="showcase-film-pending">{filmPendingLabel}</p>
+            )}
             <span className="showcase-film-place">{filmPlace}</span>
           </div>
         </div>
