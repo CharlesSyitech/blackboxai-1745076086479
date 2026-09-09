@@ -12,13 +12,13 @@ page omits that plane rather than substituting a drawn stand-in.
 The separation is the point: a flattened composite cannot produce depth. Each
 plane moves by its own factor as the pointer travels.
 
-| File | What it is | Movement |
-|---|---|---|
-| `hero-bg-abidjan.webp` | Abidjan behind everything | very slight |
-| `hero-africa-network.png` | the African map and its nodes | slight |
-| `hero-woman.webp` | the subject, **cut out on transparency** | subtle, ±8px |
-| `hero-hud.png` | interface marks and particles | more pronounced |
-| `hero-glow.png` | light, **on its own layer** | follows the pointer |
+| File | Size | What it is | Movement |
+|---|---|---|---|
+| `hero-bg-abidjan.webp` | 1920×1080 | Abidjan, no figure | very slight |
+| `hero-africa-network.png` | 1200×1200 | the African map and its nodes | slight |
+| `hero-woman.webp` | 1200×1400 | the subject, **cut out on transparency** | subtle, ±8px |
+| `hero-hud.png` | 1200×1200 | interface marks and particles | more pronounced |
+| `hero-glow.png` | 1200×1200 | light, **on its own layer** | follows the pointer |
 
 Two requirements carry the effect:
 
@@ -32,7 +32,7 @@ Two requirements carry the effect:
 `card-sydica.webp`, `card-sytium.webp`, `card-sydicard.webp`,
 `card-kultix.webp`, `card-syitex.webp`, `card-rd.webp`.
 
-Rendered at 4:3. Anything wider is cropped to the centre.
+1200×1600 each. Rendered at 4:3, cropped to the centre.
 
 ## `brands/<brand>/` — the marks
 

@@ -27,12 +27,14 @@ export interface AssetSlot {
 export const heroLayers = {
   /** Abidjan behind everything. Barely moves. */
   background: {
+    // 1920x1080, Abidjan without a figure.
     src: "/assets/hero/hero-bg-abidjan.webp",
     alt: "",
     depth: 0.15,
   },
   /** The African network the subject stands in. */
   network: {
+    // 1200x1200, transparent.
     src: "/assets/hero/hero-africa-network.png",
     alt: "",
     depth: 0.25,
@@ -42,25 +44,28 @@ export const heroLayers = {
    * it is never swung around.
    */
   portrait: {
+    // 1200x1400, cut out on transparency.
     src: "/assets/hero/hero-woman.webp",
     alt: "",
     depth: 0.45,
   },
   /** Interface marks and particles, the most mobile plane. */
   hud: {
+    // 1200x1200, transparent.
     src: "/assets/hero/hero-hud.png",
     alt: "",
     depth: 0.65,
   },
   /** Light, kept off the portrait so it can follow the pointer on its own. */
   glow: {
+    // 1200x1200, transparent.
     src: "/assets/hero/hero-glow.png",
     alt: "",
     depth: 0.85,
   },
 } satisfies Record<string, AssetSlot>
 
-/** One dedicated visual per product card. */
+/** One dedicated visual per product card. All 1200x1600. */
 export const productCards: Record<string, string> = {
   sydica: "/assets/products/card-sydica.webp",
   sytium: "/assets/products/card-sytium.webp",
@@ -106,12 +111,17 @@ export const brandLogoVariants: Record<string, BrandMark> = {
     // Measured on the supplied file: the mark is 993x337 inside 1250x625.
     contentHeight: 337 / 625,
   },
-  syitech: { onDark: "/brands/syitech/logo-syitech-white.png", onLight: "/brands/syitech/logo-syitech-dark.png" },
-  sydica: { onDark: "/brands/sydica/logo-sydica-white.png", onLight: "/brands/sydica/logo-sydica-dark.png" },
-  sydicard: { onDark: "/brands/sydicard/logo-sydicard-white.png", onLight: "/brands/sydicard/logo-sydicard-dark.png" },
-  kultix: { onDark: "/brands/kultix/logo-kultix-white.png", onLight: "/brands/kultix/logo-kultix-dark.png" },
-  syitex: { onDark: "/brands/syitex/logo-syitex-white.png", onLight: "/brands/syitex/logo-syitex-dark.png" },
-  rd: { onDark: "/brands/rd/logo-rd-white.png", onLight: "/brands/rd/logo-rd-dark.png" },
+  // Named per the asset sheet of 2026-09-09. The suffix there names the
+  // GROUND the file is drawn for, not the colour of the artwork: `-light` is
+  // the version for light surfaces, `-dark` the version for dark ones. If the
+  // convention is the reverse, swapping the two strings per brand is the whole
+  // correction.
+  syitech: { onDark: "/brands/syitech/logo-syitech-dark.svg", onLight: "/brands/syitech/logo-syitech-light.svg" },
+  sydica: { onDark: "/brands/sydica/logo-sydica-dark.svg", onLight: "/brands/sydica/logo-sydica-light.svg" },
+  sydicard: { onDark: "/brands/sydicard/logo-sydicard-dark.svg", onLight: "/brands/sydicard/logo-sydicard-light.svg" },
+  kultix: { onDark: "/brands/kultix/logo-kultix-dark.svg", onLight: "/brands/kultix/logo-kultix-light.svg" },
+  syitex: { onDark: "/brands/syitex/logo-syitex-dark.svg", onLight: "/brands/syitex/logo-syitex-light.svg" },
+  rd: { onDark: "/brands/rd/logo-rd-dark.svg", onLight: "/brands/rd/logo-rd-light.svg" },
 }
 
 /** The mark used on the dark brand surfaces of the homepage band. */
