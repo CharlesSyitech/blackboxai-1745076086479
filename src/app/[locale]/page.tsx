@@ -87,6 +87,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           href: path(locale, "solutions", solution.slug[locale]),
         }))}
         foundation={technologies.map((technology) => technology.name[locale])}
+        cursorLabel={t.cta.exploreInnovation}
       />
 
       {/* 2 — About */}

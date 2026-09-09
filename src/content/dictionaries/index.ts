@@ -29,6 +29,7 @@ const fr = {
   },
   cta: {
     becomePartner: "Devenir partenaire",
+    exploreInnovation: "Explorer l'innovation",
     discoverGroup: "Découvrir Syitech Group",
     exploreEcosystem: "Explorer notre écosystème",
     discoverSolutions: "Découvrir nos solutions",
@@ -202,6 +203,7 @@ const en: Dictionary = {
   },
   cta: {
     becomePartner: "Become a partner",
+    exploreInnovation: "Explore the innovation",
     discoverGroup: "Discover Syitech Group",
     exploreEcosystem: "Explore our ecosystem",
     discoverSolutions: "Discover our solutions",

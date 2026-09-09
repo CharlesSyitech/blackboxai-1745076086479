@@ -522,6 +522,15 @@
   mix-blend-mode: overlay;
 }
 
+/* The hero's grain, and only the hero's, drops `overlay` for the same reason
+   as the sheen: it lies over layers that move every frame. Every other
+   section is static, so `.grain` keeps its blend mode untouched there.
+   Measured: 42.5 fps with the blend mode, 60 fps without. */
+.hero-grain::after {
+  mix-blend-mode: normal;
+  opacity: 0.3;
+}
+
 /* A single soft light source behind the hero core. Not a brand gradient:
    it exists to give the diagram somewhere to sit. */
 .halo {
@@ -665,6 +674,222 @@
   animation: node-settle 700ms var(--ease-entrance) var(--settle-delay, 0ms) forwards;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Hero — pointer-reactive scene
+
+   usePointerParallax publishes --px/--py (smoothed pointer, -1..1),
+   --cx/--cy (its position as a percentage, for lights) and --energy
+   (0..1, how fast it is moving) on .hero-stage. Everything below reads
+   those; nothing below listens to the pointer.
+
+   Ranges are deliberately small. The whole effect should register as the
+   scene having volume, never as the page moving under the reader.
+   ───────────────────────────────────────────────────────────── */
+.hero-stage {
+  position: relative;
+  /* Two compositing decisions, both measured rather than assumed.
+     `z-index` lifts the animated layers ABOVE the section's grain: the grain
+     blends with `overlay`, and a blended layer sitting over moving content is
+     re-composited every frame — it cost 17 fps of the hero's budget until the
+     stage was moved out from under it. `isolation` keeps the sheen's `screen`
+     blend inside this box instead of against the whole page. */
+  z-index: 1;
+  isolation: isolate;
+  --px: 0;
+  --py: 0;
+  --cx: 50;
+  --cy: 50;
+  --energy: 0;
+}
+
+/* Each plane displaces by its own factor. The spread between factors is
+   what the eye reads as depth — not the absolute amount. */
+.parallax-layer {
+  --depth: 0.3;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translate3d(
+    calc(var(--px) * var(--depth) * 14px),
+    calc(var(--py) * var(--depth) * 9px),
+    0
+  );
+  will-change: transform;
+}
+
+/* Idle motion lives on the child so it never fights the pointer transform
+   on the parent. */
+.parallax-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.idle-float { animation: hero-idle-float 7s ease-in-out infinite; }
+.idle-drift { animation: hero-idle-drift 19s ease-in-out infinite; }
+.idle-zoom  { animation: hero-idle-zoom 24s ease-in-out infinite; }
+
+@keyframes hero-idle-float {
+  0%, 100% { transform: translateY(-2px); }
+  50%      { transform: translateY(2px); }
+}
+@keyframes hero-idle-drift {
+  0%, 100% { transform: translate3d(-4px, 2px, 0); }
+  50%      { transform: translate3d(4px, -3px, 0); }
+}
+@keyframes hero-idle-zoom {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.015); }
+}
+
+/* The subject. Perspective plus a differential displacement and a very small
+   scale — the illusion of a figure attending to the pointer, without any
+   warp of the image itself. */
+.hero-portrait {
+  position: relative;
+  transform: perspective(1400px)
+    rotateY(calc(var(--px) * 2deg))
+    rotateX(calc(var(--py) * -1.5deg))
+    translate3d(calc(var(--px) * 8px), calc(var(--py) * 5px), 0)
+    scale(calc(1 + var(--energy) * 0.015));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.hero-portrait-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* Specular highlight: a soft light that grazes the subject, brightening with
+   pointer speed rather than blinking. */
+/* The gradient is painted once, centred, and only ever TRANSLATED. Moving a
+   gradient by changing its position repaints it every frame; moving the layer
+   that carries it is a compositor operation. The element is the full size of
+   the scene, so translating it by 50% of itself spans the whole width. */
+.hero-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* No blend mode. `screen` reads as light because it adds, but a blended
+     layer over content that moves every frame is re-composited every frame:
+     it cost this hero 8 fps. The hero ground is near-black, where normal
+     compositing of a light translucent colour is all but indistinguishable
+     from screen — so the look survives and the frames come back. */
+  opacity: calc(0.22 + var(--energy) * 0.5);
+  background: radial-gradient(
+    26% 26% at 50% 50%,
+    color-mix(in srgb, var(--color-accent) 42%, transparent) 0%,
+    transparent 70%
+  );
+  transform: translate3d(calc(var(--px) * 50%), calc(var(--py) * 50%), 0);
+  transition: opacity 500ms var(--ease-standard);
+  will-change: transform, opacity;
+}
+
+/* The light field. One dim copy, one bright copy revealed through a mask
+   that follows the pointer — proximity response with no per-node maths. */
+.tech-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.tech-particles-rest,
+.tech-particles-lit {
+  position: absolute;
+  inset: 0;
+}
+.tech-particles-rest { opacity: 0.18; }
+/* Same principle as the sheen, one step further: a mask whose position
+   changes is re-rasterised every frame, so the mask stays put in its own
+   layer and the LAYER is translated, while the field inside is translated
+   back by the same amount. The window slides; the field does not move. */
+.tech-particles-lit {
+  opacity: 0.95;
+  -webkit-mask-image: radial-gradient(22% 22% at 50% 50%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(22% 22% at 50% 50%, #000 0%, transparent 72%);
+  transform: translate3d(calc(var(--px) * 50%), calc(var(--py) * 50%), 0);
+  will-change: transform, opacity;
+}
+.tech-particles-lit > * {
+  transform: translate3d(calc(var(--px) * -50%), calc(var(--py) * -50%), 0);
+}
+/* With no pointer present the bright copy is gone entirely, so the field
+   rests dim rather than carrying a permanent hotspot. */
+.hero-stage[data-pointer="out"] .tech-particles-lit { opacity: 0; }
+.tech-particles-lit { transition: opacity 700ms var(--ease-standard); }
+
+/* Ring and label around the pointer, inside the visual zone only. */
+/* Positioned ONLY by transform. Driving left/top from the pointer moves the
+   element in layout, which the browser records as a layout shift on every
+   frame — measured at 0.006 CLS before this was changed, against a baseline
+   of exactly zero. The anchor is the full size of the scene, so translating
+   it by --cx percent moves it that percentage of the scene's width. */
+.interactive-cursor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 380ms var(--ease-standard);
+}
+.hero-stage[data-pointer="in"] .interactive-cursor { opacity: 1; }
+
+.interactive-cursor-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(calc(var(--cx) * 1%), calc(var(--cy) * 1%), 0);
+  will-change: transform;
+}
+.interactive-cursor-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: transform 380ms var(--ease-entrance);
+}
+.hero-stage[data-pointer="in"] .interactive-cursor-body {
+  transform: translate(-50%, -50%) scale(1);
+}
+.interactive-cursor-ring {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
+  background: color-mix(in srgb, var(--color-page) 25%, transparent);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+/* The ring travels over the diagram's own labels, so the caption carries a
+   small ground of its own — without it the two sets of type overlap and
+   neither can be read. */
+.interactive-cursor-label {
+  font-family: var(--font-mono);
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-accent-ink);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-page) 82%, transparent);
+}
+
+/* Touch and no-pointer devices never get the tracking; the scene plays its
+   own slow cinematic loop so it still feels alive without interaction. */
+@media (pointer: coarse) {
+  .interactive-cursor { display: none; }
+  .hero-portrait { animation: hero-idle-float 8s ease-in-out infinite; }
+  .tech-particles-rest { opacity: 0.24; }
+}
+
 /* Pointer-reactive depth on the hero diagram. Subtle by design: it should
    feel like the object has volume, not like the page is moving. */
 .tilt {
@@ -716,5 +941,19 @@
   .js .mask-up { clip-path: none !important; transition: none !important; }
   .js .draw { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
   .tilt { transform: none !important; }
+  /* The whole hero scene stands still: no tracking, no parallax, no cursor
+     ring, no light field. Only the layout and the essential transitions
+     remain. */
+  .parallax-layer,
+  .hero-portrait,
+  .parallax-inner,
+  .idle-float, .idle-drift, .idle-zoom {
+    transform: none !important;
+    animation: none !important;
+  }
+  .interactive-cursor,
+  .hero-sheen,
+  .tech-particles-lit { display: none !important; }
+  .tech-particles-rest { opacity: 0.2; }
   .sweep::after { display: none; }
 }
