@@ -1,0 +1,360 @@
+{
+  "$description": "Multi-brand token set. The Group owns the structure; each brand owns its palette. Components read product.<brand>.* and re-skin automatically.",
+  "$status": "Palettes des marques SYITECH GROUP, SYDICA, SYTIUM et KULTIX relevees sur les logos officiels fournis le 2026-09-08. ATTENTION : valeurs lues a l'oeil sur des logos rasterises, pas echantillonnees sur des fichiers sources. A confirmer contre la charte ou des SVG. SYITEX et SYITECH R&D restent provisoires : aucun logo recu.",
+  "$version": "0.1.0-draft",
+  "brands": {
+    "group": {
+      "name": "Syitech Group",
+      "role": "Marque ombrelle. Se tient au-dessus des produits, jamais à côté d'eux.",
+      "universe": "Premium · institutionnel · technologique · international",
+      "status": "live",
+      "website": null,
+      "palette": {
+        "ink": "#060B14",
+        "surface": "#0A1A3C",
+        "primary": "#10265C",
+        "accent": "#2FD2F0",
+        "accentInk": "#0A6C82",
+        "onAccent": "#060B14"
+      },
+      "texture": "Grain fin, une source lumineuse unique, grilles techniques discrètes",
+      "motion": "Lent, ample, maîtrisé",
+      "source": "logo officiel",
+      "notes": "Navy profond + cyan. Le cyan porte 'GROUP' et l'icone circuit. Aucun ambre dans l'identite.",
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#060B14",
+        "surface": "#0A1A3C",
+        "raised": "#0B2142",
+        "ink": "#FFFFFF",
+        "muted": "#C3D3EA",
+        "faint": "#7C9FD1",
+        "accent": "#2FD2F0",
+        "accentText": "#2FD2F0",
+        "onAccent": "#060B14",
+        "line": "rgb(255 255 255 / 0.16)",
+        "lineSoft": "rgb(255 255 255 / 0.08)"
+      }
+    },
+    "sydica": {
+      "name": "Sydica",
+      "role": "CultTech — musique, culture, créateurs, streaming",
+      "universe": "Émotion · scène · Afrique contemporaine · création",
+      "status": "live",
+      "website": "https://sydica.art",
+      "palette": {
+        "ink": "#1B1435",
+        "surface": "#251B47",
+        "primary": "#8A5AD4",
+        "accent": "#56D8DC",
+        "accentInk": "#0B6E72",
+        "onAccent": "#1B1435",
+        "wordmark": "#3D2E6E"
+      },
+      "texture": "Formes d'onde (presentes dans l'icone), pochettes flottantes, grain de scene",
+      "motion": "Pulsé sur le rythme : waveform, transitions d'album, player flottant",
+      "source": "logo officiel",
+      "notes": "Violet de l'icone, pourpre profond du wordmark, point turquoise en accent. L'accent n'est pas chaud : c'est un turquoise.",
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#1B1435",
+        "surface": "#251B47",
+        "raised": "#312459",
+        "ink": "#FFFFFF",
+        "muted": "#C9BEE8",
+        "faint": "#9A87C9",
+        "accent": "#56D8DC",
+        "accentText": "#56D8DC",
+        "onAccent": "#1B1435",
+        "line": "rgb(214 200 255 / 0.20)",
+        "lineSoft": "rgb(214 200 255 / 0.10)"
+      }
+    },
+    "sytium": {
+      "name": "Sytium",
+      "role": "Enterprise Technology — ERP, finance, RH, BI, IA",
+      "universe": "SaaS premium monochrome — noir et blanc casse, aucune couleur d'accent",
+      "status": "live",
+      "website": "https://sytium.tech",
+      "palette": {
+        "ink": "#0A0A0A",
+        "surface": "#171717",
+        "primary": "#EEEDEA",
+        "accent": "#FFFFFF",
+        "accentInk": "#0A0A0A",
+        "onAccent": "#0A0A0A"
+      },
+      "texture": "Interfaces réelles, grilles de données, lignes de graphes",
+      "motion": "Modules qui se composent, courbes qui se tracent, flux de données",
+      "source": "logo officiel — fichiers logo-sytium-white.png / logo-sytium-dark.png fournis le 2026-09-09",
+      "notes": "Identite strictement monochrome, CONFIRMEE sur les fichiers sources : wordmark #EEEDEA (91,6 % des pixels opaques de la variante claire), pastille #1B1B1B au chevron blanc. Le losange bleu apparu dans la maquette etait un substitut : le pack fourni par le client indique par ecrit de ne pas l'utiliser. La couleur, sur les pages Sytium, vient des donnees affichees, pas de la marque.",
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#0A0A0A",
+        "surface": "#171717",
+        "raised": "#1F1F1F",
+        "ink": "#FFFFFF",
+        "muted": "#A3A3A0",
+        "faint": "#7A7A77",
+        "accent": "#FFFFFF",
+        "accentText": "#FFFFFF",
+        "onAccent": "#0A0A0A",
+        "line": "rgb(255 255 255 / 0.18)",
+        "lineSoft": "rgb(255 255 255 / 0.09)"
+      }
+    },
+    "sydicard": {
+      "name": "SydiCard",
+      "role": "FinTech — paiements, wallet, inclusion financière, reversements créateurs",
+      "universe": "Noir absolu, wordmark blanc, point turquoise. Extension financiere de l'univers Sydica.",
+      "status": "in_development",
+      "statusLabel": {
+        "fr": "En développement",
+        "en": "In development"
+      },
+      "website": null,
+      "palette": {
+        "ink": "#000000",
+        "surface": "#101010",
+        "primary": "#FFFFFF",
+        "accent": "#5BDFE8",
+        "accentInk": "#0B6E74",
+        "onAccent": "#000000"
+      },
+      "texture": "Carte en volume, reflets métalliques, flux de transaction",
+      "motion": "Rotation lente de la carte, pulsations de paiement, flux wallet",
+      "source": "logo officiel",
+      "notes": "Le turquoise du point est quasi identique a celui de Sydica : les deux marques se repondent, ce qui est coherent — SydiCard est decrite comme integree a l'ecosysteme Sydica. Endossement 'By Syitech Group' porte dans le logo lui-meme.",
+      "description": {
+        "fr": "Carte Visa prepayee intelligente developpee par Syitech Group et integree a l'ecosysteme Sydica : paiement des royalties en monnaie locale, transferts vers mobile money et banque, usages evenementiels et billetterie, acces a des contenus et avantages pour les fans."
+      },
+      "regulatory": {
+        "level": "critical",
+        "why": "Une carte Visa prepayee suppose un emetteur agree et un sponsor BIN. Syitech Group est fournisseur de technologie : le site ne doit jamais laisser entendre que le Groupe emet la carte, detient les fonds ou opere un service de paiement.",
+        "namedThirdParties": [
+          "Visa",
+          "Wave",
+          "Orange Money",
+          "MTN"
+        ],
+        "namedThirdPartiesStatus": "Cites dans le document produit. AUCUN n'est publiable tant que la direction juridique n'a pas qualifie la relation et obtenu l'autorisation d'usage de marque. Nommer Visa sur un site public sans accord est un risque de marque, pas un detail.",
+        "clientAnswer2026_09_09": "Syitech indique disposer d'un contrat d'agrement avec la banque, et les cartes sont en cours d'emission. Cela leve la question de l'existence du programme, PAS celle du droit d'usage des marques. Un accord bancaire n'est pas une licence de marque Visa : l'autorisation d'afficher les marques Visa, Wave, Orange Money et MTN sur un site public passe par l'emetteur agree et par le reseau. Ces marques restent non publiees.",
+        "stillNeeded": [
+          "Le nom de l'etablissement emetteur agree",
+          "L'accord ecrit d'usage des marques Visa / Wave / Orange Money / MTN sur un site public",
+          "La formulation exacte imposee par l'emetteur (typiquement : 'carte emise par <banque>, sous licence <reseau>')"
+        ]
+      },
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#000000",
+        "surface": "#101010",
+        "raised": "#1A1A1A",
+        "ink": "#FFFFFF",
+        "muted": "#C8CDD0",
+        "faint": "#8A9296",
+        "accent": "#5BDFE8",
+        "accentText": "#5BDFE8",
+        "onAccent": "#000000",
+        "line": "rgb(255 255 255 / 0.18)",
+        "lineSoft": "rgb(255 255 255 / 0.09)"
+      }
+    },
+    "kultix": {
+      "name": "KultiX",
+      "role": "EventTech — billetterie, contrôle d'accès, expérience live",
+      "universe": "Live premium — violet vif sur noir, jamais les codes festival",
+      "status": "live",
+      "website": "https://kultix.art",
+      "palette": {
+        "ink": "#0A0A0A",
+        "surface": "#0B1A38",
+        "primary": "#8A3FFB",
+        "accent": "#8A3FFB",
+        "accentInk": "#5B18C4",
+        "onAccent": "#FFFFFF"
+      },
+      "texture": "Foule en contre-jour, billets, QR, lumières de scène",
+      "motion": "Génération de billet, scan, plan de salle, flux d'entrée",
+      "source": "logo officiel",
+      "notes": "Violet vif du fanion et du point, navy profond de la hampe du K, noir du wordmark. Aucune couleur chaude.",
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#0A0A0A",
+        "surface": "#0B1A38",
+        "raised": "#14264B",
+        "ink": "#FFFFFF",
+        "muted": "#C4B0E8",
+        "faint": "#9B7BD4",
+        "accent": "#8A3FFB",
+        "accentText": "#A066FC",
+        "onAccent": "#FFFFFF",
+        "line": "rgb(198 176 255 / 0.22)",
+        "lineSoft": "rgb(198 176 255 / 0.11)"
+      }
+    },
+    "syitex": {
+      "name": "SyitEx",
+      "role": "Intelligence decisionnelle appliquee a l'economie culturelle",
+      "universe": "Data et prediction : evaluation, valorisation et prevision du potentiel economique des artistes et des actifs culturels",
+      "status": "live",
+      "website": null,
+      "palette": {
+        "ink": "#0A0F14",
+        "surface": "#131C24",
+        "primary": "#4A6B82",
+        "accent": "#00C2FF",
+        "accentInk": "#00647F",
+        "onAccent": "#0A0F14"
+      },
+      "texture": "Classements, comparaisons d'artistes, courbes de tendance, forecast",
+      "motion": "Scores qui se composent, courbes de prevision qui se tracent, comparaisons qui basculent",
+      "source": "provisoire — aucun logo recu ; univers redefini d'apres la description fournie",
+      "logo": null,
+      "wordmarkTreatment": "Aucun logo n'existe a ce jour. La marque est posee en traitement typographique dans le systeme du Groupe : wordmark en Manrope, descripteur en mono, endossement 'by Syitech Group'. A remplacer des qu'un logo existe.",
+      "notes": "CORRECTION MAJEURE. Le brief ecrit decrivait SyitEx comme la verticale hardware (Secure USB, IoT). C'est faux : SyitEx est une plateforme d'intelligence decisionnelle batie sur l'Artist Value Index (AVI). La verticale hardware se retrouve donc sans marque.",
+      "description": {
+        "fr": "Plateforme d'intelligence decisionnelle qui transforme les donnees de streaming, reseaux sociaux, ventes, billetterie et medias en indicateurs comparables. Au coeur, l'Artist Value Index agrege popularite numerique, performance commerciale, credibilite artistique, impact mediatique, rentabilite et potentiel futur en un score de valeur, ajustable au contexte d'investissement."
+      },
+      "tagline": {
+        "fr": "Evaluer. Anticiper. Decider. — L'intelligence predictive au service de l'economie culturelle.",
+        "en": "SyitEx — Turn cultural data into investment intelligence."
+      },
+      "audiences": [
+        "Labels",
+        "Producteurs",
+        "Promoteurs d'evenements",
+        "Marques",
+        "Investisseurs",
+        "Organismes de gestion collective",
+        "Institutions financieres",
+        "Creator Economy"
+      ],
+      "surfaces": [
+        "Dashboard analytique web et mobile",
+        "Moteur de prevision 6-12 mois",
+        "Scoring sectoriel",
+        "API d'integration des indices"
+      ],
+      "ipStatus": "Un document de brevet est mentionne. Statut a qualifier : depose, en cours d'examen ou delivre. Les trois ne se disent pas de la meme facon (doc 03).",
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#0A0F14",
+        "surface": "#131C24",
+        "raised": "#1B2731",
+        "ink": "#FFFFFF",
+        "muted": "#A8BCCB",
+        "faint": "#6E8698",
+        "accent": "#00C2FF",
+        "accentText": "#00C2FF",
+        "onAccent": "#0A0F14",
+        "line": "rgb(168 188 203 / 0.20)",
+        "lineSoft": "rgb(168 188 203 / 0.10)"
+      }
+    },
+    "rd": {
+      "name": "Syitech R&D",
+      "role": "Recherche appliquée — IA, blockchain, IoT, data, prototypage",
+      "universe": "DeepTech · expérimental — la page la plus artistique du site",
+      "status": "live",
+      "website": null,
+      "signature": {
+        "fr": "Là où Syitech construit demain.",
+        "en": "Where Syitech builds tomorrow."
+      },
+      "palette": {
+        "ink": "#05070A",
+        "surface": "#0C1116",
+        "primary": "#35F0B0",
+        "accent": "#8B7CFF",
+        "onAccent": "#05070A"
+      },
+      "texture": "Maillage numérique, nœuds interactifs, diagrammes techniques, traces lumineuses",
+      "motion": "Systèmes de particules, nœuds réactifs, visualisation de données",
+      "source": "sans logo — traitement typographique provisoire",
+      "logo": null,
+      "wordmarkTreatment": "Aucun logo n'existe a ce jour. La marque est posee en traitement typographique dans le systeme du Groupe : wordmark en Manrope, descripteur en mono, endossement 'by Syitech Group'. A remplacer des qu'un logo existe.",
+      "semantic": {
+        "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
+        "page": "#05070A",
+        "surface": "#0C1116",
+        "raised": "#131A21",
+        "ink": "#FFFFFF",
+        "muted": "#A9B6C6",
+        "faint": "#74839A",
+        "accent": "#8B7CFF",
+        "accentText": "#8B7CFF",
+        "onAccent": "#05070A",
+        "line": "rgb(169 182 198 / 0.20)",
+        "lineSoft": "rgb(169 182 198 / 0.10)"
+      }
+    }
+  },
+  "scrollJourney": {
+    "$description": "Section 25 of the brief: the palette shifts as the visitor descends through the brands. These are the stops the background interpolates between.",
+    "stops": [
+      "group",
+      "sydica",
+      "sytium",
+      "sydicard",
+      "kultix",
+      "syitex",
+      "rd",
+      "group"
+    ]
+  },
+  "contract": {
+    "$description": "Rules that hold whichever palettes replace these.",
+    "rules": [
+      "Every brand palette must pass the same contrast contract as the Group (scripts/check-contrast.mjs): body text >= 4.5:1 on its own surface, graphic marks >= 3:1.",
+      "A brand accent never carries text on a light ground unless its measured ratio allows it; each brand declares an `onAccent` colour for that purpose.",
+      "The Group palette is never applied on top of a product page: a product page runs entirely in its own tokens.",
+      "A product logo always carries the Group endorsement; a partner logo never enters the brand architecture.",
+      "SydiCard renders its status label on every surface where it appears. No call to action may suggest the service is open.",
+      "Ni le cyan Syitech (#2FD2F0) ni le turquoise Sydica (#56D8DC) ne portent de texte sur fond clair : chaque marque declare un `accentInk` assombri pour cet usage, verifie par scripts/check-contrast.mjs.",
+      "Chaque marque declare un bloc `semantic` : ce sont les seules valeurs que les composants lisent. scripts/check-contrast.mjs verifie chacune contre le `page` et le `surface` de la marque elle-meme, jamais contre ceux du Groupe.",
+      "Les couleurs d'etat viennent de `statusTokens`, jamais de la palette de marque : le badge « En developpement » de SydiCard doit rester lisible sur noir absolu comme sur navy."
+    ]
+  },
+  "openQuestions": [
+    {
+      "id": "Q-HARDWARE",
+      "severity": "resolved",
+      "question": "SyitEx n'etant pas la verticale hardware, sous quelle marque vivent les Cartes USB securisees, USB Connect et l'IoT ? Trois options : capacites du Groupe sans marque propre, marque a nommer, ou retrait du site.",
+      "impact": "Architecture de marque, navigation, sitemap, page d'accueil",
+      "answer": "Reponse Syitech du 2026-09-09 : « les cartes USB ». La verticale materielle reste au Groupe, portee par les Cartes USB securisees seules. USB Connect et la verticale IoT sont retirees du site comme solutions autonomes, conformement a la regle de ne presenter que les solutions actives. Interpretation d'une reponse breve : a corriger si USB Connect ou l'IoT doivent rester — le retrait est un simple retour arriere git."
+    },
+    {
+      "id": "Q-VISA",
+      "severity": "partially-resolved",
+      "question": "Visa, Wave, Orange Money et MTN sont cites dans le document SydiCard. Ces relations sont-elles contractualisees, et l'usage de leurs marques est-il autorise par ecrit ?",
+      "impact": "Page SydiCard, page Partenaires, risque de marque",
+      "answer": "Programme confirme : contrat d'agrement avec la banque, cartes en cours d'emission. Le droit d'usage des marques Visa, Wave, Orange Money et MTN reste a obtenir : un accord bancaire n'est pas une licence de marque reseau."
+    },
+    {
+      "id": "Q-USB-CONNECT",
+      "severity": "confirm",
+      "question": "USB Connect et la verticale IoT (C-GESCAR, Fleet366) ont ete retires du site suite a la reponse « les cartes USB ». Confirmer que c'est bien l'intention.",
+      "impact": "Sitemap, navigation, page d'accueil"
+    },
+    {
+      "id": "Q-BRAND-SCOPE",
+      "severity": "decision",
+      "question": "Jusqu'ou une page produit tourne-t-elle dans les tokens de sa marque ? Etat actuel : le hero seulement. Le corps de page reste sur le fond clair neutre du site, et y utilise donc l'accent du Groupe (cyan) — visible par exemple sur la page Sytium, dont l'identite est strictement monochrome.",
+      "impact": "Pages Solutions, coherence de l'architecture de marque, lisibilite des pages longues",
+      "options": [
+        "A — Hero seul (etat actuel). Identite de marque affirmee a l'entree, lecture longue sur fond clair partage. L'accent du Groupe reste visible dans le corps.",
+        "B — Page entiere en tokens de marque. Applique la regle telle qu'elle est ecrite ; toutes les pages produit deviennent sombres, les sept univers etant tous sombres.",
+        "C — Declarer une variante claire par marque. Respecte la regle sans tout assombrir, mais demande sept palettes claires supplementaires, absentes de la DA a ce jour."
+      ],
+      "recommendation": "B est la lecture litterale de la regle et la plus forte en direction artistique. A est l'etat livre, volontairement reversible : le choix appartient a la validation DA (§40 du master prompt), pas au developpement."
+    }
+  ],
+  "statusTokens": {
+    "$description": "Couleurs d'etat (succes, attention, erreur, donnee). Elles ne sont pas des couleurs de marque : elles sont communes a tous les univers, qui sont tous sombres. Verifiees par scripts/check-contrast.mjs contre le page et le surface de CHAQUE marque.",
+    "ok": "#5BC79C",
+    "warn": "#F2C177",
+    "danger": "#F09189",
+    "data": "#5FCFCB"
+  }
+}

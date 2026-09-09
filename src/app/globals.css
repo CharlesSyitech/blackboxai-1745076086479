@@ -1,0 +1,1415 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — mirror of design-system/tokens.json
+   Components consume SEMANTIC tokens only, never primitives.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --font-display: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* primitives */
+  --color-navy-50: #eef3fa;
+  --color-navy-100: #d6e2f2;
+  --color-navy-300: #7c9fd1;
+  --color-navy-600: #1b4079;
+  --color-navy-700: #10265c;
+  --color-navy-800: #0a1a3c;
+  --color-navy-900: #061428;
+  --color-ink-900: #060b14;
+  /* Official Syitech cyan, read from the Group logo. */
+  --color-signal-200: #a8ecfa;
+  --color-signal-400: #5adcf4;
+  --color-signal-500: #2fd2f0;
+  --color-signal-600: #1aa8c4;
+  --color-signal-700: #0a6c82;
+  --color-teal-300: #5fcfcb;
+  --color-teal-500: #0fa3a3;
+  --color-teal-700: #0a7b7b;
+
+  /* semantic — light */
+  --color-page: #ffffff;
+  --color-surface: #f7f8fa;
+  --color-raised: #ffffff;
+  --color-inverse: #060b14;
+  --color-ink: #061428;
+  --color-muted: #5a6472;
+  --color-faint: #9aa3b0;
+  --color-line: #d9dde4;
+  --color-line-soft: #edeff3;
+  --color-line-strong: #10265c;
+  --color-brand: #10265c;
+  --color-brand-soft: #eef3fa;
+  --color-accent: #2fd2f0;
+  --color-accent-hover: #1aa8c4;
+  --color-accent-ink: #0a6c82;
+  /* Text set ON the accent. Each brand overrides it; KultiX is why this is a
+     token and not a hardcoded ink — its violet needs white, not near-black. */
+  --color-on-accent: #060b14;
+  --color-data: #0a7b7b;
+  --color-ok: #12805c;
+  --color-warn: #9a5b00;
+  --color-danger: #b3261e;
+  --color-focus: #0a6c82;
+
+  --shadow-sm: 0 2px 8px rgb(6 20 40 / 0.06);
+  --shadow-md: 0 8px 24px rgb(6 20 40 / 0.08);
+  --shadow-lg: 0 24px 48px rgb(6 20 40 / 0.12);
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark surfaces are SCOPED: an ink section inside a light page flips its own
+   tokens. The same components work in both without variants. */
+[data-theme="dark"] {
+  --color-page: #060b14;
+  --color-surface: #061428;
+  --color-raised: #0b2142;
+  --color-inverse: #ffffff;
+  --color-ink: #ffffff;
+  --color-muted: #c3d3ea;
+  --color-faint: #7c9fd1;
+  --color-line: rgb(255 255 255 / 0.16);
+  --color-line-soft: rgb(255 255 255 / 0.08);
+  --color-line-strong: #2fd2f0;
+  --color-brand: #9cbce6;
+  --color-brand-soft: rgb(255 255 255 / 0.06);
+  --color-accent: #2fd2f0;
+  --color-accent-hover: #5adcf4;
+  --color-accent-ink: #5adcf4;
+  --color-on-accent: #060b14;
+  --color-data: #5fcfcb;
+  --color-ok: #5bc79c;
+  --color-warn: #f2c177;
+  --color-danger: #f09189;
+  --color-focus: #5adcf4;
+  --shadow-sm: 0 2px 8px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 24px 48px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}
+
+/* Brand universes. Same mechanism as the dark theme above: the semantic
+   tokens are redefined for the scope, and every component re-skins without a
+   single variant. A product page runs entirely in its own tokens — the Group
+   palette is never applied on top of it. */
+/* ▼ GENERATED — brand themes, from design-system/brands.json. Run `npm run build:brand-css`. */
+
+[data-brand="group"] {
+  /* Syitech Group — Premium · institutionnel · technologique · international */
+  --color-page: #060B14;
+  --color-surface: #0A1A3C;
+  --color-raised: #0B2142;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C3D3EA;
+  --color-faint: #7C9FD1;
+  --color-line: rgb(255 255 255 / 0.16);
+  --color-line-soft: rgb(255 255 255 / 0.08);
+  --color-line-strong: #2FD2F0;
+  --color-brand: #C3D3EA;
+  --color-brand-soft: rgb(255 255 255 / 0.08);
+  --color-accent: #2FD2F0;
+  --color-accent-hover: #2FD2F0;
+  --color-accent-ink: #2FD2F0;
+  --color-on-accent: #060B14;
+  --color-focus: #2FD2F0;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="sydica"] {
+  /* Sydica — Émotion · scène · Afrique contemporaine · création */
+  --color-page: #1B1435;
+  --color-surface: #251B47;
+  --color-raised: #312459;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C9BEE8;
+  --color-faint: #9A87C9;
+  --color-line: rgb(214 200 255 / 0.20);
+  --color-line-soft: rgb(214 200 255 / 0.10);
+  --color-line-strong: #56D8DC;
+  --color-brand: #C9BEE8;
+  --color-brand-soft: rgb(214 200 255 / 0.10);
+  --color-accent: #56D8DC;
+  --color-accent-hover: #56D8DC;
+  --color-accent-ink: #56D8DC;
+  --color-on-accent: #1B1435;
+  --color-focus: #56D8DC;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="sytium"] {
+  /* Sytium — SaaS premium monochrome — noir et blanc casse, aucune couleur d'accent */
+  --color-page: #0A0A0A;
+  --color-surface: #171717;
+  --color-raised: #1F1F1F;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #A3A3A0;
+  --color-faint: #7A7A77;
+  --color-line: rgb(255 255 255 / 0.18);
+  --color-line-soft: rgb(255 255 255 / 0.09);
+  --color-line-strong: #FFFFFF;
+  --color-brand: #A3A3A0;
+  --color-brand-soft: rgb(255 255 255 / 0.09);
+  --color-accent: #FFFFFF;
+  --color-accent-hover: #FFFFFF;
+  --color-accent-ink: #FFFFFF;
+  --color-on-accent: #0A0A0A;
+  --color-focus: #FFFFFF;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="sydicard"] {
+  /* SydiCard — Noir absolu, wordmark blanc, point turquoise. Extension financiere de l'univers Sydica. */
+  --color-page: #000000;
+  --color-surface: #101010;
+  --color-raised: #1A1A1A;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C8CDD0;
+  --color-faint: #8A9296;
+  --color-line: rgb(255 255 255 / 0.18);
+  --color-line-soft: rgb(255 255 255 / 0.09);
+  --color-line-strong: #5BDFE8;
+  --color-brand: #C8CDD0;
+  --color-brand-soft: rgb(255 255 255 / 0.09);
+  --color-accent: #5BDFE8;
+  --color-accent-hover: #5BDFE8;
+  --color-accent-ink: #5BDFE8;
+  --color-on-accent: #000000;
+  --color-focus: #5BDFE8;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="kultix"] {
+  /* KultiX — Live premium — violet vif sur noir, jamais les codes festival */
+  --color-page: #0A0A0A;
+  --color-surface: #0B1A38;
+  --color-raised: #14264B;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #C4B0E8;
+  --color-faint: #9B7BD4;
+  --color-line: rgb(198 176 255 / 0.22);
+  --color-line-soft: rgb(198 176 255 / 0.11);
+  --color-line-strong: #8A3FFB;
+  --color-brand: #C4B0E8;
+  --color-brand-soft: rgb(198 176 255 / 0.11);
+  --color-accent: #8A3FFB;
+  --color-accent-hover: #A066FC;
+  --color-accent-ink: #A066FC;
+  --color-on-accent: #FFFFFF;
+  --color-focus: #A066FC;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="syitex"] {
+  /* SyitEx — Data et prediction : evaluation, valorisation et prevision du potentiel economique des artistes et des actifs culturels */
+  --color-page: #0A0F14;
+  --color-surface: #131C24;
+  --color-raised: #1B2731;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #A8BCCB;
+  --color-faint: #6E8698;
+  --color-line: rgb(168 188 203 / 0.20);
+  --color-line-soft: rgb(168 188 203 / 0.10);
+  --color-line-strong: #00C2FF;
+  --color-brand: #A8BCCB;
+  --color-brand-soft: rgb(168 188 203 / 0.10);
+  --color-accent: #00C2FF;
+  --color-accent-hover: #00C2FF;
+  --color-accent-ink: #00C2FF;
+  --color-on-accent: #0A0F14;
+  --color-focus: #00C2FF;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+[data-brand="rd"] {
+  /* Syitech R&D — DeepTech · expérimental — la page la plus artistique du site */
+  --color-page: #05070A;
+  --color-surface: #0C1116;
+  --color-raised: #131A21;
+  --color-inverse: #FFFFFF;
+  --color-ink: #FFFFFF;
+  --color-muted: #A9B6C6;
+  --color-faint: #74839A;
+  --color-line: rgb(169 182 198 / 0.20);
+  --color-line-soft: rgb(169 182 198 / 0.10);
+  --color-line-strong: #8B7CFF;
+  --color-brand: #A9B6C6;
+  --color-brand-soft: rgb(169 182 198 / 0.10);
+  --color-accent: #8B7CFF;
+  --color-accent-hover: #8B7CFF;
+  --color-accent-ink: #8B7CFF;
+  --color-on-accent: #05070A;
+  --color-focus: #8B7CFF;
+  --color-ok: #5BC79C;
+  --color-warn: #F2C177;
+  --color-danger: #F09189;
+  --color-data: #5FCFCB;
+  color-scheme: dark;
+}
+
+/* ▲ END GENERATED brand themes */
+
+@layer base {
+  * {
+    min-width: 0;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #060b14;
+  }
+  [id] {
+    scroll-margin-top: 96px;
+  }
+}
+
+@layer components {
+  /* ── Brand signature motifs ───────────────────────────────────────────
+     One animation vocabulary, reused by all seven motifs. Everything runs on
+     transform / opacity / stroke-dashoffset, and the whole set is disabled
+     under prefers-reduced-motion by the global rule at the end of this file. */
+  .brand-signature .sig-pulse {
+    opacity: 0.35;
+    animation: sig-pulse 3.2s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-bar {
+    transform-origin: center;
+    animation: sig-bar 2.4s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-cell {
+    opacity: 0;
+    animation: sig-fade 0.6s var(--ease-entrance) forwards;
+  }
+  .brand-signature .sig-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: sig-draw 1.6s var(--ease-entrance) forwards;
+  }
+  .brand-signature .sig-appear {
+    opacity: 0;
+    animation: sig-fade 0.7s var(--ease-entrance) forwards;
+  }
+  .brand-signature .sig-float {
+    animation: sig-float 6s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-flow {
+    opacity: 0;
+    animation: sig-flow 2.8s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-scan {
+    animation: sig-scan 3.6s var(--ease-standard) infinite;
+  }
+  .brand-signature .sig-rise {
+    transform: scaleY(0);
+    animation: sig-rise 0.7s var(--ease-entrance) forwards;
+  }
+
+  @keyframes sig-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.25); }
+  }
+  @keyframes sig-bar {
+    0%, 100% { transform: scaleY(0.55); }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes sig-fade {
+    to { opacity: 1; }
+  }
+  @keyframes sig-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes sig-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes sig-flow {
+    0% { opacity: 0; transform: translate(0, 0); }
+    15% { opacity: 1; }
+    100% { opacity: 0; transform: translate(26px, -22px); }
+  }
+  @keyframes sig-scan {
+    0%, 100% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 0.9; }
+    50% { transform: translateY(52px); opacity: 0.9; }
+    90% { opacity: 0; }
+  }
+  @keyframes sig-rise {
+    to { transform: scaleY(1); }
+  }
+
+
+  .type-display-xl {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.25rem, 1.35rem + 3.2vw, 3.625rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .type-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.125rem, 1.5rem + 2.8vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  .type-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.875rem, 1.4rem + 2.2vw, 2.875rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .type-h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.125rem);
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+  }
+  .type-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .type-h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
+  .type-body-lg {
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    line-height: 1.7;
+  }
+  .type-overline {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .type-metric {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .measure {
+    max-width: 68ch;
+  }
+  .link-underline {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition: text-decoration-color 150ms var(--ease-standard);
+  }
+  .link-underline:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* Scroll reveal — starts VISIBLE so the page reads without JS and in the
+   first paint; the hidden state is only applied once JS confirms support. */
+@layer utilities {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 600ms var(--ease-entrance),
+      transform 600ms var(--ease-entrance);
+  }
+  .js .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   Depth, texture and orchestrated entrances.
+   Every animation below either reveals structure, signals state
+   or guides attention — none decorate (docs/09).
+   ───────────────────────────────────────────────────────────── */
+
+/* Fine grain lifts the large ink surfaces off flat black without
+   introducing a gradient. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* The hero's grain, and only the hero's, drops `overlay` for the same reason
+   as the sheen: it lies over layers that move every frame. Every other
+   section is static, so `.grain` keeps its blend mode untouched there.
+   Measured: 42.5 fps with the blend mode, 60 fps without. */
+.hero-grain::after {
+  mix-blend-mode: normal;
+  opacity: 0.3;
+}
+
+/* A single soft light source behind the hero core. Not a brand gradient:
+   it exists to give the diagram somewhere to sit. */
+.halo {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 22%, transparent) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+/* Staged entrance for the hero: each line arrives after the one above,
+   once, on load. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.js .stage > * {
+  animation: rise 700ms var(--ease-entrance) backwards;
+}
+.js .stage > *:nth-child(1) { animation-delay: 60ms; }
+.js .stage > *:nth-child(2) { animation-delay: 150ms; }
+.js .stage > *:nth-child(3) { animation-delay: 240ms; }
+.js .stage > *:nth-child(4) { animation-delay: 330ms; }
+.js .stage > *:nth-child(5) { animation-delay: 420ms; }
+
+/* Orbital ecosystem: the ring turns slowly, the spokes pulse outward
+   from the core. The motion says "one core, many platforms". */
+@keyframes orbit { to { transform: rotate(360deg); } }
+@keyframes spoke {
+  0%   { stroke-dashoffset: 42; opacity: 0; }
+  25%  { opacity: 0.9; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(1.06); }
+}
+.orbit-ring { transform-origin: 50% 50%; animation: orbit 90s linear infinite; }
+.orbit-pulse { stroke-dasharray: 6 36; animation: spoke 3.6s var(--ease-standard) infinite; }
+.orbit-core { transform-origin: 50% 50%; animation: breathe 6s ease-in-out infinite; }
+
+/* Node entrance, staggered from the centre outward. */
+@keyframes pop { from { opacity: 0; transform: translate(-50%, -50%) scale(0.94); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.js .orbit-node { animation: pop 600ms var(--ease-entrance) backwards; }
+
+/* Continuous band of verticals — the multi-vertical proof, in motion. */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 42s linear infinite; will-change: transform; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
+
+/* Reading-progress rule under the header. */
+.progress-rail { transform-origin: 0 50%; transform: scaleX(var(--progress, 0)); }
+
+/* Cards gain an accent rule on approach rather than a heavier shadow. */
+.lift {
+  position: relative;
+  transition: transform 220ms var(--ease-standard), border-color 220ms var(--ease-standard),
+    box-shadow 220ms var(--ease-standard);
+}
+.lift::before {
+  content: "";
+  position: absolute;
+  inset-inline: -1px;
+  top: -1px;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 260ms var(--ease-entrance);
+}
+.lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--color-line-strong); }
+.lift:hover::before, .lift:focus-visible::before { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-ring, .orbit-pulse, .orbit-core, .marquee-track,
+  .js .stage > *, .js .orbit-node {
+    animation: none !important;
+  }
+  .js .stage > * { opacity: 1; transform: none; }
+  .lift:hover { transform: none; }
+}
+
+/* Inspecting one node dims the rest, so the relation being examined reads
+   clearly. No JavaScript involved. */
+.graph-focus:has(a:hover) a:not(:hover),
+.graph-focus:has(a:focus-visible) a:not(:focus-visible) {
+  opacity: 0.45;
+  transition: opacity 200ms var(--ease-standard);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Orchestrated reveals. Each one still answers to structure:
+   the headline arrives line by line, diagrams draw their own
+   connections, grids arrive in reading order.
+   ───────────────────────────────────────────────────────────── */
+
+/* Headline: each word rises out of its own mask. */
+@keyframes word-rise {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+.js .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.js .word > span {
+  display: inline-block;
+  animation: word-rise 900ms var(--ease-entrance) backwards;
+}
+
+/* Section titles: wiped upward when they come into view. */
+.js .mask-up {
+  clip-path: inset(0 0 105% 0);
+  transition: clip-path 900ms var(--ease-entrance);
+}
+.js .mask-up[data-visible="true"] {
+  clip-path: inset(0 0 -10% 0);
+}
+
+/* Diagrams draw their own connections on arrival — the line between two
+   things appearing is the point being made. */
+.js .draw {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+}
+.js [data-stage="true"] .draw {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1400ms var(--ease-entrance) var(--draw-delay, 0ms);
+}
+
+/* Nodes settle in after the line that reaches them. */
+@keyframes node-settle {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.js .settle { opacity: 0; }
+.js [data-stage="true"] .settle {
+  animation: node-settle 700ms var(--ease-entrance) var(--settle-delay, 0ms) forwards;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero — pointer-reactive scene
+
+   usePointerParallax publishes --px/--py (smoothed pointer, -1..1),
+   --cx/--cy (its position as a percentage, for lights) and --energy
+   (0..1, how fast it is moving) on .hero-stage. Everything below reads
+   those; nothing below listens to the pointer.
+
+   Ranges are deliberately small. The whole effect should register as the
+   scene having volume, never as the page moving under the reader.
+   ───────────────────────────────────────────────────────────── */
+.hero-stage {
+  position: relative;
+  /* Two compositing decisions, both measured rather than assumed.
+     `z-index` lifts the animated layers ABOVE the section's grain: the grain
+     blends with `overlay`, and a blended layer sitting over moving content is
+     re-composited every frame — it cost 17 fps of the hero's budget until the
+     stage was moved out from under it. `isolation` keeps the sheen's `screen`
+     blend inside this box instead of against the whole page. */
+  z-index: 1;
+  isolation: isolate;
+  --px: 0;
+  --py: 0;
+  --cx: 50;
+  --cy: 50;
+  --energy: 0;
+}
+
+/* Each plane displaces by its own factor. The spread between factors is
+   what the eye reads as depth — not the absolute amount. */
+.parallax-layer {
+  --depth: 0.3;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Base travel chosen so each plane lands on the amount the asset pack's
+     README specifies: background ±2px, Africa ±4px, portrait ±7px, HUD ±10px,
+     glow ±14px, at the parallax factors manifest.json declares. */
+  transform: translate3d(
+    calc(var(--px) * var(--depth) * 17px),
+    calc(var(--py) * var(--depth) * 11px),
+    0
+  );
+  will-change: transform;
+}
+
+/* Idle motion lives on the child so it never fights the pointer transform
+   on the parent. */
+.parallax-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.idle-float { animation: hero-idle-float 7s ease-in-out infinite; }
+.idle-drift { animation: hero-idle-drift 19s ease-in-out infinite; }
+.idle-zoom  { animation: hero-idle-zoom 24s ease-in-out infinite; }
+
+@keyframes hero-idle-float {
+  0%, 100% { transform: translateY(-2px); }
+  50%      { transform: translateY(2px); }
+}
+@keyframes hero-idle-drift {
+  0%, 100% { transform: translate3d(-4px, 2px, 0); }
+  50%      { transform: translate3d(4px, -3px, 0); }
+}
+@keyframes hero-idle-zoom {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.015); }
+}
+
+/* The subject. Perspective plus a differential displacement and a very small
+   scale — the illusion of a figure attending to the pointer, without any
+   warp of the image itself. */
+.hero-portrait {
+  position: relative;
+  transform: perspective(1400px)
+    rotateY(calc(var(--px) * 2deg))
+    rotateX(calc(var(--py) * -1.5deg))
+    scale(calc(1 + var(--energy) * 0.015));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.hero-portrait-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* Specular highlight: a soft light that grazes the subject, brightening with
+   pointer speed rather than blinking. */
+/* The gradient is painted once, centred, and only ever TRANSLATED. Moving a
+   gradient by changing its position repaints it every frame; moving the layer
+   that carries it is a compositor operation. The element is the full size of
+   the scene, so translating it by 50% of itself spans the whole width. */
+.hero-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* No blend mode. `screen` reads as light because it adds, but a blended
+     layer over content that moves every frame is re-composited every frame:
+     it cost this hero 8 fps. The hero ground is near-black, where normal
+     compositing of a light translucent colour is all but indistinguishable
+     from screen — so the look survives and the frames come back. */
+  opacity: calc(0.22 + var(--energy) * 0.5);
+  background: radial-gradient(
+    26% 26% at 50% 50%,
+    color-mix(in srgb, var(--color-accent) 42%, transparent) 0%,
+    transparent 70%
+  );
+  transform: translate3d(calc(var(--px) * 50%), calc(var(--py) * 50%), 0);
+  transition: opacity 500ms var(--ease-standard);
+  will-change: transform, opacity;
+}
+
+/* The light field. One dim copy, one bright copy revealed through a mask
+   that follows the pointer — proximity response with no per-node maths. */
+.tech-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.tech-particles-rest,
+.tech-particles-lit {
+  position: absolute;
+  inset: 0;
+}
+.tech-particles-rest { opacity: 0.18; }
+/* Same principle as the sheen, one step further: a mask whose position
+   changes is re-rasterised every frame, so the mask stays put in its own
+   layer and the LAYER is translated, while the field inside is translated
+   back by the same amount. The window slides; the field does not move. */
+.tech-particles-lit {
+  opacity: 0.95;
+  -webkit-mask-image: radial-gradient(22% 22% at 50% 50%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(22% 22% at 50% 50%, #000 0%, transparent 72%);
+  transform: translate3d(calc(var(--px) * 50%), calc(var(--py) * 50%), 0);
+  will-change: transform, opacity;
+}
+.tech-particles-lit > * {
+  transform: translate3d(calc(var(--px) * -50%), calc(var(--py) * -50%), 0);
+}
+/* With no pointer present the bright copy is gone entirely, so the field
+   rests dim rather than carrying a permanent hotspot. */
+.hero-stage[data-pointer="out"] .tech-particles-lit { opacity: 0; }
+.tech-particles-lit { transition: opacity 700ms var(--ease-standard); }
+
+/* Ring and label around the pointer, inside the visual zone only. */
+/* Positioned ONLY by transform. Driving left/top from the pointer moves the
+   element in layout, which the browser records as a layout shift on every
+   frame — measured at 0.006 CLS before this was changed, against a baseline
+   of exactly zero. The anchor is the full size of the scene, so translating
+   it by --cx percent moves it that percentage of the scene's width. */
+.interactive-cursor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 380ms var(--ease-standard);
+}
+.hero-stage[data-pointer="in"] .interactive-cursor { opacity: 1; }
+
+.interactive-cursor-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(calc(var(--cx) * 1%), calc(var(--cy) * 1%), 0);
+  will-change: transform;
+}
+.interactive-cursor-body {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: transform 380ms var(--ease-entrance);
+}
+.hero-stage[data-pointer="in"] .interactive-cursor-body {
+  transform: translate(-50%, -50%) scale(1);
+}
+.interactive-cursor-ring {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
+  background: color-mix(in srgb, var(--color-page) 25%, transparent);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+/* The ring travels over the diagram's own labels, so the caption carries a
+   small ground of its own — without it the two sets of type overlap and
+   neither can be read. */
+.interactive-cursor-label {
+  font-family: var(--font-mono);
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-accent-ink);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-page) 82%, transparent);
+}
+
+/* Touch and no-pointer devices never get the tracking; the scene plays its
+   own slow cinematic loop so it still feels alive without interaction. */
+@media (pointer: coarse) {
+  .interactive-cursor { display: none; }
+  .hero-portrait { animation: hero-idle-float 8s ease-in-out infinite; }
+  .tech-particles-rest { opacity: 0.24; }
+}
+
+/* Pointer-reactive depth on the hero diagram. Subtle by design: it should
+   feel like the object has volume, not like the page is moving. */
+.tilt {
+  transform: perspective(1200px) rotateX(calc(var(--ty, 0) * -5deg)) rotateY(calc(var(--tx, 0) * 5deg));
+  transition: transform 400ms var(--ease-standard);
+  will-change: transform;
+}
+
+/* A single sheen crossing a button on hover. */
+.sweep { position: relative; overflow: hidden; isolation: isolate; }
+.sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 24%, rgb(255 255 255 / 0.22) 50%, transparent 76%);
+  transform: translateX(-110%);
+  transition: transform 750ms var(--ease-standard);
+  pointer-events: none;
+}
+.sweep:hover::after, .sweep:focus-visible::after { transform: translateX(110%); }
+
+/* Without motion the motifs must still be COMPLETE, not frozen at frame zero:
+   the pulses sit at full strength, the drawn paths are drawn, the bars are up,
+   and the two purely decorative loops (card flow, ticket scan) are removed
+   rather than left as an invisible artefact. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-signature .sig-pulse,
+  .brand-signature .sig-cell,
+  .brand-signature .sig-bar,
+  .brand-signature .sig-float,
+  .brand-signature .sig-rise,
+  .brand-signature .sig-appear,
+  .brand-signature .sig-draw {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+  .brand-signature .sig-flow,
+  .brand-signature .sig-scan {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .word > span,
+  .js [data-stage="true"] .settle { animation: none !important; }
+  .js .settle { opacity: 1; }
+  .js .mask-up { clip-path: none !important; transition: none !important; }
+  .js .draw { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+  .tilt { transform: none !important; }
+  /* The whole hero scene stands still: no tracking, no parallax, no cursor
+     ring, no light field. Only the layout and the essential transitions
+     remain. */
+  .parallax-layer,
+  .hero-portrait,
+  .parallax-inner,
+  .idle-float, .idle-drift, .idle-zoom {
+    transform: none !important;
+    animation: none !important;
+  }
+  .interactive-cursor,
+  .hero-sheen,
+  .tech-particles-lit { display: none !important; }
+  .tech-particles-rest { opacity: 0.2; }
+  .sweep::after { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Homepage — the composition supplied by Syitech Group
+
+   A full-bleed opening, the six brands as one band, the figures
+   rule, and the group statement beside its film. Each brand card
+   carries `data-brand`, so its ground, its type and its motif come
+   from its own palette with no per-card colour written here.
+   ───────────────────────────────────────────────────────────── */
+
+/* 1 — Opening. The visual occupies the right of the frame and bleeds off
+   the edge; the statement sits over it, never under it. */
+.showcase-hero-visual {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(62%, 980px);
+  pointer-events: none;
+  /* Fades into the statement rather than ending on a hard seam. The fade is
+     short: pulled too far across the panel it washes the figure out, which is
+     what buried her on the first pass. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 26%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 26%);
+}
+.showcase-hero-visual .hero-stage { height: 100%; width: 100%; }
+.showcase-hero-visual a { pointer-events: auto; }
+
+.showcase-hero-layer-glow {
+  position: absolute;
+  inset: 6% 4% auto auto;
+  width: 62%;
+  aspect-ratio: 1;
+}
+
+.showcase-hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(52% 46% at 62% 44%, color-mix(in srgb, var(--color-accent) 22%, transparent) 0%, transparent 72%),
+    radial-gradient(70% 60% at 88% 82%, color-mix(in srgb, var(--color-brand) 16%, transparent) 0%, transparent 76%);
+}
+
+.showcase-orbit-chip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-raised) 85%, transparent);
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  backdrop-filter: blur(2px);
+}
+
+.showcase-video-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-raised) 70%, transparent);
+  color: var(--color-ink);
+  font-weight: 600;
+  transition: border-color 200ms var(--ease-standard), background-color 200ms var(--ease-standard);
+}
+.showcase-video-cta:hover { border-color: var(--color-accent); }
+.showcase-play {
+  width: 0; height: 0;
+  border-left: 8px solid var(--color-accent);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.showcase-rail {
+  position: absolute;
+  right: clamp(1rem, 3vw, 3rem);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--color-line-soft);
+}
+
+@media (max-width: 1100px) {
+  .showcase-hero-visual { width: 100%; opacity: 0.5; -webkit-mask-image: none; mask-image: none; }
+  .showcase-rail { display: none; }
+}
+
+/* 2 — The brand band. One row on desktop, wrapping down to one column. */
+.showcase-band {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--color-line-soft);
+}
+.showcase-card { background: var(--color-page); }
+.showcase-card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+  padding: 1.4rem 1.25rem 1.1rem;
+  color: var(--color-ink);
+}
+.showcase-card-link:hover .showcase-card-arrow {
+  border-color: var(--color-accent);
+  color: var(--color-accent-ink);
+  transform: translateX(2px);
+}
+.showcase-card-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+.showcase-card-headline {
+  white-space: pre-line;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+.showcase-card-visual {
+  position: relative;
+  margin-top: auto;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 0.75rem;
+}
+.showcase-card-badge { position: absolute; left: 0.75rem; bottom: 0.75rem; }
+.showcase-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-faint);
+}
+.showcase-card-arrow {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px; height: 32px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  transition: transform 200ms var(--ease-standard), border-color 200ms var(--ease-standard), color 200ms var(--ease-standard);
+}
+
+@media (max-width: 1280px) { .showcase-band { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 720px)  { .showcase-band { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px)  { .showcase-band { grid-template-columns: 1fr; } }
+
+/* 3 — The figures rule. */
+.showcase-figures {
+  background: var(--color-surface);
+  border-block: 1px solid var(--color-line-soft);
+  padding-block: 1.6rem;
+}
+.showcase-figures-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+.showcase-figure {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--color-line);
+}
+.showcase-figure:first-child { padding-left: 0; border-left: 0; }
+.showcase-figure-mark { color: var(--color-accent-ink); flex: none; }
+.showcase-figure-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+}
+.showcase-figure-label { font-size: 0.82rem; color: var(--color-muted); }
+
+@media (max-width: 1024px) {
+  .showcase-figures-list { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .showcase-figure { padding-left: 1.25rem; }
+  .showcase-figure:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 520px) {
+  .showcase-figures-list { grid-template-columns: 1fr; }
+  .showcase-figure { padding-left: 0; border-left: 0; }
+}
+
+/* 4 — The group statement and its film. */
+.showcase-statement { background: var(--color-page); padding-block: clamp(3.5rem, 7vw, 6rem); }
+
+.showcase-film {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-line);
+  aspect-ratio: 16 / 10;
+  background: var(--color-page);
+  display: grid;
+  place-items: center;
+}
+.showcase-film-surface {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 55% at 50% 30%, color-mix(in srgb, var(--color-accent) 16%, transparent) 0%, transparent 70%),
+    linear-gradient(160deg, var(--color-surface) 0%, var(--color-page) 70%);
+}
+.showcase-film-body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--color-ink);
+}
+.showcase-film-play {
+  display: grid;
+  place-items: center;
+  width: 54px; height: 54px;
+  border-radius: 9999px;
+  background: var(--color-raised);
+  border: 1px solid var(--color-accent);
+}
+.showcase-film-play::after {
+  content: "";
+  width: 0; height: 0;
+  margin-left: 3px;
+  border-left: 12px solid var(--color-accent);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.showcase-film-label { font-weight: 600; }
+.showcase-film-place {
+  position: absolute;
+  right: 1rem; bottom: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-faint);
+}
+
+.showcase-orbit-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(74%, 520px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+.showcase-orbit-frame > .hero-portrait { height: 100%; width: 100%; }
+
+/* The supplied brand mark sits where the wordmark stood, at a fixed height so
+   marks of different proportions align across the band. */
+/* The box is sized so the MARK lands at 30px, whatever transparent margin
+   its file carries — --content-height is the measured fraction the artwork
+   occupies. A trimmed file has --content-height: 1 and needs no correction. */
+.showcase-card-logo {
+  display: block;
+  --content-height: 1;
+  height: calc(30px / var(--content-height));
+  margin-block: calc((30px - 30px / var(--content-height)) / 2);
+}
+.showcase-card-image { border-radius: var(--radius-sm); aspect-ratio: 4 / 3; }
+/* Black-backed marks: under `screen` black leaves the backdrop untouched, so
+   the flat backing disappears and only the artwork remains. The delivered file
+   is not altered. */
+.showcase-card-logo[data-matte="black"] img { mix-blend-mode: screen; }
+/* The portrait plane, held to the travel the art direction fixes. */
+.showcase-hero-portrait { position: absolute; inset: 0; }
+.showcase-hero-portrait > .hero-portrait { height: 100%; width: 100%; }
+
+/* The film's dialog. `<dialog>` brings the modal behaviour, focus trapping and
+   Escape-to-close on its own; only the surface is styled here. */
+.showcase-film-pending {
+  position: relative;
+  max-width: 22ch;
+  text-align: center;
+  color: var(--color-muted);
+}
+.showcase-film-body {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+}
+.showcase-film-body:hover .showcase-film-play { background: var(--color-accent); }
+.showcase-film-body:hover .showcase-film-play::after { border-left-color: var(--color-on-accent); }
+.showcase-film-play { transition: background-color 200ms var(--ease-standard); }
+
+.film-dialog {
+  width: min(92vw, 1100px);
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: #000;
+  color: #fff;
+}
+.film-dialog::backdrop { background: rgb(0 0 0 / 0.72); }
+.film-dialog-video { display: block; width: 100%; height: auto; }
+.film-dialog-close {
+  display: block;
+  width: 100%;
+  padding: 0.85rem;
+  border: 0;
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.film-dialog-close:hover { background: rgb(255 255 255 / 0.08); }
+
+/* Each plane is placed, not stretched across the frame. Left to fill the whole
+   panel the figure was cropped to a face and the HUD ran straight across it —
+   the scene has to read as a person standing IN a field, not as a collage. */
+.showcase-hero-figure {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: min(76%, 620px);
+}
+.showcase-hero-figure > .hero-portrait { height: 100%; width: 100%; }
+.showcase-hero-figure .hero-portrait-image { height: 100%; object-fit: contain; object-position: center bottom; }
+
+.showcase-hero-layer-network {
+  position: absolute;
+  inset: 4% auto auto 0;
+  width: 66%;
+  aspect-ratio: 1;
+}
+.showcase-hero-layer-hud {
+  position: absolute;
+  inset: auto auto 2% 0;
+  width: 58%;
+  aspect-ratio: 1;
+}
+
+/* The rail crosses the image, so it carries its own ground rather than
+   competing with whatever pixel happens to sit behind each word. */
+.showcase-rail {
+  padding: 0.9rem 0 0.9rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(to right, color-mix(in srgb, var(--color-page) 78%, transparent), transparent);
+  backdrop-filter: blur(2px);
+}
+
+/* hero-woman.webp is described as a cut-out but is not one: measured, its
+   bottom edge is fully opaque and its left and right edges sit at 229-255 —
+   only the top corners are keyed. Composited as-is it shows a hard rectangle
+   through the scene. These masks dissolve that rectangle into the field
+   without touching the file; a properly cut-out portrait makes them a no-op. */
+.showcase-hero-figure .hero-portrait-image {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 22%),
+    linear-gradient(to top, transparent 0%, #000 14%),
+    linear-gradient(to left, transparent 0%, #000 8%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 22%),
+    linear-gradient(to top, transparent 0%, #000 14%),
+    linear-gradient(to left, transparent 0%, #000 8%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* 5 — The ecosystem. The globe sits behind the whole band, the brands turn
+   around the Group, the verticals read down the side. */
+.showcase-ecosystem {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-page);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.showcase-ecosystem-globe {
+  position: absolute;
+  inset: -20% -10% -30% 18%;
+  pointer-events: none;
+  /* Without this the globe ends on a hard vertical edge across the band. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 78%, transparent 100%);
+}
+.showcase-ecosystem-globe img { height: 100%; object-fit: cover; }
+
+.showcase-ecosystem-ring {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 460px;
+  margin-inline: auto;
+}
+.showcase-ecosystem-core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  border: 1px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-page) 82%, transparent);
+  backdrop-filter: blur(3px);
+  padding: 0 0.75rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.showcase-ecosystem-chip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-raised) 88%, transparent);
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  backdrop-filter: blur(2px);
+  transition: border-color 200ms var(--ease-standard);
+}
+.showcase-ecosystem-chip:hover { border-color: var(--color-accent); }
+
+.showcase-ecosystem-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--color-line-soft);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+@media (max-width: 1023px) {
+  .showcase-ecosystem-list { border-left: 0; padding-left: 0; }
+  .showcase-ecosystem-globe { inset: 0; opacity: 0.5; }
+}
