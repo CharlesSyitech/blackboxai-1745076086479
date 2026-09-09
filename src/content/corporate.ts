@@ -94,8 +94,8 @@ export const timeline: TimelineEntry[] = [
     year: "2023",
     title: { fr: "Croissance & Expansion", en: "Growth & expansion" },
     body: {
-      fr: "Croissance soutenue et ouverture à l'international. Début du développement de Sydica et de la solution de paiement du Groupe.",
-      en: "Sustained growth and international opening. Development of Sydica and the Group's payment solution begins.",
+      fr: "Croissance soutenue et ouverture à l'international. Début du développement de Sydica et de SydiCard.",
+      en: "Sustained growth and international opening. Development of Sydica and SydiCard begins.",
     },
     isPublic: true,
   },
@@ -122,8 +122,11 @@ export const timeline: TimelineEntry[] = [
     year: "2025",
     title: { fr: "Accélération", en: "Acceleration" },
     body: {
-      fr: "Lancement officiel de Sydica et de la solution de paiement du Groupe. Croissance internationale.",
-      en: "Official launch of Sydica and the Group's payment solution. International growth.",
+      // The timeline document announced the payment solution as launched in
+      // 2025. Syitech confirmed on 2026-09-09 that SydiCard is still in
+      // development, so only Sydica's launch is stated here.
+      fr: "Lancement officiel de Sydica. Croissance internationale.",
+      en: "Official launch of Sydica. International growth.",
     },
     figures: [
       {

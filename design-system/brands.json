@@ -65,10 +65,10 @@
       "name": "SydiCard",
       "role": "FinTech — paiements, wallet, inclusion financière, reversements créateurs",
       "universe": "Noir absolu, wordmark blanc, point turquoise. Extension financiere de l'univers Sydica.",
-      "status": "coming_soon",
+      "status": "in_development",
       "statusLabel": {
         "fr": "En développement",
-        "en": "Coming soon"
+        "en": "In development"
       },
       "website": null,
       "palette": {
@@ -82,7 +82,6 @@
       "texture": "Carte en volume, reflets métalliques, flux de transaction",
       "motion": "Rotation lente de la carte, pulsations de paiement, flux wallet",
       "source": "logo officiel",
-      "nameConflict": "Le document de timeline officiel nomme la solution de paiement 'Syitech Pay' et la dit lancee en 2025, alors que le brief la nomme 'SydiCard' et la declare en developpement. Nom et statut a trancher : tant que ce n'est pas fait, le site ecrit 'la solution de paiement du Groupe' et n'affirme aucun statut.",
       "notes": "Le turquoise du point est quasi identique a celui de Sydica : les deux marques se repondent, ce qui est coherent — SydiCard est decrite comme integree a l'ecosysteme Sydica. Endossement 'By Syitech Group' porte dans le logo lui-meme.",
       "description": {
         "fr": "Carte Visa prepayee intelligente developpee par Syitech Group et integree a l'ecosysteme Sydica : paiement des royalties en monnaie locale, transferts vers mobile money et banque, usages evenementiels et billetterie, acces a des contenus et avantages pour les fans."
@@ -96,7 +95,13 @@
           "Orange Money",
           "MTN"
         ],
-        "namedThirdPartiesStatus": "Cites dans le document produit. AUCUN n'est publiable tant que la direction juridique n'a pas qualifie la relation et obtenu l'autorisation d'usage de marque. Nommer Visa sur un site public sans accord est un risque de marque, pas un detail."
+        "namedThirdPartiesStatus": "Cites dans le document produit. AUCUN n'est publiable tant que la direction juridique n'a pas qualifie la relation et obtenu l'autorisation d'usage de marque. Nommer Visa sur un site public sans accord est un risque de marque, pas un detail.",
+        "clientAnswer2026_09_09": "Syitech indique disposer d'un contrat d'agrement avec la banque, et les cartes sont en cours d'emission. Cela leve la question de l'existence du programme, PAS celle du droit d'usage des marques. Un accord bancaire n'est pas une licence de marque Visa : l'autorisation d'afficher les marques Visa, Wave, Orange Money et MTN sur un site public passe par l'emetteur agree et par le reseau. Ces marques restent non publiees.",
+        "stillNeeded": [
+          "Le nom de l'etablissement emetteur agree",
+          "L'accord ecrit d'usage des marques Visa / Wave / Orange Money / MTN sur un site public",
+          "La formulation exacte imposee par l'emetteur (typiquement : 'carte emise par <banque>, sous licence <reseau>')"
+        ]
       }
     },
     "kultix": {
@@ -214,21 +219,23 @@
   "openQuestions": [
     {
       "id": "Q-HARDWARE",
-      "severity": "blocking",
+      "severity": "resolved",
       "question": "SyitEx n'etant pas la verticale hardware, sous quelle marque vivent les Cartes USB securisees, USB Connect et l'IoT ? Trois options : capacites du Groupe sans marque propre, marque a nommer, ou retrait du site.",
-      "impact": "Architecture de marque, navigation, sitemap, page d'accueil"
-    },
-    {
-      "id": "Q-PAY-NAME",
-      "severity": "blocking",
-      "question": "La timeline nomme la solution de paiement 'Syitech Pay' et la dit lancee en 2025 ; le logo et le brief disent 'SydiCard'. Nom et statut a trancher.",
-      "impact": "Nommage, statut affiche, mentions reglementaires"
+      "impact": "Architecture de marque, navigation, sitemap, page d'accueil",
+      "answer": "Reponse Syitech du 2026-09-09 : « les cartes USB ». La verticale materielle reste au Groupe, portee par les Cartes USB securisees seules. USB Connect et la verticale IoT sont retirees du site comme solutions autonomes, conformement a la regle de ne presenter que les solutions actives. Interpretation d'une reponse breve : a corriger si USB Connect ou l'IoT doivent rester — le retrait est un simple retour arriere git."
     },
     {
       "id": "Q-VISA",
-      "severity": "blocking",
+      "severity": "partially-resolved",
       "question": "Visa, Wave, Orange Money et MTN sont cites dans le document SydiCard. Ces relations sont-elles contractualisees, et l'usage de leurs marques est-il autorise par ecrit ?",
-      "impact": "Page SydiCard, page Partenaires, risque de marque"
+      "impact": "Page SydiCard, page Partenaires, risque de marque",
+      "answer": "Programme confirme : contrat d'agrement avec la banque, cartes en cours d'emission. Le droit d'usage des marques Visa, Wave, Orange Money et MTN reste a obtenir : un accord bancaire n'est pas une licence de marque reseau."
+    },
+    {
+      "id": "Q-USB-CONNECT",
+      "severity": "confirm",
+      "question": "USB Connect et la verticale IoT (C-GESCAR, Fleet366) ont ete retires du site suite a la reponse « les cartes USB ». Confirmer que c'est bien l'intention.",
+      "impact": "Sitemap, navigation, page d'accueil"
     }
   ]
 }

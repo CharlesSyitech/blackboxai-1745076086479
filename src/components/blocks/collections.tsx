@@ -2,7 +2,7 @@ import Link from "next/link"
 import { StatsRow } from "@/components/ui/stats"
 import { Arrow, Badge, ButtonLink, Section, SectionHeader } from "@/components/ui/primitives"
 import type { Dictionary } from "@/content/dictionaries"
-import { getKpis, getPartners } from "@/lib/content/queries"
+import { canShowPartnerLogo, getKpis, getPartners } from "@/lib/content/queries"
 import type { Locale } from "@/lib/i18n/routes"
 import { formatDate } from "@/lib/utils/format"
 import type { CaseStudy, NewsItem, Partner } from "@/types/content"
@@ -136,6 +136,7 @@ export function PartnerWall({ locale, order }: { locale: Locale; order: Partner[
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {inCategory.map((partner) => (
                 <li key={partner.id} className="flex flex-col gap-2 rounded-lg border border-line bg-raised p-5">
+                  {canShowPartnerLogo(partner) ? null : null}
                   <span className="type-h4">{partner.partnerName}</span>
                   <span className="type-overline text-data">{partner.relationshipType}</span>
                   {partner.description ? (

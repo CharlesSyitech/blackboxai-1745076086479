@@ -174,7 +174,7 @@ export const expertises: Expertise[] = [
   {
     id: "hardware-iot",
     slug: { fr: "hardware-iot", en: "hardware-iot" },
-    name: { fr: "Hardware & IoT", en: "Hardware & IoT" },
+    name: { fr: "Hardware & Distribution physique", en: "Hardware & Physical Distribution" },
     tagline: {
       fr: "Quand la distribution physique complète l'infrastructure numérique.",
       en: "Where physical distribution completes digital infrastructure.",
@@ -202,7 +202,7 @@ export const expertises: Expertise[] = [
       ],
     },
     technologies: ["iot", "security", "data"],
-    solutions: ["secure-usb", "usb-connect", "iot"],
+    solutions: ["secure-usb"],
     order: 6,
   },
   {

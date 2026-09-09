@@ -47,6 +47,9 @@ export default async function SolutionsIndex({ params }: { params: Promise<{ loc
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-display text-xl font-extrabold tracking-[-0.02em]">{solution.name}</span>
                   <Badge>{solution.vertical}</Badge>
+                  {solution.status === "in_development" ? (
+                    <Badge tone="warn">{locale === "fr" ? "En développement" : "In development"}</Badge>
+                  ) : null}
                 </div>
                 <span className="type-h4 text-ink">{solution.positioning[locale]}</span>
                 <span className="measure text-sm text-muted">{solution.tagline[locale]}</span>

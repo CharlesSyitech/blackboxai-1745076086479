@@ -107,6 +107,8 @@ export interface Solution {
   technologies: TechnologyId[]
   expertise: string
   kpis: string[]
+  /** A product not yet open must say so on every surface it appears on. */
+  status: "live" | "in_development"
   regulatoryStatus: "not_applicable" | "technology_only" | "partner_operated" | "licensed"
   licenseReference: string | null
   ctaPrimary: I18n

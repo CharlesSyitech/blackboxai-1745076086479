@@ -129,6 +129,9 @@ export function SolutionSpotlight({
           <div className="flex items-center gap-3">
             <span className="font-display text-xl font-extrabold tracking-[-0.02em]">{solution.name}</span>
             <Badge tone="accent">{solution.vertical}</Badge>
+            {solution.status === "in_development" ? (
+              <Badge tone="warn">{locale === "fr" ? "En développement" : "In development"}</Badge>
+            ) : null}
           </div>
           <h2 className="type-h2 max-w-[18ch]">{solution.positioning[locale]}</h2>
           <p className="measure text-muted">{solution.tagline[locale]}</p>

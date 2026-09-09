@@ -68,6 +68,10 @@ export default async function SolutionPage({
           { label: solution.name, href: path(locale, "solutions", solution.slug[locale]) },
         ]}
         aside={
+          <div className="flex flex-col gap-4">
+            {solution.status === "in_development" ? (
+              <Badge tone="warn">{locale === "fr" ? "En développement" : "In development"}</Badge>
+            ) : null}
           <div className="flex flex-wrap gap-3">
             <ButtonLink href={path(locale, "contact")} variant="accent">
               {solution.ctaPrimary[locale]}
@@ -77,6 +81,7 @@ export default async function SolutionPage({
                 {t.labels.modules}
               </ButtonLink>
             ) : null}
+          </div>
           </div>
         }
       />

@@ -197,6 +197,7 @@ export const solutions: Solution[] = [
     technologies: ["data", "ai", "cloud", "security"],
     expertise: "enterprise-technology",
     kpis: ["sytium.organizations", "sytium.users"],
+    status: "live",
     regulatoryStatus: "not_applicable",
     licenseReference: null,
     ctaPrimary: { fr: "Demander une démonstration", en: "Request a demo" },
@@ -309,6 +310,7 @@ export const solutions: Solution[] = [
     technologies: ["ai", "data", "blockchain", "cloud"],
     expertise: "culture-entertainment",
     kpis: ["sydica.users", "sydica.artists", "sydica.countries", "sydica.streams"],
+    status: "live",
     regulatoryStatus: "not_applicable",
     licenseReference: null,
     ctaPrimary: { fr: "Découvrir Sydica", en: "Discover Sydica" },
@@ -399,6 +401,7 @@ export const solutions: Solution[] = [
     technologies: ["data", "cloud", "security"],
     expertise: "eventtech",
     kpis: ["events.count"],
+    status: "live",
     regulatoryStatus: "not_applicable",
     licenseReference: null,
     ctaPrimary: { fr: "Découvrir KultiX", en: "Discover KultiX" },
@@ -409,7 +412,7 @@ export const solutions: Solution[] = [
   {
     id: "fintech",
     slug: { fr: "fintech", en: "fintech" },
-    name: "FinTech / SydiCard",
+    name: "SydiCard",
     vertical: "FinTech",
     accent: "navy",
     positioning: {
@@ -417,8 +420,8 @@ export const solutions: Solution[] = [
       en: "From creative income to financial opportunity.",
     },
     tagline: {
-      fr: "L'infrastructure technologique qui relie revenus, portefeuille, paiement et services financiers.",
-      en: "The technology layer connecting income, wallet, payment and financial services.",
+      fr: "Carte prépayée et infrastructure de paiement conçues pour l'économie créative, intégrées à l'écosystème Sydica. Produit en développement.",
+      en: "Prepaid card and payment infrastructure built for the creative economy, integrated with the Sydica ecosystem. Product in development.",
     },
     problem: {
       fr: [
@@ -474,6 +477,7 @@ export const solutions: Solution[] = [
     technologies: ["security", "data", "cloud", "blockchain"],
     expertise: "fintech",
     kpis: ["fintech.transactions"],
+    status: "in_development",
     regulatoryStatus: "partner_operated",
     licenseReference: null,
     ctaPrimary: { fr: "Parler à notre équipe", en: "Talk to our team" },
@@ -542,125 +546,13 @@ export const solutions: Solution[] = [
     technologies: ["security", "iot", "data"],
     expertise: "hardware-iot",
     kpis: ["usb.cardsDistributed", "usb.countries"],
+    status: "live",
     regulatoryStatus: "not_applicable",
     licenseReference: null,
     ctaPrimary: { fr: "Demander un devis", en: "Request a quote" },
     ctaSecondary: { fr: "Découvrir la technologie", en: "Explore the technology" },
     order: 5,
     featuredOnHome: true,
-  },
-  {
-    id: "usb-connect",
-    slug: { fr: "usb-connect", en: "usb-connect" },
-    name: "USB Connect",
-    vertical: "Hardware & IoT",
-    accent: "neutral",
-    positioning: {
-      fr: "Physique. Numérique. Connecté.",
-      en: "Physical. Digital. Connected.",
-    },
-    tagline: {
-      fr: "L'évolution connectée de notre expertise de distribution hybride : le support physique devient un point d'entrée vers des services en ligne.",
-      en: "The connected evolution of our hybrid distribution expertise: physical media becomes an entry point to online services.",
-    },
-    problem: {
-      fr: [
-        "Un support physique seul ne permet ni mise à jour, ni mesure, ni relation continue.",
-        "Une expérience uniquement en ligne exclut les publics faiblement connectés.",
-      ],
-      en: [
-        "Physical media alone allows no updates, no measurement and no ongoing relationship.",
-        "An online-only experience excludes weakly connected audiences.",
-      ],
-    },
-    answer: {
-      fr: [
-        "Un support qui fonctionne hors ligne et se prolonge en ligne dès qu'une connexion est disponible.",
-        "Une convergence entre matériel, stockage, mobile, connectivité et contenu.",
-      ],
-      en: [
-        "Media that works offline and extends online as soon as a connection is available.",
-        "Convergence between hardware, storage, mobile, connectivity and content.",
-      ],
-    },
-    universes: [
-      {
-        key: "convergence",
-        title: { fr: "Convergence", en: "Convergence" },
-        description: { fr: "Cinq couches réunies dans un même dispositif.", en: "Five layers brought together in a single device." },
-        features: { fr: ["Hardware", "Stockage", "Mobile", "Connectivité", "Contenu"], en: ["Hardware", "Storage", "Mobile", "Connectivity", "Content"] },
-        maturity: "beta",
-      },
-    ],
-    useCases: [
-      { sector: { fr: "Distribution de contenus", en: "Content distribution" }, body: { fr: "Prolonger un support physique par des services et des contenus additionnels en ligne.", en: "Extending physical media with additional online services and content." } },
-    ],
-    technologies: ["iot", "security", "cloud"],
-    expertise: "hardware-iot",
-    kpis: [],
-    regulatoryStatus: "not_applicable",
-    licenseReference: null,
-    ctaPrimary: { fr: "Parler à notre équipe", en: "Talk to our team" },
-    ctaSecondary: null,
-    order: 6,
-    featuredOnHome: false,
-  },
-  {
-    id: "iot",
-    slug: { fr: "iot", en: "iot" },
-    name: "IoT & Connected Solutions",
-    vertical: "IoT",
-    accent: "teal",
-    positioning: {
-      fr: "Connecter les équipements, collecter les données, piloter les opérations.",
-      en: "Connect equipment, collect data, steer operations.",
-    },
-    tagline: {
-      fr: "Une verticale technologique dédiée aux dispositifs connectés et à la supervision opérationnelle.",
-      en: "A technology vertical dedicated to connected devices and operational monitoring.",
-    },
-    problem: {
-      fr: [
-        "Les données du terrain remontent tard, partiellement, et rarement dans le système de gestion.",
-        "La supervision d'équipements dispersés suppose une connectivité tolérante aux coupures.",
-      ],
-      en: [
-        "Field data arrives late, partially, and rarely inside the management system.",
-        "Monitoring dispersed equipment requires connectivity tolerant to outages.",
-      ],
-    },
-    answer: {
-      fr: [
-        "Des dispositifs connectés reliés aux plateformes de gestion du Groupe.",
-        "Une collecte de données conçue pour des réseaux intermittents.",
-      ],
-      en: [
-        "Connected devices linked to the Group's management platforms.",
-        "Data collection designed for intermittent networks.",
-      ],
-    },
-    universes: [
-      {
-        key: "capabilities",
-        title: { fr: "Domaines d'application", en: "Application areas" },
-        description: { fr: "Les usages opérationnels couverts par la verticale.", en: "The operational uses covered by the vertical." },
-        features: { fr: ["Supervision de flotte", "Suivi et localisation", "Dispositifs connectés", "Collecte de données", "Supervision opérationnelle", "Automatisation"], en: ["Fleet monitoring", "Tracking and location", "Connected devices", "Data collection", "Operational monitoring", "Automation"] },
-        maturity: "live",
-      },
-    ],
-    useCases: [
-      { sector: { fr: "Gestion de flotte", en: "Fleet management" }, body: { fr: "Suivi de véhicules, remontée d'événements et reporting d'exploitation.", en: "Vehicle tracking, event reporting and operational reporting." } },
-      { sector: { fr: "Exploitation et maintenance", en: "Operations and maintenance" }, body: { fr: "Supervision d'équipements distribués et collecte de données terrain.", en: "Monitoring of distributed equipment and field data collection." } },
-    ],
-    technologies: ["iot", "data", "cloud", "security"],
-    expertise: "hardware-iot",
-    kpis: [],
-    regulatoryStatus: "not_applicable",
-    licenseReference: null,
-    ctaPrimary: { fr: "Parler à notre équipe", en: "Talk to our team" },
-    ctaSecondary: null,
-    order: 7,
-    featuredOnHome: false,
   },
 ]
 

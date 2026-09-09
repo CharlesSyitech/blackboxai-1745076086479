@@ -25,11 +25,11 @@ export default async function PartnersPage({ params }: { params: Promise<{ local
     locale === "fr"
       ? [
           "Chaque organisation présentée sur cette page l'est avec la nature exacte de sa relation avec Syitech Group : partenaire stratégique, partenaire technologique, collaboration, programme, preuve de concept, client ou fournisseur.",
-          "Un logo n'établit pas un partenariat. Une organisation n'apparaît ici qu'après qualification contractuelle et autorisation écrite d'usage de sa marque.",
+          "Un logo n'établit pas un partenariat. Une organisation n'apparaît ici qu'après qualification de la relation par le Groupe. Sa marque, elle, n'est affichée qu'avec son propre accord écrit : nommer une relation et utiliser un logo sont deux autorisations distinctes.",
         ]
       : [
           "Every organisation shown on this page appears with the exact nature of its relationship with Syitech Group: strategic partner, technology partner, collaboration, programme, proof of concept, client or supplier.",
-          "A logo does not establish a partnership. An organisation appears here only after contractual qualification and written approval to use its brand.",
+          "A logo does not establish a partnership. An organisation appears here once the Group has qualified the relationship. Its mark is displayed only with its own written approval: naming a relationship and using a logo are two distinct permissions.",
         ]
 
   return (

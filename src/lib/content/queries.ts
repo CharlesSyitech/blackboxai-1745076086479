@@ -27,20 +27,24 @@ export function getKpis(keys: string[]): Kpi[] {
     .filter((kpi): kpi is Kpi => kpi !== undefined && isPublishableKpi(kpi))
 }
 
-/** A partner is publishable only with an explicit relationship and written approvals. */
+/**
+ * A partner entry is publishable once the relationship is qualified and
+ * cleared by the Group. Using the partner's LOGO is a separate permission,
+ * granted by the partner itself — see `canShowPartnerLogo`. Conflating the two
+ * either suppresses relationships we are allowed to state, or displays marks
+ * we have no right to use.
+ */
 export function isPublishablePartner(partner: Partner): boolean {
   if (!partner.isPublic) return false
   if (partner.relationshipType === null) return false
-  if (!partner.logoUsageApproved) return false
   if (partner.legalValidatedBy === null) return false
-  const contractRequired: Partner["relationshipType"][] = [
-    "Strategic Partner",
-    "Institutional Partner",
-    "Financial Partner",
-  ]
-  if (contractRequired.includes(partner.relationshipType) && !partner.contractReference) return false
   if (partner.endDate && new Date(partner.endDate) < new Date() && !partner.showAfterEnd) return false
   return true
+}
+
+/** The partner's mark may only be displayed with its own written approval. */
+export function canShowPartnerLogo(partner: Partner): boolean {
+  return isPublishablePartner(partner) && partner.logoUsageApproved
 }
 
 export function getPartners() {
