@@ -79,15 +79,15 @@
       "palette": {
         "ink": "#0A0A0A",
         "surface": "#171717",
-        "primary": "#EDEDEA",
+        "primary": "#EEEDEA",
         "accent": "#FFFFFF",
         "accentInk": "#0A0A0A",
         "onAccent": "#0A0A0A"
       },
       "texture": "Interfaces réelles, grilles de données, lignes de graphes",
       "motion": "Modules qui se composent, courbes qui se tracent, flux de données",
-      "source": "logo officiel",
-      "notes": "Identite strictement monochrome : wordmark blanc casse, pastille noire au chevron blanc. C'est une direction plus distinctive qu'un bleu SaaS. La couleur, sur les pages Sytium, vient des donnees affichees, pas de la marque.",
+      "source": "logo officiel — fichiers logo-sytium-white.png / logo-sytium-dark.png fournis le 2026-09-09",
+      "notes": "Identite strictement monochrome, CONFIRMEE sur les fichiers sources : wordmark #EEEDEA (91,6 % des pixels opaques de la variante claire), pastille #1B1B1B au chevron blanc. Le losange bleu apparu dans la maquette etait un substitut : le pack fourni par le client indique par ecrit de ne pas l'utiliser. La couleur, sur les pages Sytium, vient des donnees affichees, pas de la marque.",
       "semantic": {
         "$description": "Tokens consommes par les composants. Verifies par scripts/check-contrast.mjs contre ink et surface de cette marque.",
         "page": "#0A0A0A",

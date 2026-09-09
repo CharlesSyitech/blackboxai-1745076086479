@@ -12,7 +12,7 @@ import { BrandSignature } from "@/components/graphics/brand-signature"
 import { WordReveal } from "@/components/ui/motion"
 import { Badge, ButtonLink, Container } from "@/components/ui/primitives"
 import type { BrandId } from "@/content/brands"
-import { brandLogos, heroLayers, productCards } from "@/content/assets"
+import { brandLogoVariants, heroLayers, productCards } from "@/content/assets"
 import { brandCards, heroRail, homeFigures } from "@/content/home-figures"
 import type { Locale } from "@/lib/i18n/routes"
 import { path } from "@/lib/i18n/routes"
@@ -195,7 +195,8 @@ export function BrandBand({
       {brandCards.map((card) => {
         const href = card.href ? path(locale, "solutions", card.href) : path(locale, "brands")
         const supplied = assets[card.brandId] ?? { logo: false, visual: false }
-        const logoSrc = brandLogos[card.brandId]
+        const mark = brandLogoVariants[card.brandId]
+        const logoSrc = mark?.onDark
         const visualSrc = productCards[card.brandId]
         return (
           <article key={card.brandId} data-brand={card.brandId} className="showcase-card">
@@ -204,7 +205,10 @@ export function BrandBand({
                 {/* The brand's own mark where it exists. Never redrawn, never
                     recoloured; the wordmark stands in only until it arrives. */}
                 {supplied.logo && logoSrc ? (
-                  <span className="showcase-card-logo">
+                  <span
+                    className="showcase-card-logo"
+                    style={{ "--content-height": mark?.contentHeight ?? 1 } as React.CSSProperties}
+                  >
                     <AssetLayer
                       asset={{ src: logoSrc, alt: card.name }}
                       present

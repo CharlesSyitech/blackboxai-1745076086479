@@ -71,23 +71,57 @@ export const productCards: Record<string, string> = {
 }
 
 /**
- * Brand marks. The directory per brand is Syitech's structure; the file
- * inside it is named here so nothing has to guess an extension at runtime.
- * A mark is never substituted, recoloured or redrawn.
+ * Brand marks, per ground.
+ *
+ * A mark is never recoloured to suit a surface: each brand supplies the
+ * version drawn for a dark ground and the version drawn for a light one, and
+ * the page picks. Sytium is the case that proves the rule — its identity is
+ * strictly monochrome, so tinting one variant to make the other would destroy
+ * the mark rather than adapt it.
+ *
+ * `onDark` is what the brand band and every product hero use; `onLight` is
+ * for the light surfaces of the site.
  */
-export const brandLogos: Record<string, string> = {
-  syitech: "/brands/syitech/logo.svg",
-  sydica: "/brands/sydica/logo.svg",
-  sytium: "/brands/sytium/logo.svg",
-  sydicard: "/brands/sydicard/logo.svg",
-  kultix: "/brands/kultix/logo.svg",
-  syitex: "/brands/syitex/logo.svg",
-  rd: "/brands/rd/logo.svg",
+export interface BrandMark {
+  onDark: string
+  onLight: string
+  /**
+   * The fraction of the file's height the mark actually occupies, measured on
+   * the supplied file. A logo delivered inside a large transparent canvas
+   * would otherwise render far smaller than its neighbours in the same row;
+   * the band divides by this so every mark lands at the same optical size.
+   * 1 means the file is trimmed to its content — which is how logos should
+   * be supplied.
+   */
+  contentHeight?: number
 }
+
+export const brandLogoVariants: Record<string, BrandMark> = {
+  // Supplied and verified by Syitech Group on 2026-09-09. The blue-diamond
+  // Sytium mark that appeared in the composition was a stand-in; the client's
+  // own pack says in writing not to use it.
+  sytium: {
+    onDark: "/brands/sytium/logo-sytium-white.png",
+    onLight: "/brands/sytium/logo-sytium-dark.png",
+    // Measured on the supplied file: the mark is 993x337 inside 1250x625.
+    contentHeight: 337 / 625,
+  },
+  syitech: { onDark: "/brands/syitech/logo-syitech-white.png", onLight: "/brands/syitech/logo-syitech-dark.png" },
+  sydica: { onDark: "/brands/sydica/logo-sydica-white.png", onLight: "/brands/sydica/logo-sydica-dark.png" },
+  sydicard: { onDark: "/brands/sydicard/logo-sydicard-white.png", onLight: "/brands/sydicard/logo-sydicard-dark.png" },
+  kultix: { onDark: "/brands/kultix/logo-kultix-white.png", onLight: "/brands/kultix/logo-kultix-dark.png" },
+  syitex: { onDark: "/brands/syitex/logo-syitex-white.png", onLight: "/brands/syitex/logo-syitex-dark.png" },
+  rd: { onDark: "/brands/rd/logo-rd-white.png", onLight: "/brands/rd/logo-rd-dark.png" },
+}
+
+/** The mark used on the dark brand surfaces of the homepage band. */
+export const brandLogos: Record<string, string> = Object.fromEntries(
+  Object.entries(brandLogoVariants).map(([id, mark]) => [id, mark.onDark]),
+)
 
 /** Every declared path, for the build-time report. */
 export const declaredAssets: string[] = [
   ...Object.values(heroLayers).map((layer) => layer.src),
   ...Object.values(productCards),
-  ...Object.values(brandLogos),
+  ...Object.values(brandLogoVariants).flatMap((mark) => [mark.onDark, mark.onLight]),
 ]

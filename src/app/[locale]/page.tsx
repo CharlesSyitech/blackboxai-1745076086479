@@ -27,7 +27,7 @@ import {
   getSolutions,
   getTechnologies,
 } from "@/lib/content/queries"
-import { brandLogos, heroLayers, productCards } from "@/content/assets"
+import { brandLogoVariants, heroLayers, productCards } from "@/content/assets"
 import { hasAsset } from "@/lib/content/assets"
 import { buildMetadata } from "@/lib/seo/metadata"
 import { isLocale, path, type Locale } from "@/lib/i18n/routes"
@@ -105,7 +105,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           Object.keys(productCards).map((id) => [
             id,
             {
-              logo: Boolean(brandLogos[id]) && hasAsset(brandLogos[id] as string),
+              logo: Boolean(brandLogoVariants[id]) && hasAsset(brandLogoVariants[id]!.onDark),
               visual: hasAsset(productCards[id] as string),
             },
           ]),

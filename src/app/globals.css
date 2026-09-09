@@ -1215,7 +1215,15 @@
 
 /* The supplied brand mark sits where the wordmark stood, at a fixed height so
    marks of different proportions align across the band. */
-.showcase-card-logo { display: block; height: 34px; }
+/* The box is sized so the MARK lands at 30px, whatever transparent margin
+   its file carries — --content-height is the measured fraction the artwork
+   occupies. A trimmed file has --content-height: 1 and needs no correction. */
+.showcase-card-logo {
+  display: block;
+  --content-height: 1;
+  height: calc(30px / var(--content-height));
+  margin-block: calc((30px - 30px / var(--content-height)) / 2);
+}
 .showcase-card-image { border-radius: var(--radius-sm); aspect-ratio: 4 / 3; }
 /* The portrait plane, held to the travel the art direction fixes. */
 .showcase-hero-portrait { position: absolute; inset: 0; }

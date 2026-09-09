@@ -36,10 +36,15 @@ Rendered at 4:3. Anything wider is cropped to the centre.
 
 ## `brands/<brand>/` — the marks
 
-One `logo.svg` per brand: `syitech`, `sydica`, `sytium`, `sydicard`, `kultix`,
-`syitex`, `rd`. Set at a fixed height so marks of different proportions align
-across the band, and never recoloured — supply the version meant for a dark
-ground.
+Two files per brand — the mark drawn for a dark ground and the one drawn for a
+light ground. A mark is never recoloured to suit a surface; Sytium proves why,
+its identity being strictly monochrome.
 
-If a mark ships as PNG rather than SVG, change the extension in
-`src/content/assets.ts`; that file is the only place a path is written.
+Supplied so far: **Sytium** (`logo-sytium-white.png`, `logo-sytium-dark.png`).
+
+**Trim the transparent margin.** The Sytium files carry the mark at 993×337
+inside a 1250×625 canvas, so it would render at little over half the size of
+its neighbours in the band. `contentHeight` in `src/content/assets.ts` corrects
+for it — measured, not guessed — but a trimmed file needs no correction at all.
+
+Paths and extensions live only in `src/content/assets.ts`.
