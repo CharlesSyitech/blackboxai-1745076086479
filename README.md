@@ -43,7 +43,8 @@ EventTech, Hardware & IoT, AI/Data/Blockchain, R&D).
 | 11 | [Modèle de données CMS](docs/11-cms-data-model.md) | 18 collections, validations bloquantes, back-office, rôles, migration |
 | 12 | [Performance · Accessibilité · Analytics · Sécurité](docs/12-performance-accessibilite-analytics-securite.md) | Budgets, WCAG 2.2 AA, taxonomie d'événements, CSP, RGPD |
 | 13 | [Gouvernance des données & questions ouvertes](docs/13-gouvernance-donnees-questions-ouvertes.md) | **Bloquants, fiches de validation KPI et partenaires, questions ouvertes, plan de Phase 5** |
-| 14 | [Direction artistique multi-marques](docs/14-direction-artistique-multimarque.md) | **Sept marques, sept univers, storyboard cinématique, design system multi-marques, timeline 2018–2026** |
+| 14 | [Direction artistique multi-marques](docs/14-direction-artistique-multimarque.md) | **Sept marques, sept univers, storyboard cinématique, design system multi-marques** |
+| 15 | [Triage de la planche partenaires](docs/15-triage-partenaires.md) | **34 organisations qualifiées par niveau de risque, presse séparée, marques propres retirées** |
 
 **Tokens machine-lisibles :** [`design-system/tokens.json`](design-system/tokens.json) (Groupe) · [`design-system/brands.json`](design-system/brands.json) (7 marques, palettes provisoires)
 

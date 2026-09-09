@@ -56,6 +56,8 @@ export interface Partner {
   legalValidatedBy: string | null
   isPublic: boolean
   featured: boolean
+  /** Why this entry is not yet publishable, and what would make it so. */
+  qualificationNote?: string
 }
 
 export type TechnologyId = "ai" | "blockchain" | "data" | "iot" | "cloud" | "security"
