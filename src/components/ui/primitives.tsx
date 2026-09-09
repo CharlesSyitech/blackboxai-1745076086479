@@ -36,10 +36,14 @@ export function Section({
     surface: "bg-surface text-ink",
     ink: "bg-page text-ink",
   }
+  // The composition's own blocks run dense — the opening, the brand band and
+  // the ecosystem sit between 380 and 700px. The generous rhythm the rest of
+  // the site was built on made the page read as two different sites stitched
+  // together, so the scale is pulled in to match.
   const paddings = {
-    tight: "py-12 md:py-16",
-    standard: "py-20 md:py-24 lg:py-32",
-    major: "py-24 md:py-32 lg:py-40",
+    tight: "py-10 md:py-14",
+    standard: "py-14 md:py-18 lg:py-22",
+    major: "py-18 md:py-22 lg:py-28",
   }
   return (
     <section

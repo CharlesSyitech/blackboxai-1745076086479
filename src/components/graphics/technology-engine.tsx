@@ -30,7 +30,7 @@ export function TechnologyEngine({
 
   return (
     <div className="flex flex-col gap-10">
-      <InViewStage className="graph-focus relative hidden aspect-[16/9] w-full md:block">
+      <InViewStage className="graph-focus relative mx-auto hidden aspect-[2/1] w-full max-w-[880px] md:block">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" className="absolute inset-0 h-full w-full">
           {points.map(({ node, x, y }, index) => (
             <g key={node.id}>

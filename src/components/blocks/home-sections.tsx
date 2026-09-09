@@ -49,21 +49,27 @@ export function ExpertiseSection({
   return (
     <Section>
       <SectionHeader eyebrow={t.home.expertiseEyebrow} title={t.home.expertiseTitle} />
-      <ul className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {expertises.map((expertise, index) => (
-          <Reveal as="li" key={expertise.id} delay={Math.min(index, 5) * 60} className="lift overflow-hidden rounded-lg border border-line bg-page">
+          <Reveal as="li" key={expertise.id} delay={Math.min(index, 5) * 60} className="lift overflow-hidden rounded-lg border border-line bg-surface">
             <Link
               href={hrefFor(expertise)}
-              className="group flex h-full flex-col gap-4 rounded-lg p-6 transition-colors hover:bg-surface md:p-8"
+              className="group flex h-full flex-col gap-3 rounded-lg p-5 transition-colors hover:bg-raised"
             >
               <span className="type-overline text-faint">
                 {String(expertise.order).padStart(2, "0")}
               </span>
               <span className="type-h3">{expertise.name[locale]}</span>
               <span className="text-sm leading-relaxed text-muted">{expertise.tagline[locale]}</span>
-              <ul className="mt-auto flex flex-wrap gap-x-3 gap-y-1 pt-4">
-                {expertise.capabilities[locale].slice(0, 4).map((capability) => (
-                  <li key={capability} className="type-overline text-faint">
+              <ul className="mt-auto flex flex-wrap gap-x-2 gap-y-1 pt-3">
+                {/* Two capabilities, set as chips. Four stacked lines of mono
+                    uppercase took more room than the card's own argument and
+                    read as a wall rather than as evidence. */}
+                {expertise.capabilities[locale].slice(0, 2).map((capability) => (
+                  <li
+                    key={capability}
+                    className="type-overline rounded-sm border border-line-soft px-2 py-1 text-[0.62rem] text-faint"
+                  >
                     {capability}
                   </li>
                 ))}
