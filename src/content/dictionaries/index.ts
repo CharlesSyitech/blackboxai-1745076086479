@@ -30,6 +30,8 @@ const fr = {
   cta: {
     becomePartner: "Devenir partenaire",
     exploreInnovation: "Explorer l'innovation",
+    watchFilm: "Voir notre vidéo",
+    watchPresentation: "Voir notre vidéo de présentation",
     discoverGroup: "Découvrir Syitech Group",
     exploreEcosystem: "Explorer notre écosystème",
     discoverSolutions: "Découvrir nos solutions",
@@ -44,6 +46,16 @@ const fr = {
     requestDemo: "Demander une démonstration",
   },
   home: {
+    showcaseEyebrow: "Des technologies · Des talents · Des opportunités",
+    showcaseTitleLead: "Nous construisons les technologies",
+    showcaseTitleAccent: "de l'Afrique de demain.",
+    showcaseSubtitle:
+      "Culture, entreprises, finance, intelligence artificielle et innovation : Syitech Group conçoit des écosystèmes technologiques capables de transformer durablement les usages et les économies.",
+    statementLead: "Un groupe technologique africain.",
+    statementAccent: "Une vision globale.",
+    statementBody:
+      "Depuis 2018, nous concevons et déployons des solutions technologiques dans la culture, les entreprises, la finance et l'innovation. Notre ambition est claire : faire émerger depuis l'Afrique des technologies qui créent de la valeur à l'échelle mondiale.",
+    filmPlace: "Abidjan, Côte d'Ivoire",
     heroTitle: "Nous construisons les technologies qui transforment les économies africaines.",
     heroSubtitle:
       "Syitech Group conçoit des plateformes, infrastructures et technologies qui connectent entreprises, culture, finance et innovation afin d'accélérer la transformation numérique en Afrique et au-delà.",
@@ -204,6 +216,8 @@ const en: Dictionary = {
   cta: {
     becomePartner: "Become a partner",
     exploreInnovation: "Explore the innovation",
+    watchFilm: "Watch our film",
+    watchPresentation: "Watch our presentation film",
     discoverGroup: "Discover Syitech Group",
     exploreEcosystem: "Explore our ecosystem",
     discoverSolutions: "Discover our solutions",
@@ -218,6 +232,16 @@ const en: Dictionary = {
     requestDemo: "Request a demo",
   },
   home: {
+    showcaseEyebrow: "Technologies · Talent · Opportunity",
+    showcaseTitleLead: "We build the technologies",
+    showcaseTitleAccent: "of tomorrow's Africa.",
+    showcaseSubtitle:
+      "Culture, enterprise, finance, artificial intelligence and innovation: Syitech Group designs technology ecosystems that durably transform how economies work.",
+    statementLead: "An African technology group.",
+    statementAccent: "A global outlook.",
+    statementBody:
+      "Since 2018 we have designed and deployed technology across culture, enterprise, finance and innovation. Our ambition is plain: to build, from Africa, technology that creates value at world scale.",
+    filmPlace: "Abidjan, Côte d'Ivoire",
     heroTitle: "We build the technologies that transform African economies.",
     heroSubtitle:
       "Syitech Group designs the platforms, infrastructure and technologies that connect business, culture, finance and innovation — accelerating digital transformation across Africa and beyond.",

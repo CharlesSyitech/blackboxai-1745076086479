@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { CollectionSection, ImpactDashboard, NewsTeaser, PartnerWall, WorkGrid } from "@/components/blocks/collections"
-import { HomeHero } from "@/components/blocks/home-hero"
+import { BrandBand, FigureRule, GroupStatement, ShowcaseHero } from "@/components/blocks/home-showcase"
 import {
   AboutSection,
   CaseStudyFeature,
@@ -70,28 +70,41 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      {/* 1 — Hero */}
-      <HomeHero
-        title={t.home.heroTitle}
-        subtitle={t.home.heroSubtitle}
+      {/* 1 — Opening, as laid out in the supplied composition */}
+      <ShowcaseHero
+        locale={locale}
+        eyebrow={t.home.showcaseEyebrow}
+        titleLead={t.home.showcaseTitleLead}
+        titleAccent={t.home.showcaseTitleAccent}
+        subtitle={t.home.showcaseSubtitle}
         primaryCta={{ label: t.cta.discoverGroup, href: path(locale, "group") }}
-        secondaryCta={{ label: t.cta.exploreEcosystem, href: "#ecosystem" }}
-        verticals={expertises.map((expertise) => ({
-          label: expertise.name[locale],
-          href: path(locale, "expertise", expertise.slug[locale]),
-        }))}
+        videoCta={t.cta.watchFilm}
+        cursorLabel={t.cta.exploreInnovation}
         nodes={solutions.map((solution) => ({
           id: solution.id,
           label: solution.name,
           hint: solution.vertical,
           href: path(locale, "solutions", solution.slug[locale]),
         }))}
-        foundation={technologies.map((technology) => technology.name[locale])}
-        cursorLabel={t.cta.exploreInnovation}
       />
 
-      {/* 2 — About */}
-      <AboutSection t={t} href={path(locale, "group", "history")} />
+      {/* 2 — The six brands, as one band */}
+      <BrandBand locale={locale} label={t.nav.brands} />
+
+      {/* 3 — The figures rule. Values supplied by Syitech Group; see
+              src/content/home-figures.ts for their provenance. */}
+      <FigureRule locale={locale} />
+
+      {/* 4 — The Group, beside its film */}
+      <GroupStatement
+        eyebrow={site.name}
+        titleLead={t.home.statementLead}
+        titleAccent={t.home.statementAccent}
+        body={t.home.statementBody}
+        cta={{ label: t.cta.ourHistory, href: path(locale, "group", "history") }}
+        filmLabel={t.cta.watchPresentation}
+        filmPlace={t.home.filmPlace}
+      />
 
       {/* 3 — Key figures. Renders only what Finance and Legal have cleared. */}
       <HomeStats locale={locale} t={t} />
