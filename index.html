@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Simulateur bilingue des impôts et taxes en Côte d'Ivoire : ITS, IGR, BIC, TVA, patente, droits d'enregistrement et de timbre."
+    />
+    <title>Simulateur fiscal — Côte d'Ivoire</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1b18'/%3E%3Crect x='6' y='7' width='6' height='18' rx='2' fill='%23e07b25'/%3E%3Crect x='14' y='7' width='6' height='18' rx='2' fill='%23f6f5f2'/%3E%3Crect x='22' y='7' width='4' height='18' rx='2' fill='%230f7b52'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="entete">
+      <div class="entete-contenu">
+        <div class="entete-texte">
+          <p class="entete-drapeau" aria-hidden="true"><span></span><span></span><span></span></p>
+          <h1 id="titre-app">Simulateur fiscal — Côte d'Ivoire</h1>
+          <p id="sous-titre-app" class="entete-sous-titre"></p>
+        </div>
+        <div class="selecteur-langue" role="group" aria-labelledby="label-langue">
+          <span id="label-langue" class="selecteur-langue-label">Langue</span>
+          <button type="button" data-langue="fr" class="actif" aria-pressed="true">FR</button>
+          <button type="button" data-langue="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="disposition">
+      <aside class="colonne-nav" aria-label="Simulateurs">
+        <h2 id="titre-nav" class="colonne-titre">Simulateurs</h2>
+        <input id="recherche" type="search" class="recherche" autocomplete="off" />
+        <div id="navigation"></div>
+      </aside>
+
+      <section id="panneau" class="panneau" aria-live="polite">
+        <div class="panneau-entete">
+          <h2 id="titre-calculateur"></h2>
+          <p id="resume-calculateur" class="panneau-resume"></p>
+          <p id="ref-calculateur" class="panneau-ref"></p>
+        </div>
+
+        <div class="panneau-corps">
+          <div class="carte carte-formulaire">
+            <h3 id="titre-parametres" class="carte-titre"></h3>
+            <form id="formulaire" autocomplete="off" novalidate></form>
+            <div class="actions">
+              <button type="button" id="bouton-reinitialiser" class="bouton bouton-secondaire"></button>
+              <button type="button" id="bouton-copier" class="bouton bouton-secondaire"></button>
+              <button type="button" id="bouton-imprimer" class="bouton bouton-secondaire"></button>
+            </div>
+          </div>
+
+          <div class="carte carte-resultats">
+            <h3 id="titre-resultats" class="carte-titre"></h3>
+            <div class="total">
+              <span id="total-libelle" class="total-libelle"></span>
+              <strong id="total-valeur" class="total-valeur"></strong>
+            </div>
+            <h4 id="titre-detail" class="detail-titre"></h4>
+            <div id="detail" class="detail"></div>
+            <div id="notes" class="notes"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pied">
+      <p class="pied-avertissement">
+        <strong id="titre-avertissement"></strong>
+        <span id="texte-avertissement"></span>
+      </p>
+      <p id="source" class="pied-source"></p>
+    </footer>
+
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>
