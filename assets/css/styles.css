@@ -147,12 +147,259 @@ h4 {
   color: #fff;
 }
 
+/* --------------------------------- Onglets -------------------------------- */
+
+.onglets {
+  max-width: 1180px;
+  margin: 16px auto 0;
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.onglet {
+  padding: 9px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--texte-doux);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  margin-bottom: -1px;
+}
+
+.onglet:hover {
+  color: var(--texte);
+}
+
+.onglet.actif {
+  color: var(--accent-fonce);
+  border-bottom-color: var(--accent);
+}
+
+/* ------------------------------- Recherche -------------------------------- */
+
+.recherche-bloc {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+}
+
+.recherche-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texte-doux);
+}
+
+.recherche-champ {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recherche-saisie {
+  flex: 1 1 320px;
+  min-width: 0;
+  padding: 13px 16px;
+  border: 1px solid var(--bordure);
+  border-radius: 11px;
+  background: var(--fond-carte);
+  color: var(--texte);
+  font: inherit;
+  font-size: 1.02rem;
+  box-shadow: var(--ombre);
+}
+
+.recherche-saisie:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.exemples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.exemples-titre {
+  color: var(--texte-doux);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 2px;
+}
+
+.puce {
+  padding: 6px 12px;
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  background: var(--fond-carte);
+  color: var(--texte);
+  font: inherit;
+  font-size: 0.83rem;
+  cursor: pointer;
+}
+
+.puce:hover {
+  border-color: var(--accent);
+  color: var(--accent-fonce);
+}
+
+.compteur {
+  margin: 0 0 12px;
+  color: var(--texte-doux);
+  font-size: 0.82rem;
+}
+
+/* --------------------------------- Fiche ---------------------------------- */
+
+.fiche {
+  background: var(--fond-carte);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  padding: 22px;
+}
+
+.fiche-entete {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.fiche-titre {
+  font-size: clamp(1.15rem, 1rem + 0.8vw, 1.55rem);
+}
+
+.fiche-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 0;
+}
+
+.fiche-sigles {
+  color: var(--texte-doux);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.fiche-section {
+  margin-top: 20px;
+}
+
+.fiche-section-titre {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texte-doux);
+  margin-bottom: 8px;
+}
+
+.fiche-texte {
+  margin: 0;
+  max-width: 74ch;
+}
+
+.fiche-formule {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 9px 9px 0;
+  background: var(--accent-doux);
+  max-width: 74ch;
+}
+
+.fiche-liste {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 74ch;
+}
+
+.taux-liste .ligne:first-child {
+  padding-top: 0;
+}
+
+.fiche-exemple {
+  padding: 14px 16px;
+  border: 1px solid var(--bordure);
+  border-radius: 9px;
+  background: var(--fond-doux);
+}
+
+.fiche-exemple-params {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--texte-doux);
+  font-size: 0.86rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fiche-exemple-resultat {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--bordure);
+}
+
+.fiche-exemple-resultat strong {
+  font-family: var(--police-chiffres);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-fonce);
+  font-size: 1.05rem;
+}
+
+.bouton-principal {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.bouton-principal:hover {
+  background: var(--accent-fonce);
+  border-color: var(--accent-fonce);
+  color: #fff;
+}
+
+.panneau-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 0;
+}
+
+.lien-fiche {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--accent-fonce);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
 /* ------------------------------- Disposition ------------------------------ */
 
 .disposition {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 24px 20px 40px;
+  padding: 20px 20px 40px;
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
   gap: 24px;
@@ -483,12 +730,26 @@ h4 {
 }
 
 .ligne-valeur {
-  flex: none;
+  /* Une valeur textuelle longue (« Abattement de 75 % après RICF ») doit pouvoir
+     se réduire : sans cela elle déborde la page sur petit écran. */
+  flex: 0 1 auto;
+  min-width: 0;
   font-family: var(--police-chiffres);
   font-variant-numeric: tabular-nums;
   font-weight: 560;
   text-align: right;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .ligne {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .ligne-valeur {
+    text-align: left;
+  }
 }
 
 .notes {
@@ -540,6 +801,8 @@ h4 {
 
 @media print {
   .colonne-nav,
+  .onglets,
+  .recherche-bloc,
   .selecteur-langue,
   .actions,
   .entete-drapeau {

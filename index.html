@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta
       name="description"
-      content="Simulateur bilingue des impôts et taxes en Côte d'Ivoire : ITS, IGR, BIC, TVA, patente, droits d'enregistrement et de timbre."
+      content="Guide fiscal interrogeable et simulateurs de calcul pour la Côte d'Ivoire : ITS, IGR, BIC, TVA, patente, droits d'enregistrement et de timbre."
     />
-    <title>Simulateur fiscal — Côte d'Ivoire</title>
+    <title>Guide fiscal — Côte d'Ivoire</title>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b1b18'/%3E%3Crect x='6' y='7' width='6' height='18' rx='2' fill='%23e07b25'/%3E%3Crect x='14' y='7' width='6' height='18' rx='2' fill='%23f6f5f2'/%3E%3Crect x='22' y='7' width='4' height='18' rx='2' fill='%230f7b52'/%3E%3C/svg%3E"
@@ -19,54 +19,89 @@
       <div class="entete-contenu">
         <div class="entete-texte">
           <p class="entete-drapeau" aria-hidden="true"><span></span><span></span><span></span></p>
-          <h1 id="titre-app">Simulateur fiscal — Côte d'Ivoire</h1>
+          <h1 id="titre-app">Guide fiscal — Côte d'Ivoire</h1>
           <p id="sous-titre-app" class="entete-sous-titre"></p>
         </div>
-        <div class="selecteur-langue" role="group" aria-labelledby="label-langue">
-          <span id="label-langue" class="selecteur-langue-label">Langue</span>
-          <button type="button" data-langue="fr" class="actif" aria-pressed="true">FR</button>
-          <button type="button" data-langue="en" aria-pressed="false">EN</button>
+        <div class="entete-controles">
+          <div class="selecteur-langue" role="group" aria-labelledby="label-langue">
+            <span id="label-langue" class="selecteur-langue-label">Langue</span>
+            <button type="button" data-langue="fr" class="actif" aria-pressed="true">FR</button>
+            <button type="button" data-langue="en" aria-pressed="false">EN</button>
+          </div>
         </div>
       </div>
+      <nav class="onglets" aria-label="Vues">
+        <button type="button" id="onglet-guide" data-vue="guide" class="onglet actif" aria-pressed="true"></button>
+        <button type="button" id="onglet-simulateurs" data-vue="simulateurs" class="onglet" aria-pressed="false"></button>
+      </nav>
     </header>
 
-    <main class="disposition">
-      <aside class="colonne-nav" aria-label="Simulateurs">
-        <h2 id="titre-nav" class="colonne-titre">Simulateurs</h2>
-        <input id="recherche" type="search" class="recherche" autocomplete="off" />
-        <div id="navigation"></div>
-      </aside>
-
-      <section id="panneau" class="panneau" aria-live="polite">
-        <div class="panneau-entete">
-          <h2 id="titre-calculateur"></h2>
-          <p id="resume-calculateur" class="panneau-resume"></p>
-          <p id="ref-calculateur" class="panneau-ref"></p>
+    <!-- Vue 1 : guide interrogeable -->
+    <main id="vue-guide" class="vue">
+      <section class="recherche-bloc">
+        <label id="label-question" class="recherche-label" for="question"></label>
+        <div class="recherche-champ">
+          <input id="question" type="search" class="recherche-saisie" autocomplete="off" enterkeyhint="search" />
+          <button type="button" id="bouton-effacer" class="bouton bouton-secondaire"></button>
         </div>
-
-        <div class="panneau-corps">
-          <div class="carte carte-formulaire">
-            <h3 id="titre-parametres" class="carte-titre"></h3>
-            <form id="formulaire" autocomplete="off" novalidate></form>
-            <div class="actions">
-              <button type="button" id="bouton-reinitialiser" class="bouton bouton-secondaire"></button>
-              <button type="button" id="bouton-copier" class="bouton bouton-secondaire"></button>
-              <button type="button" id="bouton-imprimer" class="bouton bouton-secondaire"></button>
-            </div>
-          </div>
-
-          <div class="carte carte-resultats">
-            <h3 id="titre-resultats" class="carte-titre"></h3>
-            <div class="total">
-              <span id="total-libelle" class="total-libelle"></span>
-              <strong id="total-valeur" class="total-valeur"></strong>
-            </div>
-            <h4 id="titre-detail" class="detail-titre"></h4>
-            <div id="detail" class="detail"></div>
-            <div id="notes" class="notes"></div>
-          </div>
-        </div>
+        <div id="exemples" class="exemples"></div>
       </section>
+
+      <div class="disposition">
+        <aside class="colonne-nav" aria-label="Fiches">
+          <h2 id="titre-liste" class="colonne-titre"></h2>
+          <div id="liste-fiches"></div>
+        </aside>
+
+        <section id="panneau-fiche" class="panneau" aria-live="polite">
+          <article id="fiche" class="fiche"></article>
+        </section>
+      </div>
+    </main>
+
+    <!-- Vue 2 : simulateurs de calcul -->
+    <main id="vue-simulateurs" class="vue" hidden>
+      <div class="disposition">
+        <aside class="colonne-nav" aria-label="Simulateurs">
+          <h2 id="titre-nav" class="colonne-titre">Simulateurs</h2>
+          <input id="recherche" type="search" class="recherche" autocomplete="off" />
+          <div id="navigation"></div>
+        </aside>
+
+        <section id="panneau" class="panneau" aria-live="polite">
+          <div class="panneau-entete">
+            <h2 id="titre-calculateur"></h2>
+            <p id="resume-calculateur" class="panneau-resume"></p>
+            <p class="panneau-meta">
+              <span id="ref-calculateur" class="panneau-ref"></span>
+              <button type="button" id="bouton-voir-fiche" class="lien-fiche"></button>
+            </p>
+          </div>
+
+          <div class="panneau-corps">
+            <div class="carte carte-formulaire">
+              <h3 id="titre-parametres" class="carte-titre"></h3>
+              <form id="formulaire" autocomplete="off" novalidate></form>
+              <div class="actions">
+                <button type="button" id="bouton-reinitialiser" class="bouton bouton-secondaire"></button>
+                <button type="button" id="bouton-copier" class="bouton bouton-secondaire"></button>
+                <button type="button" id="bouton-imprimer" class="bouton bouton-secondaire"></button>
+              </div>
+            </div>
+
+            <div class="carte carte-resultats">
+              <h3 id="titre-resultats" class="carte-titre"></h3>
+              <div class="total">
+                <span id="total-libelle" class="total-libelle"></span>
+                <strong id="total-valeur" class="total-valeur"></strong>
+              </div>
+              <h4 id="titre-detail" class="detail-titre"></h4>
+              <div id="detail" class="detail"></div>
+              <div id="notes" class="notes"></div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <footer class="pied">

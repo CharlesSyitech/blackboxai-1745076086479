@@ -1,0 +1,4 @@
+# Corpus exporté, régénérable par « npm run export »
+dist/
+
+node_modules/

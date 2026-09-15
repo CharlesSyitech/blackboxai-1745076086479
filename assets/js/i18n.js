@@ -3,10 +3,10 @@
 export const LANGUES = ['fr', 'en'];
 
 export const UI = {
-  appTitre: { fr: "Simulateur fiscal — Côte d'Ivoire", en: "Tax simulator — Côte d'Ivoire" },
+  appTitre: { fr: "Guide fiscal — Côte d'Ivoire", en: "Tax guide — Côte d'Ivoire" },
   appSousTitre: {
-    fr: 'Calculs fondés sur le tableau synoptique des impôts, taxes, redevances et prélèvements de la DGI, édition 2025.',
-    en: "Calculations based on the DGI's synoptic table of taxes, duties and levies, 2025 edition.",
+    fr: "Toutes les bases de calcul des impôts, taxes et redevances ivoiriens, interrogeables en langage courant. D'après le tableau synoptique de la DGI, édition 2025.",
+    en: 'Every calculation basis for Ivorian taxes, duties and levies, searchable in plain language. Based on the DGI synoptic table, 2025 edition.',
   },
   choisirSimulateur: { fr: 'Simulateurs', en: 'Simulators' },
   parametres: { fr: 'Paramètres', en: 'Inputs' },
@@ -30,6 +30,35 @@ export const UI = {
       'This tool is provided for information and educational purposes. It reproduces the rates published by the Directorate General of Taxes but replaces neither the Tax Code, nor professional tax advice, nor an official ruling. Tax bases are those entered by the user.',
   },
   sourceLabel: { fr: 'Source', en: 'Source' },
+
+  // Guide interrogeable
+  vueGuide: { fr: 'Guide fiscal', en: 'Tax guide' },
+  vueSimulateurs: { fr: 'Simulateurs', en: 'Simulators' },
+  questionPlaceholder: {
+    fr: 'Posez votre question : comment calculer l’ITS ?',
+    en: 'Ask your question: how is the wage tax calculated?',
+  },
+  questionLabel: { fr: 'Votre question', en: 'Your question' },
+  exemplesTitre: { fr: 'Exemples de questions', en: 'Example questions' },
+  resultatsRecherche: { fr: 'Fiches correspondantes', en: 'Matching entries' },
+  parcourir: { fr: 'Parcourir tout le dispositif', en: 'Browse the whole system' },
+  effacer: { fr: 'Effacer', en: 'Clear' },
+  redevableLabel: { fr: 'Qui paie', en: 'Who pays' },
+  definitionLabel: { fr: 'Ce que c’est', en: 'What it is' },
+  assietteLabel: { fr: 'Base de calcul', en: 'Tax base' },
+  tauxLabel: { fr: 'Taux et tarifs', en: 'Rates and tariffs' },
+  formuleLabel: { fr: 'Comment le calculer', en: 'How to compute it' },
+  exonerationsLabel: { fr: 'Exonérations principales', en: 'Main exemptions' },
+  exempleChiffre: { fr: 'Exemple chiffré', en: 'Worked example' },
+  ouvrirSimulateur: { fr: 'Ouvrir le simulateur', en: 'Open the simulator' },
+  voirFiche: { fr: 'Voir la fiche du guide', en: 'Open the guide entry' },
+  aucuneFiche: { fr: 'Aucune fiche ne correspond à cette question.', en: 'No entry matches this question.' },
+  reformuler: {
+    fr: 'Essayez un mot-clé plus simple : « TVA », « salaire », « patente », ou un article du CGI.',
+    en: 'Try a simpler keyword: "VAT", "salary", "licence", or a Tax Code article.',
+  },
+  ficheCompte: { fr: 'fiches couvrant les cinq titres du dispositif', en: 'entries covering the five titles of the system' },
+  copierFiche: { fr: 'Copier la fiche', en: 'Copy entry' },
   langue: { fr: 'Langue', en: 'Language' },
 };
 

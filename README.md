@@ -1,47 +1,77 @@
-# Simulateur fiscal — Côte d'Ivoire
+# Guide fiscal — Côte d'Ivoire
 
-Simulateur bilingue (français / anglais) des impôts, taxes, redevances et prélèvements du
-dispositif fiscal ivoirien. Quatorze calculateurs couvrant les cinq titres du tableau
-synoptique de la Direction générale des Impôts, édition 2025 (annexe fiscale 2025 incluse).
+Base de connaissances interrogeable du dispositif fiscal ivoirien, doublée de simulateurs
+de calcul. Un contribuable pose sa question en langage courant — « comment calculer l'ITS ? » —
+et obtient la fiche complète : qui paie, sur quelle assiette, à quel taux, avec quelles
+exonérations, selon quelle formule, et sur quel fondement du Code général des Impôts.
 
-*Bilingual (French / English) simulator for the taxes, duties and levies of the Ivorian tax
-system. Fourteen calculators covering the five titles of the Directorate General of Taxes'
-synoptic table, 2025 edition.*
+Tout fonctionne **hors ligne et sans clé d'API** : le corpus et son index de recherche sont
+embarqués dans la page. Les réponses sont assemblées depuis le corpus, jamais générées :
+pour une même question, le même résultat, toujours traçable jusqu'à l'article du CGI.
 
-## Calculateurs
+*Searchable knowledge base of the Ivorian tax system, paired with calculators. Ask in plain
+French or English and get the full entry: who pays, on what base, at what rate, with which
+exemptions, by what formula, under which Tax Code article. Runs fully offline, no API key.*
+
+## Les deux vues
+
+**Guide fiscal** — 77 fiches couvrant les cinq titres du tableau synoptique de la DGI :
+impôts directs, taxes indirectes, droits d'enregistrement, droits de timbre et contributions
+diverses. Recherche en langage naturel, navigation par titre, et lien direct vers le
+simulateur quand un calcul existe.
+
+**Simulateurs** — 14 calculateurs exécutant réellement le calcul :
 
 | Titre | Simulateur | Références CGI |
 | --- | --- | --- |
-| I — Impôts sur les revenus | Impôt sur les traitements et salaires (ITS) | Art. 115 à 120 |
-| I — Impôts sur les revenus | Charges fiscales de l'employeur (CE, CN, FDFP) | Art. 134 à 146 |
-| I — Impôts sur les revenus | Impôt général sur le revenu (IGR) | Art. 237 à 251 |
-| I — Impôts sur les revenus | Bénéfices industriels et commerciaux (BIC/BA) et IMF | Art. 1 à 84, 71 bis |
-| I — Impôts sur les revenus | Bénéfices non commerciaux (BNC) et IMF/BNC | Art. 85 à 102 |
-| I — Impôts sur les revenus | Impôts fonciers (revenu, patrimoine, agricole) | Art. 149 à 166 |
-| I — Autres impôts directs | Contribution des patentes (DCA + DVL) | Art. 264 à 278 |
-| I — Autres impôts directs | Revenus de capitaux mobiliers (IRVM / IRC) | Art. 180 à 193 |
-| II — Taxes indirectes | TVA et taxe sur les opérations bancaires | Art. 339 à 401 |
-| II — Taxes indirectes | Droits d'accises et taxes spécifiques | Art. 403 à 418 |
-| II — Taxes indirectes | Taxe sur les contrats d'assurance | Art. 422 à 425 |
+| I — Revenus | Impôt sur les traitements et salaires (ITS) | Art. 115 à 120 |
+| I — Revenus | Charges fiscales de l'employeur (CE, CN, FDFP) | Art. 134 à 146 |
+| I — Revenus | Impôt général sur le revenu (IGR) | Art. 237 à 251 |
+| I — Revenus | Bénéfices industriels et commerciaux (BIC/BA) et IMF | Art. 1 à 84, 71 bis |
+| I — Revenus | Bénéfices non commerciaux (BNC) et IMF/BNC | Art. 85 à 102 |
+| I — Revenus | Impôts fonciers (revenu, patrimoine, agricole) | Art. 149 à 166 |
+| I — Autres directs | Contribution des patentes (DCA + DVL) | Art. 264 à 278 |
+| I — Autres directs | Revenus de capitaux mobiliers (IRVM / IRC) | Art. 180 à 193 |
+| II — Indirectes | TVA et taxe sur les opérations bancaires | Art. 339 à 401 |
+| II — Indirectes | Droits d'accises et taxes spécifiques | Art. 403 à 418 |
+| II — Indirectes | Taxe sur les contrats d'assurance | Art. 422 à 425 |
 | III — Enregistrement | Droits d'enregistrement et de mutation | Art. 539 à 765 |
 | IV — Timbre | Droits de timbre | Art. 805 à 873 |
 | V — Contributions diverses | Acomptes, prélèvements et taxes diverses | Art. 84 bis, 1084 à 1130 |
 
-Le simulateur des BIC déduit automatiquement le régime d'imposition du chiffre d'affaires
-annuel TTC (TCE, TEE, microentreprises, réel simplifié, réel normal) et n'affiche que les
-champs pertinents pour ce régime.
+Le simulateur des BIC déduit le régime d'imposition du chiffre d'affaires annuel TTC
+(TCE, TEE, microentreprises, réel simplifié, réel normal) et n'affiche que les champs
+pertinents pour ce régime.
+
+Chaque fiche adossée à un simulateur affiche un **exemple chiffré** calculé par ce
+simulateur : le montant montré est exactement celui que l'on retrouve en l'ouvrant.
+
+## Comment fonctionne la recherche
+
+Pas de service externe, pas d'embeddings à télécharger. Au chargement, `search.js` construit
+un index inversé sur l'ensemble du corpus, pondéré par champ — un sigle pèse six fois un
+libellé de taux — puis classe les fiches par score BM25.
+
+Les deux langues sont indexées ensemble : une question posée en anglais retrouve une fiche
+rédigée en français. Les accents et apostrophes sont neutralisés, les pluriels ramenés au
+singulier, les mots vides écartés, et « article 146 » rejoint les fiches dont la référence
+s'écrit « Art. 146 ». Les sigles courts qui se confondent avec des mots courants — `IS` et
+« is », `CE` et « ce » — ne sont retenus comme sigles que s'ils sont écrits en majuscules.
+
+Le classement est vérifié par les tests : 24 questions types doivent renvoyer la bonne fiche
+en tête, et chaque fiche doit être retrouvable par son titre comme par ses sigles.
 
 ## Lancer l'application
 
-L'application est statique et sans dépendance, mais elle utilise les modules ES : elle doit
-être servie en HTTP plutôt qu'ouverte depuis le système de fichiers.
+Application statique sans dépendance, mais elle utilise les modules ES : elle doit être
+servie en HTTP plutôt qu'ouverte depuis le système de fichiers.
 
 ```sh
-npm start          # sert le dossier sur http://localhost:8080
+npm start          # http://localhost:8080
 # ou : python3 -m http.server 8080
 ```
 
-Puis ouvrir <http://localhost:8080>.
+Liens directs : `#fiche/its` ouvre une fiche, `#calc/tva` ouvre un simulateur.
 
 ## Tests
 
@@ -49,27 +79,45 @@ Puis ouvrir <http://localhost:8080>.
 npm test           # node --test tests/*.test.js
 ```
 
-La suite vérifie les fonctions de calcul (barèmes progressifs, planchers et plafonds,
-conversions HT/TTC) et chaque simulateur : bonne structure, libellés bilingues complets,
-absence de `NaN` sur des entrées vides et exactitude des montants sur des cas connus.
+43 tests couvrant :
+
+- les fonctions de calcul — barèmes progressifs, planchers et plafonds, conversions HT/TTC ;
+- les 14 simulateurs — structure, libellés bilingues complets, absence de `NaN` sur entrées
+  vides, exactitude des montants sur des cas connus ;
+- le corpus — identifiants uniques, complétude bilingue de chaque champ, cohérence des
+  renvois vers les simulateurs, présence d'au moins un taux par fiche ;
+- la recherche — tokenisation, pertinence sur 24 questions types, résolution des sigles.
+
+## Exporter le corpus vers un autre pipeline RAG
+
+```sh
+npm run export     # écrit dans dist/
+```
+
+- `dist/corpus.json` — le corpus structuré complet, titres et métadonnées compris ;
+- `dist/corpus.jsonl` — 154 documents (77 fiches × 2 langues), un par ligne, chacun avec un
+  champ `text` continu prêt à vectoriser et ses métadonnées (`fiche`, `langue`, `refs`,
+  `sigles`, `motsCles`, `calculateur`, `source`).
 
 ## Organisation
 
 ```
-index.html              page unique
-assets/css/styles.css   thème clair et sombre, impression, affichage mobile
-assets/js/rates.js      barèmes, taux et tarifs — unique source de vérité
-assets/js/engine.js     fonctions de calcul génériques (barème progressif, bornes…)
+index.html               page unique, deux vues
+assets/css/styles.css    thème clair et sombre, impression, affichage mobile
+assets/js/rates.js       barèmes, taux et tarifs — unique source de vérité
+assets/js/engine.js      calculs génériques (barème progressif, bornes, HT/TTC)
 assets/js/calculators.js les 14 simulateurs, en définitions déclaratives
-assets/js/i18n.js       chaînes d'interface et formatage FR/EN
-assets/js/app.js        rendu et interactions
-tests/                  suite node:test
+assets/js/corpus.js      les 77 fiches de la base de connaissances
+assets/js/search.js      index inversé et classement BM25
+assets/js/i18n.js        chaînes d'interface et formatage FR/EN
+assets/js/app.js         rendu et interactions
+scripts/export-corpus.mjs export du corpus pour un RAG externe
+tests/                   suite node:test
 ```
 
-Pour modifier un taux, éditer `assets/js/rates.js` : aucun taux n'est codé en dur ailleurs.
-Pour ajouter un simulateur, ajouter une définition dans `assets/js/calculators.js` et
-l'inscrire dans le tableau `CALCULATEURS` ; le formulaire et l'affichage des résultats sont
-générés automatiquement.
+Pour modifier un taux, éditer `assets/js/rates.js` : aucun taux n'est codé en dur ailleurs,
+ni dans les simulateurs, ni dans les fiches. Pour ajouter un impôt, ajouter une fiche dans
+`assets/js/corpus.js` ; elle est indexée, affichée et exportée automatiquement.
 
 ## Source et limites
 
@@ -79,16 +127,21 @@ Les taux, tarifs et références proviennent de :
 > prélèvements divers du dispositif fiscal ivoirien*, Direction générale des Impôts,
 > édition 2025 — <https://www.dgi.gouv.ci>
 
-Ce document n'est pas redistribué ici : il est protégé par une interdiction de reproduction
-sans autorisation préalable de la DGI. Seuls les taux et les références au Code général des
-Impôts sont repris, à des fins de calcul.
+Ce document n'est pas redistribué ici : il interdit toute reproduction sans autorisation
+préalable de la DGI. Les fiches sont des reformulations, non des extraits ; seuls les taux
+et les références au Code général des Impôts sont repris, à des fins de calcul.
 
 Limites connues :
 
 - Les assiettes sont celles saisies par l'utilisateur ; le simulateur ne détermine pas le
   revenu imposable au sens de l'article 118 du CGI ni le bénéfice fiscal.
-- Les mutations à titre gratuit (successions) ne sont publiées dans la source que sous forme
-  de fourchette (1 % à 12 % selon le lien de parenté) : le simulateur affiche les bornes.
+- Le classement de la recherche est lexical, non sémantique : une question qui n'emploie
+  aucun mot du corpus peut ne rien renvoyer. L'interface propose alors de reformuler, et la
+  navigation par titre reste accessible.
+- Le document source ne publie pas les délais de déclaration ni le service compétent pour
+  chaque impôt ; ces rubriques sont donc absentes des fiches.
+- Les mutations à titre gratuit (successions) n'y figurent que sous forme de fourchette
+  (1 % à 12 % selon le lien de parenté) : les fiches et le simulateur affichent les bornes.
 - Le tableau publié indique une RICF annuelle de 380 000 F pour 3,5 parts, incohérente avec
   le montant mensuel de 27 500 F ; le simulateur retient 27 500 × 12 = 330 000 F et le
   signale à l'utilisateur.

@@ -333,3 +333,132 @@ export const SOURCE = {
   edition: '2025',
   url: 'https://www.dgi.gouv.ci',
 };
+
+/* ================================================================== *
+ * Taux et tarifs des impôts documentés dans la base de connaissances
+ * mais sans calculateur dédié.
+ * ================================================================== */
+
+/** Contribution des licences sur les débits de boissons (Art. 300 à 302 du CGI). */
+export const LICENCES = {
+  classe1: { zone1: 320_000, zone2: 220_000 },
+  classe2: { zone1: 96_000, zone2: 66_000 },
+  classe3: { zone1: 50_000, zone2: 36_000 },
+  reductionVinBiere: 2 / 3,
+};
+
+/** Droits sur les actes (Art. 547 à 550, 703 à 705 du CGI). */
+export const DROITS_ACTES = {
+  jugementsDroitFixe: 25_000,
+  arretsCriminelsDroitFixe: 24_000,
+  notairesFixeMin: 10_000,
+  notairesFixeMax: 90_000,
+  notairesProportionnelMin: 0.005,
+  notairesProportionnelMax: 0.4,
+  exploitsCommissaireJustice: 6_000,
+  actesSousSeingPrive: 25_000,
+};
+
+/** Vignettes automobiles et nautiques (Art. 910 à 940 du CGI). */
+export const VIGNETTES = {
+  deuxRouesMin: 3_500,
+  deuxRouesMax: 12_000,
+  plusDeDeuxRouesMin: 13_500,
+  plusDeDeuxRouesMax: 250_000,
+  nautiquesMin: 30_000,
+  nautiquesMax: 300_000,
+  administratifsMin: 5_000,
+  administratifsMax: 10_000,
+};
+
+/** Taxe d'habitation (Art. 305 du CGI), jamais mise en œuvre à ce jour. */
+export const TAXE_HABITATION = { montantAnnuel: 20_000 };
+
+/** Redevance sur les armes à feu et à air comprimé (Art. 1089 du CGI). */
+export const ARMES = {
+  chasseRayee: 5_000,
+  chassePerfectionneeNonRayee: 2_000,
+  traite: 800,
+  salon: 800,
+  revolverPistolet: 1_500,
+};
+
+/** Taxes forestières (Art. 1097 et 1097 ter, 1134 du CGI). */
+export const FORESTIERES = {
+  superficie: 50,
+  attributionPerimetre: 30,
+  renouvellement: 200,
+  interetGeneral: 48,
+  ventesBoisGrumes: 0.05,
+  reboisement: 0.02,
+  preservationDeveloppement: 0.025,
+};
+
+/** Taxe pour la protection de l'environnement (Art. 1137 du CGI). */
+export const ENVIRONNEMENT = {
+  vehiculePersonnes5A10Ans: 50_000,
+  vehiculeMarchandisesJusqua10T: 50_000,
+  vehiculeMarchandisesPlus10T: 100_000,
+  megotsParTranche: 50,
+  oxydeSoufre: 20_000,
+  acideChlorhydriqueProtoxydeAzote: 30_000,
+  oxydeAzote: 60_000,
+  hydrocarburesNonMethaniques: 20_000,
+};
+
+/** Taxe sur les établissements classés (Art. 1152 du CGI). */
+export const ETABLISSEMENTS_CLASSES = {
+  bareme: [
+    { plafondM2: 50, tarifParM2: 150 },
+    { plafondM2: 100, tarifParM2: 125 },
+    { plafondM2: 500, tarifParM2: 100 },
+    { plafondM2: 5_000, tarifParM2: 75 },
+    { plafondM2: 15_000, tarifParM2: 45 },
+    { plafondM2: Infinity, tarifParM2: 25 },
+  ],
+  redevanceAnnuelle: 3_000,
+};
+
+/** Redevance d'occupation des terrains industriels (décret n° 2015-810). */
+export const TERRAINS_INDUSTRIELS = {
+  zoneAKoumassiVridi: 2_200,
+  zoneAYopougonPk24HorsZone: 2_000,
+  zoneB: 1_000,
+  zoneC: 100,
+};
+
+/** Redevance d'occupation du domaine public par les stations-service (Ord. n° 61-183). */
+export const DOMAINE_PUBLIC = {
+  abidjan: { categorie1: 270_000, categorie2: 300_000 },
+  grandesVilles: { categorie1: 180_000, categorie2: 200_000 },
+  chefsLieuxRegions: { categorie1: 100_000, categorie2: 130_000 },
+  chefsLieuxDepartements: { categorie1: 80_000, categorie2: 100_000 },
+  autresLocalites: { categorie1: 30_000, categorie2: 40_000 },
+  demandeParticulier: 101_000,
+  demandePersonneMorale: 201_000,
+  demandeStationService: 301_000,
+  amendeOccupationParticulier: 100_000,
+  amendeOccupationPersonneMorale: 500_000,
+  amendeOccupationStationService: 1_000_000,
+};
+
+/** Taxes sectorielles diverses du Titre V. */
+export const SECTORIELLES = {
+  emballages: { montantParKg: 50, ref: 'Art. 1138 du CGI' },
+  tourisme: { taux: 0.015, ref: 'Art. 1140 du CGI' },
+  communicationsTelephoniques: { taux: 0.03, ref: 'Art. 1141 du CGI' },
+  titresTransportAerien: {
+    domestique: 2_000,
+    cedeao: 3_000,
+    autresDestinations: 4_000,
+    ref: 'Art. 1142 du CGI',
+  },
+  excedentCautionsLoyers: { taux: 3, ref: 'Art. 1143 du CGI' },
+  videoALaDemande: { taux: 0.03, ref: 'Art. 1146 du CGI' },
+  noixDeCola: { montantParKg: 10.2, ref: 'Art. 1147 du CGI' },
+  caoutchouc: { taux: 0.015, ref: 'Art. 1148 du CGI' },
+  jeuxDeHasard: { taux: 0.07, ref: 'Art. 1149 du CGI' },
+  jeuxDeHasardEnLigne: { taux: 0.05, ref: 'Art. 1150 du CGI' },
+  plateformesTransport: { taux: 0.04, ref: 'Art. 1153 du CGI' },
+  ferrailleExport: { montantParTonne: 100_000, ref: 'Art. 1136 du CGI' },
+};

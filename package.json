@@ -1,12 +1,13 @@
 {
-  "name": "simulateur-fiscal-ci",
-  "version": "1.0.0",
-  "description": "Simulateur bilingue des impôts et taxes en Côte d'Ivoire, fondé sur le tableau synoptique de la DGI (édition 2025).",
+  "name": "guide-fiscal-ci",
+  "version": "2.0.0",
+  "description": "Guide fiscal ivoirien interrogeable et simulateurs de calcul, d'après le tableau synoptique de la DGI (édition 2025).",
   "type": "module",
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.js",
-    "start": "python3 -m http.server 8080"
+    "start": "python3 -m http.server 8080",
+    "export": "node scripts/export-corpus.mjs"
   },
   "license": "MIT"
 }
