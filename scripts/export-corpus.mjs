@@ -40,6 +40,12 @@ function texteFiche(fiche, langue) {
     `${langue === 'en' ? 'Part of the system' : 'Rattachement'} : ${titre.libelle[langue]}`,
     `${langue === 'en' ? 'Legal basis' : 'Fondement'} : ${fiche.refs}`,
     `${langue === 'en' ? 'What it is' : 'Ce que c’est'} : ${fiche.definition[langue]}`,
+    ...(fiche.situations?.length
+      ? [
+          `${langue === 'en' ? 'When it applies' : 'Dans quels cas'} :`,
+          ...fiche.situations.map((situation) => `  - ${situation[langue]}`),
+        ]
+      : []),
     `${langue === 'en' ? 'Who pays' : 'Qui paie'} : ${fiche.redevable[langue]}`,
     `${langue === 'en' ? 'Tax base' : 'Base de calcul'} : ${fiche.assiette[langue]}`,
     `${langue === 'en' ? 'Rates and tariffs' : 'Taux et tarifs'} :`,
@@ -66,6 +72,7 @@ const documents = FICHES.flatMap((fiche) =>
     sigles: fiche.sigles,
     motsCles: fiche.motsCles,
     calculateur: fiche.calculateur ?? null,
+    liens: fiche.liens ?? [],
     source: `${SOURCE.titre[langue]} — ${SOURCE.editeur}, ${SOURCE.edition}`,
     text: texteFiche(fiche, langue),
   })),

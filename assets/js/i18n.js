@@ -59,6 +59,8 @@ export const UI = {
   },
   ficheCompte: { fr: 'fiches couvrant les cinq titres du dispositif', en: 'entries covering the five titles of the system' },
   copierFiche: { fr: 'Copier la fiche', en: 'Copy entry' },
+  situationsLabel: { fr: 'Dans quels cas', en: 'When it applies' },
+  liensLabel: { fr: 'Voir aussi', en: 'See also' },
   langue: { fr: 'Langue', en: 'Language' },
 };
 

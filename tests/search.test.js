@@ -110,3 +110,56 @@ test('construireIndex accepte un sous-corpus', () => {
   assert.equal(index.documents.length, 5);
   assert.ok(rechercher('impôt', index).length > 0);
 });
+
+test('les questions posées en langage courant trouvent la bonne fiche', () => {
+  // Un contribuable ne dit pas « impôt sur le revenu foncier » mais « je loue mon
+  // appartement ». Chaque cas liste les fiches réellement pertinentes : la première
+  // doit arriver en tête, et toute réponse listée est acceptée lorsque plusieurs
+  // impôts répondent également à la situation.
+  const cas = [
+    ['je loue mon appartement, quel impôt ?', ['revenu-foncier']],
+    ['j’ai vendu ma maison', ['vente-immeubles']],
+    ['je viens d’embaucher quelqu’un', ['contribution-employeur', 'contribution-nationale', 'taxe-apprentissage', 'formation-continue']],
+    ['je suis coiffeuse dans mon quartier', ['tce']],
+    ['j’ouvre un maquis', ['licences']],
+    ['combien je paie sur mon bulletin de paie', ['its']],
+    ['mon père est décédé, que dois-je payer', ['succession']],
+    ['j’ai une boutique, quel impôt payer', ['regimes-imposition']],
+    ['je suis chauffeur Uber', ['prelevement-plateformes']],
+    ['j’importe des voitures d’occasion', ['taxe-environnement']],
+    ['je fais du transport de marchandises', ['taxe-transports-prives']],
+    ['ma société fait des pertes, dois-je payer ?', ['imf']],
+    ['j’ai un terrain vide à Abidjan', ['patrimoine-foncier-non-bati']],
+    ['je suis médecin en cabinet privé', ['bnc']],
+    ['combien coûte une assurance auto en taxe', ['taxe-assurance']],
+    ['je paie mes employés expatriés', ['its', 'contribution-employeur']],
+    ['je plante du cacao', ['retenues-bic', 'patrimoine-foncier-non-bati']],
+    ['taxe sur mon abonnement internet', ['taxe-communications-telephoniques']],
+    ['je fais des paris sportifs en ligne', ['taxe-jeux-hasard']],
+    ['I am hiring an employee', ['contribution-employeur', 'contribution-nationale', 'taxe-apprentissage', 'formation-continue']],
+    ['I rent out my flat', ['revenu-foncier']],
+    ['my company is loss-making', ['imf']],
+  ];
+
+  const echecs = [];
+  for (const [question, acceptes] of cas) {
+    const resultats = rechercher(question, INDEX, { limite: 3 });
+    const tete = resultats[0]?.fiche.id;
+    if (!tete) echecs.push(`« ${question} » → aucun résultat`);
+    else if (!acceptes.includes(tete)) echecs.push(`« ${question} » → ${tete}, attendu l’un de ${acceptes.join(' / ')}`);
+  }
+  assert.deepEqual(echecs, [], `${echecs.length} question(s) mal classée(s) :\n${echecs.join('\n')}`);
+});
+
+test('les situations décrites sont bien indexées', () => {
+  const introuvables = [];
+  for (const fiche of FICHES) {
+    for (const situation of fiche.situations ?? []) {
+      const resultats = rechercher(situation.fr, INDEX, { limite: 5 });
+      if (!resultats.some((resultat) => resultat.fiche.id === fiche.id)) {
+        introuvables.push(`${fiche.id} : « ${situation.fr} »`);
+      }
+    }
+  }
+  assert.deepEqual(introuvables, [], `situations non indexées :\n${introuvables.join('\n')}`);
+});

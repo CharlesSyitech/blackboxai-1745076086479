@@ -55,6 +55,10 @@ test('chaque fiche est complète et bilingue', () => {
     for (const [index, exoneration] of (fiche.exonerations ?? []).entries()) {
       bilingueComplet(exoneration, `${fiche.id}.exonerations[${index}]`);
     }
+
+    for (const [index, situation] of (fiche.situations ?? []).entries()) {
+      bilingueComplet(situation, `${fiche.id}.situations[${index}]`);
+    }
   }
 });
 
@@ -78,4 +82,22 @@ test('chaque simulateur est documenté par au moins une fiche', () => {
 test('ficheParId retrouve une fiche et ignore un identifiant inconnu', () => {
   assert.equal(ficheParId('its').id, 'its');
   assert.equal(ficheParId('inexistant'), undefined);
+});
+
+test('les renvois « voir aussi » pointent vers des fiches existantes', () => {
+  for (const fiche of FICHES) {
+    for (const lien of fiche.liens ?? []) {
+      assert.ok(ficheParId(lien), `${fiche.id} renvoie vers la fiche inconnue ${lien}`);
+      assert.notEqual(lien, fiche.id, `${fiche.id} se renvoie à elle-même`);
+    }
+    const uniques = new Set(fiche.liens ?? []);
+    assert.equal(uniques.size, (fiche.liens ?? []).length, `${fiche.id} : renvoi dupliqué`);
+  }
+});
+
+test('les impôts de la vie courante décrivent les situations qui y mènent', () => {
+  // Les fiches rattachées à un simulateur sont celles qu'un contribuable
+  // atteint depuis une situation concrète : elles doivent la décrire.
+  const sans = FICHES.filter((fiche) => fiche.calculateur && !(fiche.situations?.length > 0)).map((f) => f.id);
+  assert.deepEqual(sans, [], `fiches sans situation décrite : ${sans.join(', ')}`);
 });

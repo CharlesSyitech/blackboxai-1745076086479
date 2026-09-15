@@ -327,6 +327,26 @@ h4 {
   max-width: 74ch;
 }
 
+.fiche-situations {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 74ch;
+  color: var(--texte);
+}
+
+.fiche-situations li::marker {
+  color: var(--accent);
+}
+
+.fiche-liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
 .taux-liste .ligne:first-child {
   padding-top: 0;
 }

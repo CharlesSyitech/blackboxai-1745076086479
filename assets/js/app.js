@@ -260,6 +260,13 @@ function rendreFiche() {
   article.append(entete);
 
   article.append(section(tr(UI.definitionLabel, langue), el('p', 'fiche-texte', tr(fiche.definition, langue))));
+
+  if (fiche.situations?.length) {
+    const liste = el('ul', 'fiche-situations');
+    for (const situation of fiche.situations) liste.append(el('li', null, tr(situation, langue)));
+    article.append(section(tr(UI.situationsLabel, langue), liste));
+  }
+
   article.append(section(tr(UI.redevableLabel, langue), el('p', 'fiche-texte', tr(fiche.redevable, langue))));
   article.append(section(tr(UI.assietteLabel, langue), el('p', 'fiche-texte', tr(fiche.assiette, langue))));
 
@@ -294,6 +301,23 @@ function rendreFiche() {
     const ul = el('ul', 'fiche-liste');
     for (const exoneration of fiche.exonerations) ul.append(el('li', null, tr(exoneration, langue)));
     article.append(section(tr(UI.exonerationsLabel, langue), ul));
+  }
+
+  const liens = (fiche.liens ?? []).map(ficheParId).filter(Boolean);
+  if (liens.length > 0) {
+    const groupe = el('div', 'fiche-liens');
+    for (const voisine of liens) {
+      groupe.append(
+        bouton('puce', tr(voisine.titre, langue), () => {
+          etat.ficheId = voisine.id;
+          sauverEtat();
+          majHash();
+          rendreGuide();
+          $('#panneau-fiche').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }),
+      );
+    }
+    article.append(section(tr(UI.liensLabel, langue), groupe));
   }
 
   const actions = el('div', 'actions');
@@ -332,6 +356,9 @@ function ficheEnTexte(fiche, langue) {
     `${tr(UI.definitionLabel, langue)} : ${tr(fiche.definition, langue)}`,
     `${tr(UI.redevableLabel, langue)} : ${tr(fiche.redevable, langue)}`,
     `${tr(UI.assietteLabel, langue)} : ${tr(fiche.assiette, langue)}`,
+    ...(fiche.situations?.length
+      ? ['', `${tr(UI.situationsLabel, langue)} :`, ...fiche.situations.map((s) => `  - ${tr(s, langue)}`)]
+      : []),
     '',
     `${tr(UI.tauxLabel, langue)} :`,
     ...fiche.taux.map((ligne) => `  - ${tr(ligne.libelle, langue)} : ${formatLigneTaux(ligne, langue)}`),

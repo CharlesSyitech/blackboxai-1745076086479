@@ -20,6 +20,12 @@ impôts directs, taxes indirectes, droits d'enregistrement, droits de timbre et 
 diverses. Recherche en langage naturel, navigation par titre, et lien direct vers le
 simulateur quand un calcul existe.
 
+Chaque fiche décrit aussi **les situations concrètes qui y mènent** — « je loue mon
+appartement », « j'embauche un salarié », « je suis coiffeuse dans mon quartier » — et
+renvoie vers les impôts voisins, car un même événement en déclenche souvent plusieurs :
+embaucher un salarié met en jeu l'ITS, la contribution employeur, la contribution nationale
+et les deux taxes du FDFP.
+
 **Simulateurs** — 14 calculateurs exécutant réellement le calcul :
 
 | Titre | Simulateur | Références CGI |
@@ -58,8 +64,16 @@ singulier, les mots vides écartés, et « article 146 » rejoint les fiches don
 s'écrit « Art. 146 ». Les sigles courts qui se confondent avec des mots courants — `IS` et
 « is », `CE` et « ce » — ne sont retenus comme sigles que s'ils sont écrits en majuscules.
 
-Le classement est vérifié par les tests : 24 questions types doivent renvoyer la bonne fiche
-en tête, et chaque fiche doit être retrouvable par son titre comme par ses sigles.
+Les fiches sont indexées sur leur vocabulaire technique **et** sur les situations de la vie
+courante. Cela change beaucoup pour un contribuable qui n'emploie pas le vocabulaire fiscal :
+sur un jeu de vingt questions posées en langage ordinaire, la bonne fiche arrive en tête dans
+16 cas sur 20 et figure dans les trois premiers résultats dans 18 cas sur 20, sans aucune
+question laissée sans réponse — contre 9 sur 20 et quatre questions sans résultat avant
+l'ajout des situations.
+
+Le classement est vérifié par les tests : 24 questions en vocabulaire fiscal et 22 questions
+en langage courant doivent renvoyer la bonne fiche en tête, chaque fiche doit être retrouvable
+par son titre comme par ses sigles, et chaque situation décrite doit ramener sa propre fiche.
 
 ## Lancer l'application
 
@@ -79,14 +93,16 @@ Liens directs : `#fiche/its` ouvre une fiche, `#calc/tva` ouvre un simulateur.
 npm test           # node --test tests/*.test.js
 ```
 
-43 tests couvrant :
+47 tests couvrant :
 
 - les fonctions de calcul — barèmes progressifs, planchers et plafonds, conversions HT/TTC ;
 - les 14 simulateurs — structure, libellés bilingues complets, absence de `NaN` sur entrées
   vides, exactitude des montants sur des cas connus ;
 - le corpus — identifiants uniques, complétude bilingue de chaque champ, cohérence des
-  renvois vers les simulateurs, présence d'au moins un taux par fiche ;
-- la recherche — tokenisation, pertinence sur 24 questions types, résolution des sigles.
+  renvois vers les simulateurs et entre fiches, présence d'au moins un taux par fiche, et
+  description des situations pour tout impôt doté d'un calculateur ;
+- la recherche — tokenisation, résolution des sigles, pertinence sur 24 questions en
+  vocabulaire fiscal et 22 en langage courant, indexation effective de chaque situation.
 
 ## Exporter le corpus vers un autre pipeline RAG
 
@@ -96,8 +112,8 @@ npm run export     # écrit dans dist/
 
 - `dist/corpus.json` — le corpus structuré complet, titres et métadonnées compris ;
 - `dist/corpus.jsonl` — 154 documents (77 fiches × 2 langues), un par ligne, chacun avec un
-  champ `text` continu prêt à vectoriser et ses métadonnées (`fiche`, `langue`, `refs`,
-  `sigles`, `motsCles`, `calculateur`, `source`).
+  champ `text` continu prêt à vectoriser — situations comprises — et ses métadonnées
+  (`fiche`, `langue`, `refs`, `sigles`, `motsCles`, `liens`, `calculateur`, `source`).
 
 ## Organisation
 
@@ -136,8 +152,12 @@ Limites connues :
 - Les assiettes sont celles saisies par l'utilisateur ; le simulateur ne détermine pas le
   revenu imposable au sens de l'article 118 du CGI ni le bénéfice fiscal.
 - Le classement de la recherche est lexical, non sémantique : une question qui n'emploie
-  aucun mot du corpus peut ne rien renvoyer. L'interface propose alors de reformuler, et la
+  aucun mot du corpus peut ne rien renvoyer. Les situations de la vie courante réduisent
+  fortement ce risque sans l'éliminer ; l'interface propose alors de reformuler, et la
   navigation par titre reste accessible.
+- Quand plusieurs impôts répondent également à une même situation — les quatre charges
+  patronales pour « j'embauche un salarié » —, leur ordre entre eux n'est pas significatif.
+  Ils apparaissent tous dans la liste des résultats et se renvoient l'un à l'autre.
 - Le document source ne publie pas les délais de déclaration ni le service compétent pour
   chaque impôt ; ces rubriques sont donc absentes des fiches.
 - Les mutations à titre gratuit (successions) n'y figurent que sous forme de fourchette

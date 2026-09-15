@@ -162,7 +162,13 @@ const titreI = [
       'Comparer le chiffre d’affaires annuel TTC aux quatre seuils pour identifier le régime, puis appliquer l’impôt propre à ce régime.',
       'Compare annual turnover including tax with the four thresholds to identify the regime, then apply the tax specific to that regime.',
     ),
-    motsCles: ['régime', 'seuil', 'million', 'millions', 'plafond', 'chiffre d’affaires', 'entreprenant', 'microentreprise', 'regime', 'threshold', 'million', 'turnover'],
+    situations: [
+      t('J\'ouvre un commerce ou une boutique', 'I am opening a shop or a business'),
+      t('Je veux savoir de quel régime je relève', 'I want to know which regime applies to me'),
+      t('Mon chiffre d\'affaires a changé de niveau', 'My turnover has moved to another level'),
+    ],
+    liens: ['tce', 'tee', 'rme', 'bic', 'imf'],
+    motsCles: ['régime', 'seuil', 'million', 'millions', 'plafond', 'chiffre d’affaires', 'entreprenant', 'microentreprise', 'regime', 'threshold', 'million', 'turnover', 'boutique', 'commerce', 'activité', 'démarrer', 'créer', 'shop', 'business', 'start'],
     calculateur: 'bic',
   },
   {
@@ -204,7 +210,12 @@ const titreI = [
         'Interest on cash bonds that has actually borne the 25% withholding.',
       ),
     ],
-    motsCles: ['bénéfice', 'société', 'entreprise', 'impôt sur les sociétés', 'profit', 'company tax', 'corporate'],
+    situations: [
+      t('Ma société réalise un bénéfice', 'My company makes a profit'),
+      t('Je tiens une comptabilité au réel', 'I keep full statutory accounts'),
+    ],
+    liens: ['imf', 'regimes-imposition', 'patente', 'retenues-bic'],
+    motsCles: ['bénéfice', 'société', 'entreprise', 'impôt sur les sociétés', 'profit', 'company tax', 'corporate', 'boutique', 'commerce', 'activité', 'shop', 'trade'],
     calculateur: 'bic',
   },
   {
@@ -237,7 +248,12 @@ const titreI = [
       'IMF = chiffre d’affaires TTC × taux, ramené au minimum de perception s’il lui est inférieur et plafonné à 35 millions au réel normal.',
       'Minimum flat tax = turnover including tax × rate, raised to the collection floor if lower and capped at XOF 35 million under the normal regime.',
     ),
-    motsCles: ['minimum', 'perte', 'déficit', 'plancher', 'chiffre d’affaires', 'loss', 'floor'],
+    situations: [
+      t('Ma société est en perte', 'My company is loss-making'),
+      t('Je n\'ai réalisé aucun bénéfice cette année', 'I made no profit this year'),
+    ],
+    liens: ['bic', 'bnc'],
+    motsCles: ['minimum', 'perte', 'déficit', 'plancher', 'chiffre d’affaires', 'loss', 'floor', 'pertes', 'sans bénéfice', 'losses', 'no profit'],
     calculateur: 'bic',
   },
   {
@@ -267,7 +283,11 @@ const titreI = [
       mnt(t('Cacao livré par les traitants', 'Cocoa delivered by intermediaries'), 2.5, t('par kilogramme', 'per kilogram')),
       mnt(t('Noix de cajou brute exportée', 'Raw cashew nuts exported'), 5, t('par kilogramme', 'per kilogram')),
     ],
-    motsCles: ['retenue', 'source', 'café', 'cacao', 'cajou', 'withholding', 'coffee', 'cocoa', 'cashew'],
+    situations: [
+      t('Je livre du café, du cacao ou de la noix de cajou', 'I deliver coffee, cocoa or cashew nuts'),
+    ],
+    liens: ['bic', 'patrimoine-foncier-non-bati'],
+    motsCles: ['retenue', 'source', 'café', 'cacao', 'cajou', 'withholding', 'coffee', 'cocoa', 'cashew', 'traitant', 'planteur', 'récolte', 'harvest', 'grower'],
   },
   {
     id: 'bnc',
@@ -300,7 +320,12 @@ const titreI = [
       'Impôt BNC = bénéfice net × 25 %. Le contribuable acquitte le plus élevé de cet impôt et de l’IMF/BNC (5 % des recettes brutes TTC, minimum 400 000 F).',
       'BNC tax = net profit × 25%. The taxpayer pays the higher of that tax and the BNC minimum flat tax (5% of gross receipts including tax, floor XOF 400,000).',
     ),
-    motsCles: ['profession libérale', 'honoraires', 'avocat', 'médecin', 'consultant', 'liberal profession', 'fees', 'freelance'],
+    situations: [
+      t('Je suis médecin, avocat, architecte ou consultant', 'I am a doctor, lawyer, architect or consultant'),
+      t('J\'exerce une profession libérale', 'I practise a liberal profession'),
+    ],
+    liens: ['imf', 'regimes-imposition'],
+    motsCles: ['profession libérale', 'honoraires', 'avocat', 'médecin', 'consultant', 'liberal profession', 'fees', 'freelance', 'médecin', 'avocat', 'architecte', 'cabinet', 'notaire', 'expert', 'doctor', 'lawyer', 'architect', 'practice'],
     calculateur: 'bnc',
   },
   {
@@ -355,7 +380,12 @@ const titreI = [
         'Wages paid by agro-industrial businesses to workers in the categories set by article 148.',
       ),
     ],
-    motsCles: ['salaire', 'paie', 'bulletin', 'employé', 'pension', 'retraite', 'salary', 'payroll', 'payslip', 'wage'],
+    situations: [
+      t('Je reçois un salaire, une pension ou une rente', 'I receive a salary, a pension or an annuity'),
+      t('Je veux comprendre la retenue sur mon bulletin de paie', 'I want to understand the deduction on my payslip'),
+    ],
+    liens: ['contribution-employeur', 'contribution-nationale', 'igr'],
+    motsCles: ['salaire', 'paie', 'bulletin', 'employé', 'pension', 'retraite', 'salary', 'payroll', 'payslip', 'wage', 'bulletin', 'fiche de paie', 'net', 'brut', 'payslip', 'net pay'],
     calculateur: 'its',
   },
   {
@@ -383,7 +413,12 @@ const titreI = [
       ),
       t('Les indemnités de maternité versées par la CNPS.', 'Maternity benefits paid by the CNPS.'),
     ],
-    motsCles: ['employeur', 'expatrié', 'masse salariale', 'charges patronales', 'employer', 'expatriate'],
+    situations: [
+      t('J\'embauche un salarié', 'I am hiring an employee'),
+      t('Je verse des salaires à du personnel expatrié', 'I pay wages to expatriate staff'),
+    ],
+    liens: ['contribution-nationale', 'taxe-apprentissage', 'formation-continue', 'its'],
+    motsCles: ['employeur', 'expatrié', 'masse salariale', 'charges patronales', 'employer', 'expatriate', 'embaucher', 'embauche', 'recruter', 'recrutement', 'employeur', 'hire', 'hiring', 'recruit'],
     calculateur: 'charges-employeur',
   },
   {
@@ -409,7 +444,12 @@ const titreI = [
         'Pre-hiring internship allowances, capped at XOF 150,000 per month per intern, over twelve months.',
       ),
     ],
-    motsCles: ['contribution nationale', 'masse salariale', 'employeur', 'national contribution', 'payroll'],
+    situations: [
+      t('J\'embauche un salarié', 'I am hiring an employee'),
+      t('Je verse des salaires à mon personnel', 'I pay wages to my staff'),
+    ],
+    liens: ['contribution-employeur', 'taxe-apprentissage', 'formation-continue'],
+    motsCles: ['contribution nationale', 'masse salariale', 'employeur', 'national contribution', 'payroll', 'embaucher', 'embauche', 'recruter', 'hire', 'hiring'],
     calculateur: 'charges-employeur',
   },
   {
@@ -428,7 +468,11 @@ const titreI = [
       pct(t('Personnel local', 'Local staff'), CHARGES_EMPLOYEUR.taxeApprentissage.local),
       pct(t('Personnel expatrié', 'Expatriate staff'), CHARGES_EMPLOYEUR.taxeApprentissage.expatrie),
     ],
-    motsCles: ['apprentissage', 'formation', 'FDFP', 'apprenticeship', 'training'],
+    situations: [
+      t('J\'embauche un salarié', 'I am hiring an employee'),
+    ],
+    liens: ['contribution-employeur', 'formation-continue'],
+    motsCles: ['apprentissage', 'formation', 'FDFP', 'apprenticeship', 'training', 'embaucher', 'embauche', 'recruter', 'hire'],
     calculateur: 'charges-employeur',
   },
   {
@@ -447,7 +491,11 @@ const titreI = [
       pct(t('Personnel local', 'Local staff'), CHARGES_EMPLOYEUR.formationContinue.local),
       pct(t('Personnel expatrié', 'Expatriate staff'), CHARGES_EMPLOYEUR.formationContinue.expatrie),
     ],
-    motsCles: ['formation continue', 'FDFP', 'employeur', 'continuing training'],
+    situations: [
+      t('J\'embauche un salarié', 'I am hiring an employee'),
+    ],
+    liens: ['contribution-employeur', 'taxe-apprentissage'],
+    motsCles: ['formation continue', 'FDFP', 'employeur', 'continuing training', 'embaucher', 'embauche', 'recruter', 'hire'],
     calculateur: 'charges-employeur',
   },
   {
@@ -479,7 +527,12 @@ const titreI = [
         'Buildings of recognised charitable associations and foundations, unless let out.',
       ),
     ],
-    motsCles: ['location', 'loyer', 'bailleur', 'immeuble', 'rent', 'landlord', 'letting'],
+    situations: [
+      t('Je loue un appartement, une maison ou un local', 'I let out a flat, a house or premises'),
+      t('Je perçois des loyers', 'I receive rent'),
+    ],
+    liens: ['patrimoine-foncier-bati', 'bail', 'taxe-excedent-cautions'],
+    motsCles: ['location', 'loyer', 'bailleur', 'immeuble', 'rent', 'landlord', 'letting', 'appartement', 'logement', 'locataire', 'louer', 'flat', 'apartment', 'tenant'],
     calculateur: 'foncier',
   },
   {
@@ -511,7 +564,12 @@ const titreI = [
       t('Les immeubles à usage scolaire.', 'School buildings.'),
       t('Les immeubles affectés aux œuvres d’assistance sociale ou médicale.', 'Buildings used for social or medical welfare work.'),
     ],
-    motsCles: ['foncier', 'propriété', 'maison', 'habitation principale', 'villa', 'property tax', 'home'],
+    situations: [
+      t('Je possède une maison ou un immeuble', 'I own a house or a building'),
+      t('J\'habite dans mon propre logement', 'I live in my own home'),
+    ],
+    liens: ['revenu-foncier', 'patrimoine-foncier-non-bati', 'taxe-voirie'],
+    motsCles: ['foncier', 'propriété', 'maison', 'habitation principale', 'villa', 'property tax', 'home', 'appartement', 'logement', 'résidence', 'propriétaire', 'flat', 'owner', 'residence'],
     calculateur: 'foncier',
   },
   {
@@ -558,7 +616,12 @@ const titreI = [
         'Surveyed land granted or allocated, during the year of acquisition and the two following years.',
       ),
     ],
-    motsCles: ['terrain', 'parcelle', 'plantation', 'hectare', 'agricole', 'land', 'plot', 'farm'],
+    situations: [
+      t('Je possède un terrain nu', 'I own vacant land'),
+      t('J\'exploite une plantation', 'I run a plantation'),
+    ],
+    liens: ['patrimoine-foncier-bati', 'vente-immeubles'],
+    motsCles: ['terrain', 'parcelle', 'plantation', 'hectare', 'agricole', 'land', 'plot', 'farm', 'terrain nu', 'terrain vide', 'lot', 'planteur', 'vacant land', 'grower'],
     calculateur: 'foncier',
   },
   {
@@ -577,7 +640,11 @@ const titreI = [
     ),
     assiette: t('Valeur locative de l’immeuble.', 'Rental value of the property.'),
     taux: [pct(t('Taux unique', 'Single rate'), FONCIER.taxeVoirie.taux)],
-    motsCles: ['voirie', 'hygiène', 'assainissement', 'ambassade', 'sanitation', 'embassy'],
+    situations: [
+      t('Mon immeuble est exonéré d\'impôt foncier', 'My property is exempt from land tax'),
+    ],
+    liens: ['revenu-foncier', 'patrimoine-foncier-bati'],
+    motsCles: ['voirie', 'hygiène', 'assainissement', 'ambassade', 'sanitation', 'embassy', 'ordures', 'propreté', 'waste', 'cleanliness'],
   },
   {
     id: 'irvm',
@@ -612,7 +679,12 @@ const titreI = [
         'Capital increases by capitalisation of reserves, under the conditions of article 226.',
       ),
     ],
-    motsCles: ['dividende', 'action', 'obligation', 'BRVM', 'bourse', 'dividend', 'share', 'bond', 'stock exchange'],
+    situations: [
+      t('Je reçois des dividendes', 'I receive dividends'),
+      t('Ma société distribue ses bénéfices', 'My company distributes its profits'),
+    ],
+    liens: ['irc', 'igr'],
+    motsCles: ['dividende', 'action', 'obligation', 'BRVM', 'bourse', 'dividend', 'share', 'bond', 'stock exchange', 'associé', 'actionnaire', 'distribution', 'shareholder', 'payout'],
     calculateur: 'capitaux',
   },
   {
@@ -654,7 +726,12 @@ const titreI = [
         'Businesses created or reopened in the Centre, North and West zones, for eight years.',
       ),
     ],
-    motsCles: ['intérêt', 'prêt', 'dépôt', 'compte courant', 'épargne', 'interest', 'loan', 'deposit', 'savings'],
+    situations: [
+      t('Je perçois des intérêts', 'I receive interest'),
+      t('J\'ai un compte à terme ou un compte courant d\'associé', 'I have a term deposit or a shareholder current account'),
+    ],
+    liens: ['irvm', 'igr'],
+    motsCles: ['intérêt', 'prêt', 'dépôt', 'compte courant', 'épargne', 'interest', 'loan', 'deposit', 'savings', 'placement', 'banque', 'épargne', 'savings', 'deposit'],
     calculateur: 'capitaux',
   },
   {
@@ -683,7 +760,11 @@ const titreI = [
         'Profits of taxpayers under the micro-enterprise or entrepreneur regimes.',
       ),
     ],
-    motsCles: ['revenu global', 'personne physique', 'déclaration', 'global income', 'individual', 'return'],
+    situations: [
+      t('Je cumule plusieurs sources de revenus', 'I have several sources of income'),
+    ],
+    liens: ['its', 'irvm', 'irc', 'revenu-foncier'],
+    motsCles: ['revenu global', 'personne physique', 'déclaration', 'global income', 'individual', 'return', 'revenus', 'cumul', 'several incomes'],
     calculateur: 'igr',
   },
 ];
@@ -732,7 +813,12 @@ const titreIAutres = [
       t('Les organismes de bienfaisance et associations sans but lucratif.', 'Charities and non-profit associations.'),
       t('Les exonérations temporaires prévues par le Code des Investissements.', 'Temporary exemptions under the Investment Code.'),
     ],
-    motsCles: ['patente', 'licence commerciale', 'local professionnel', 'transport', 'business licence', 'premises'],
+    situations: [
+      t('J\'ouvre un local commercial', 'I open business premises'),
+      t('Je démarre une activité commerciale', 'I am starting a commercial activity'),
+    ],
+    liens: ['licences', 'regimes-imposition'],
+    motsCles: ['patente', 'licence commerciale', 'local professionnel', 'transport', 'business licence', 'premises', 'boutique', 'magasin', 'atelier', 'shop', 'store', 'workshop'],
     calculateur: 'patente',
   },
   {
@@ -769,7 +855,12 @@ const titreIAutres = [
       ),
       t('Les points de vente exonérés de la contribution des patentes.', 'Outlets exempt from the business licence tax.'),
     ],
-    motsCles: ['licence', 'boisson', 'alcool', 'bar', 'maquis', 'night club', 'liquor', 'drinks'],
+    situations: [
+      t('J\'ouvre un maquis, un bar ou une boîte de nuit', 'I open a bar, eatery or night club'),
+      t('Je vends des boissons alcoolisées', 'I sell alcoholic drinks'),
+    ],
+    liens: ['patente', 'taxe-tourisme', 'taxe-boissons'],
+    motsCles: ['licence', 'boisson', 'alcool', 'bar', 'maquis', 'night club', 'liquor', 'drinks', 'maquis', 'bar', 'buvette', 'débit de boisson', 'night club', 'pub'],
   },
 ];
 
@@ -806,7 +897,12 @@ const titreII = [
         'Unprocessed meat and offal, and naturally grown local edible fruit.',
       ),
     ],
-    motsCles: ['TVA', 'facture', 'HT', 'TTC', 'consommation', 'VAT', 'invoice', 'net', 'gross'],
+    situations: [
+      t('J\'établis une facture', 'I am issuing an invoice'),
+      t('Je veux passer d\'un prix HT à un prix TTC', 'I want to convert a net price into a gross price'),
+    ],
+    liens: ['tob', 'regimes-imposition'],
+    motsCles: ['TVA', 'facture', 'HT', 'TTC', 'consommation', 'VAT', 'invoice', 'net', 'gross', 'facturer', 'prix', 'client', 'invoice', 'price', 'customer'],
     calculateur: 'tva',
   },
   {
@@ -832,7 +928,12 @@ const titreII = [
       t('Les prêts consentis par les institutions financières mutualistes ou coopératives.', 'Loans by mutual or cooperative financial institutions.'),
       t('Les prêts pour l’acquisition de logements économiques et sociaux.', 'Loans to buy low-cost and social housing.'),
     ],
-    motsCles: ['banque', 'agios', 'crédit', 'commission', 'bank', 'loan charges'],
+    situations: [
+      t('Ma banque me facture des agios ou des commissions', 'My bank charges me interest or fees'),
+      t('J\'emprunte auprès d\'une banque', 'I take out a bank loan'),
+    ],
+    liens: ['irc', 'tva'],
+    motsCles: ['banque', 'agios', 'crédit', 'commission', 'bank', 'loan charges', 'agios', 'emprunt', 'prêt', 'banque', 'loan', 'fees'],
     calculateur: 'tva',
   },
   {
@@ -859,7 +960,11 @@ const titreII = [
       t('Les produits ayant déjà supporté la taxe en Côte d’Ivoire.', 'Products that have already borne the tax in Côte d’Ivoire.'),
       t('Les carburants livrés aux ambassades étrangères, le carburéacteur et le pétrole lampant.', 'Fuel supplied to foreign embassies, jet fuel and kerosene.'),
     ],
-    motsCles: ['carburant', 'essence', 'gasoil', 'pétrole', 'station', 'fuel', 'petrol', 'diesel'],
+    situations: [
+      t('J\'importe ou je distribue du carburant', 'I import or distribute fuel'),
+    ],
+    liens: ['imf', 'taxe-speciale-equipement'],
+    motsCles: ['carburant', 'essence', 'gasoil', 'pétrole', 'station', 'fuel', 'petrol', 'diesel', 'station-service', 'distributeur', 'pompe', 'filling station', 'pump'],
     calculateur: 'accises',
   },
   {
@@ -879,7 +984,10 @@ const titreII = [
       mnt(t('Tranche administrative', 'Administrative band'), ACCISES.eau.administrative, t('par m³', 'per m³')),
     ],
     exonerations: [t('La tranche sociale.', 'The social band.')],
-    motsCles: ['eau', 'consommation', 'facture', 'water', 'utility'],
+    situations: [
+      t('Je reçois ma facture d\'eau', 'I receive my water bill'),
+    ],
+    motsCles: ['eau', 'consommation', 'facture', 'water', 'utility', 'facture', 'compteur', 'bill', 'meter'],
     calculateur: 'accises',
   },
   {
@@ -904,7 +1012,11 @@ const titreII = [
       pct(t('Autres boissons non alcoolisées', 'Other soft drinks'), ACCISES.boissons.nonAlcoolisees),
     ],
     exonerations: [t('Les produits médicamenteux alcoolisés et l’eau.', 'Alcohol-based medicinal products and water.')],
-    motsCles: ['boisson', 'bière', 'vin', 'alcool', 'sucrerie', 'beer', 'wine', 'soft drink'],
+    situations: [
+      t('Je produis ou j\'importe des boissons', 'I produce or import drinks'),
+    ],
+    liens: ['licences', 'taxe-tabacs'],
+    motsCles: ['boisson', 'bière', 'vin', 'alcool', 'sucrerie', 'beer', 'wine', 'soft drink', 'brasserie', 'usine', 'importation', 'brewery', 'factory', 'import'],
     calculateur: 'accises',
   },
   {
@@ -931,7 +1043,11 @@ const titreII = [
       'Les trois taxes se cumulent sur la même base : 57 % + 7 % + 2 %, soit 66 % du prix de vente hors taxes.',
       'The three taxes are cumulative on the same base: 57% + 7% + 2%, i.e. 66% of the price excluding tax.',
     ),
-    motsCles: ['tabac', 'cigarette', 'cigare', 'chicha', 'vapotage', 'tobacco', 'cigarette', 'shisha'],
+    situations: [
+      t('Je produis ou j\'importe du tabac', 'I produce or import tobacco'),
+    ],
+    liens: ['taxe-tabac-sport', 'taxe-solidarite-sida', 'timbre-fiscal-tabac'],
+    motsCles: ['tabac', 'cigarette', 'cigare', 'chicha', 'vapotage', 'tobacco', 'cigarette', 'shisha', 'usine', 'importation', 'factory', 'import'],
     calculateur: 'accises',
   },
   {
@@ -945,7 +1061,11 @@ const titreII = [
     assiette: t('Nombre de cartouches, douilles amorcées ou amorces.', 'Number of cartridges, primed cases or primers.'),
     taux: [mnt(t('Cartouche chargée, douille amorcée ou amorce', 'Loaded cartridge, primed case or primer'), ACCISES.cartouche, t('par unité', 'per unit'))],
     exonerations: [t('Les cartouches destinées aux forces militaires et de police.', 'Cartridges for the military and police forces.')],
-    motsCles: ['cartouche', 'munition', 'chasse', 'cartridge', 'ammunition'],
+    situations: [
+      t('J\'importe ou je fabrique des cartouches', 'I import or manufacture cartridges'),
+    ],
+    liens: ['redevance-armes'],
+    motsCles: ['cartouche', 'munition', 'chasse', 'cartridge', 'ammunition', 'chasseur', 'armurerie', 'hunter', 'gun shop'],
     calculateur: 'accises',
   },
   {
@@ -964,7 +1084,12 @@ const titreII = [
       pct(t('Taux de droit commun', 'General rate'), ACCISES.marbreVehiculesCosmetiques),
       pct(t('Produits de beauté et cosmétiques contenant de l’hydroquinone', 'Beauty and cosmetic products containing hydroquinone'), ACCISES.cosmetiquesHydroquinone),
     ],
-    motsCles: ['marbre', 'cosmétique', 'parfum', 'véhicule', 'hydroquinone', 'cosmetics', 'perfume', 'vehicle'],
+    situations: [
+      t('J\'importe des produits cosmétiques ou du marbre', 'I import cosmetics or marble'),
+      t('J\'importe un véhicule de forte puissance', 'I import a high-powered vehicle'),
+    ],
+    liens: ['taxe-environnement', 'vignettes'],
+    motsCles: ['marbre', 'cosmétique', 'parfum', 'véhicule', 'hydroquinone', 'cosmetics', 'perfume', 'vehicle', 'importation', 'beauté', 'luxe', 'import', 'beauty', 'luxury'],
     calculateur: 'accises',
   },
   {
@@ -986,7 +1111,11 @@ const titreII = [
         'Messages broadcast by sports associations recognised by the ministry responsible for sport.',
       ),
     ],
-    motsCles: ['publicité', 'affichage', 'média', 'advertising', 'media'],
+    situations: [
+      t('Je diffuse une campagne publicitaire', 'I run an advertising campaign'),
+    ],
+    liens: ['taxe-communication-audiovisuelle'],
+    motsCles: ['publicité', 'affichage', 'média', 'advertising', 'media', 'annonce', 'panneau', 'spot', 'advert', 'billboard'],
     calculateur: 'prelevements',
   },
   {
@@ -1046,7 +1175,11 @@ const titreII = [
       t('L’assurance-vie et les actes contre les accidents du travail.', 'Life insurance and workplace-accident cover.'),
       t('Les contrats garantissant les risques agricoles.', 'Contracts covering agricultural risks.'),
     ],
-    motsCles: ['assurance', 'prime', 'police', 'automobile', 'incendie', 'insurance', 'premium', 'motor'],
+    situations: [
+      t('Je souscris une assurance auto, habitation ou santé', 'I take out motor, home or health insurance'),
+    ],
+    liens: ['vignettes'],
+    motsCles: ['assurance', 'prime', 'police', 'automobile', 'incendie', 'insurance', 'premium', 'motor', 'souscrire', 'contrat', 'assureur', 'mutuelle', 'subscribe', 'insurer', 'cover'],
     calculateur: 'assurance',
   },
 ];
@@ -1109,7 +1242,12 @@ const titreIII = [
       pct(t('Formation de société — capital jusqu’à 5 milliards', 'Company incorporation — capital up to XOF 5 billion'), MUTATION.formationSocieteJusqua5Md),
       pct(t('Formation de société — capital supérieur à 5 milliards', 'Company incorporation — capital above XOF 5 billion'), MUTATION.formationSocieteAudela5Md),
     ],
-    motsCles: ['notaire', 'acte', 'statuts', 'société', 'testament', 'notary', 'incorporation', 'will'],
+    situations: [
+      t('Je crée une société', 'I am incorporating a company'),
+      t('Je passe un acte chez le notaire', 'I execute a deed at the notary'),
+    ],
+    liens: ['vente-immeubles', 'vente-meubles', 'timbres'],
+    motsCles: ['notaire', 'acte', 'statuts', 'société', 'testament', 'notary', 'incorporation', 'will', 'statuts', 'capital', 'création', 'SARL', 'incorporation', 'articles', 'capital'],
     calculateur: 'enregistrement',
   },
   {
@@ -1146,7 +1284,11 @@ const titreIII = [
         'Employment contracts between heads of industrial, commercial, farming or forestry establishments and their workers.',
       ),
     ],
-    motsCles: ['sous seing privé', 'contrat', 'convention', 'private deed', 'contract'],
+    situations: [
+      t('Je signe un contrat entre particuliers', 'I sign a contract between private parties'),
+    ],
+    liens: ['timbres', 'bail'],
+    motsCles: ['sous seing privé', 'contrat', 'convention', 'private deed', 'contract', 'contrat', 'convention', 'signature', 'contract', 'agreement'],
   },
   {
     id: 'vente-immeubles',
@@ -1175,7 +1317,12 @@ const titreIII = [
         'Acquisition of property by a bank following an unsuccessful auction it initiated, provided it is resold within the regulatory period.',
       ),
     ],
-    motsCles: ['vente', 'immeuble', 'achat', 'terrain', 'maison', 'mutation', 'sale', 'property', 'purchase'],
+    situations: [
+      t('J\'achète ou je vends une maison, un terrain', 'I buy or sell a house or land'),
+      t('Je signe un acte de vente chez le notaire', 'I sign a sale deed at the notary'),
+    ],
+    liens: ['actes-notaires', 'timbres', 'patrimoine-foncier-bati'],
+    motsCles: ['vente', 'immeuble', 'achat', 'terrain', 'maison', 'mutation', 'sale', 'property', 'purchase', 'acheter', 'vendre', 'notaire', 'buy', 'sell', 'notary'],
     calculateur: 'enregistrement',
   },
   {
@@ -1195,7 +1342,12 @@ const titreIII = [
       pct(t('Vente de fonds de commerce', 'Sale of a business'), MUTATION.venteFondsDeCommerce),
       pct(t('Vente de droits sociaux', 'Sale of corporate rights'), MUTATION.venteDroitsSociaux),
     ],
-    motsCles: ['fonds de commerce', 'parts sociales', 'cession', 'meuble', 'business', 'shares', 'movables'],
+    situations: [
+      t('Je cède mon fonds de commerce', 'I am selling my business'),
+      t('Je vends des parts de société', 'I am selling company shares'),
+    ],
+    liens: ['actes-notaires', 'vente-immeubles'],
+    motsCles: ['fonds de commerce', 'parts sociales', 'cession', 'meuble', 'business', 'shares', 'movables', 'céder', 'reprendre', 'sell', 'take over'],
     calculateur: 'enregistrement',
   },
   {
@@ -1220,7 +1372,11 @@ const titreIII = [
         'Acquisitions and exchanges by public authorities, registered free of charge.',
       ),
     ],
-    motsCles: ['échange', 'soulte', 'immeuble', 'exchange', 'swap'],
+    situations: [
+      t('J\'échange un terrain contre un autre', 'I swap one plot of land for another'),
+    ],
+    liens: ['vente-immeubles', 'partage'],
+    motsCles: ['échange', 'soulte', 'immeuble', 'exchange', 'swap', 'troc', 'permuter', 'swap'],
     calculateur: 'enregistrement',
   },
   {
@@ -1242,7 +1398,12 @@ const titreIII = [
       pct(t('Bail à durée illimitée ou à vie — immeubles et fonds de commerce', 'Unlimited or life lease — property and businesses'), MUTATION.bailIllimiteImmeuble),
       mnt(t('Bail à durée illimitée ou à vie — meubles', 'Unlimited or life lease — movables'), MUTATION.bailIllimiteMeubles),
     ],
-    motsCles: ['bail', 'loyer', 'location', 'crédit-bail', 'lease', 'rent', 'leasing'],
+    situations: [
+      t('Je signe un contrat de bail', 'I sign a lease'),
+      t('Je loue un local commercial', 'I rent business premises'),
+    ],
+    liens: ['revenu-foncier', 'actes-sous-seing-prive'],
+    motsCles: ['bail', 'loyer', 'location', 'crédit-bail', 'lease', 'rent', 'leasing', 'locataire', 'bailleur', 'contrat', 'tenant', 'landlord'],
     calculateur: 'enregistrement',
   },
   {
@@ -1270,7 +1431,12 @@ const titreIII = [
     exonerations: [
       t('Les successions comportant un actif brut inférieur à 300 000 F.', 'Estates with a gross value below XOF 300,000.'),
     ],
-    motsCles: ['succession', 'héritage', 'décès', 'héritier', 'inheritance', 'estate', 'heir'],
+    situations: [
+      t('Un proche est décédé', 'A relative has died'),
+      t('Je reçois un héritage', 'I am receiving an inheritance'),
+    ],
+    liens: ['donation', 'partage', 'actes-notaires'],
+    motsCles: ['succession', 'héritage', 'décès', 'héritier', 'inheritance', 'estate', 'heir', 'décédé', 'décès', 'mort', 'famille', 'deceased', 'death', 'family'],
     calculateur: 'enregistrement',
   },
   {
@@ -1291,7 +1457,11 @@ const titreIII = [
         'Public authorities, public hospitals and charitable offices.',
       ),
     ],
-    motsCles: ['donation', 'don', 'legs', 'gift', 'bequest'],
+    situations: [
+      t('Je reçois ou je fais un don', 'I receive or make a gift'),
+    ],
+    liens: ['succession', 'partage'],
+    motsCles: ['donation', 'don', 'legs', 'gift', 'bequest', 'donner', 'offrir', 'give'],
     calculateur: 'enregistrement',
   },
   {
@@ -1311,7 +1481,11 @@ const titreIII = [
       'Droit = valeur du bien × 1 %. La soulte ou la plus-value est en outre soumise aux droits correspondant à la nature du bien concerné.',
       'Duty = value of the asset × 1%. Any balancing payment or excess is additionally liable to the duties for that type of asset.',
     ),
-    motsCles: ['partage', 'indivision', 'soulte', 'partition', 'co-ownership'],
+    situations: [
+      t('Nous sortons d\'une indivision familiale', 'We are ending a family co-ownership'),
+    ],
+    liens: ['succession', 'donation'],
+    motsCles: ['partage', 'indivision', 'soulte', 'partition', 'co-ownership', 'famille', 'héritiers', 'family', 'heirs'],
     calculateur: 'enregistrement',
   },
 ];
@@ -1364,7 +1538,12 @@ const titreIV = [
       t('Les véhicules nautiques à moteur utilisés à titre exclusivement professionnel.', 'Motorised watercraft used exclusively for business.'),
       t('Les véhicules destinés à la vente et détenus par les marchands, et les véhicules non utilisés.', 'Vehicles held for sale by dealers, and vehicles not in use.'),
     ],
-    motsCles: ['vignette', 'voiture', 'véhicule', 'moto', 'bateau', 'vignette', 'car', 'motorcycle', 'boat'],
+    situations: [
+      t('J\'achète une voiture ou une moto', 'I am buying a car or a motorcycle'),
+      t('Je dois payer ma vignette annuelle', 'I have to pay my annual vignette'),
+    ],
+    liens: ['taxe-environnement', 'prelevement-plateformes'],
+    motsCles: ['vignette', 'voiture', 'véhicule', 'moto', 'bateau', 'vignette', 'car', 'motorcycle', 'boat', 'automobile', 'véhicule', 'engin', 'car', 'bike'],
   },
   {
     id: 'timbres',
@@ -1405,7 +1584,11 @@ const titreIV = [
       'Le timbre de quittance se lit dans le barème par tranche du montant quittancé ; les quittances jusqu’à 5 000 F sont exonérées.',
       'The receipt stamp is read from the band schedule for the amount receipted; receipts up to XOF 5,000 are exempt.',
     ),
-    motsCles: ['timbre', 'quittance', 'reçu', 'document', 'stamp', 'receipt'],
+    situations: [
+      t('Je délivre un reçu ou une quittance', 'I issue a receipt'),
+    ],
+    liens: ['actes-sous-seing-prive', 'vente-immeubles'],
+    motsCles: ['timbre', 'quittance', 'reçu', 'document', 'stamp', 'receipt', 'reçu', 'papier', 'formalité', 'receipt', 'paperwork'],
     calculateur: 'timbre',
   },
 ];
@@ -1414,20 +1597,12 @@ const titreIV = [
  * Titre V — Contributions diverses
  * ================================================================== */
 
-/** Fiche courte : un seul taux ou tarif, sans exonération publiée. */
-const simple = ({ id, titre, refs, redevable, definition, assiette, taux, motsCles, sigles = [], calculateur, groupe = 'v-taxes' }) => ({
-  id,
-  groupe,
-  titre,
-  sigles,
-  refs,
-  redevable,
-  definition,
-  assiette,
-  taux,
-  motsCles,
-  ...(calculateur ? { calculateur } : {}),
-});
+/**
+ * Fiche courte : un seul taux ou tarif, sans exonération publiée.
+ * Les champs facultatifs sont repris tels quels afin qu'aucun ne soit perdu
+ * en passant par ce raccourci.
+ */
+const simple = ({ sigles = [], groupe = 'v-taxes', ...reste }) => ({ groupe, sigles, ...reste });
 
 const titreV = [
   simple({
@@ -1444,7 +1619,11 @@ const titreV = [
     ),
     assiette: t('Tarif forfaitaire par occupant.', 'Flat rate per occupier.'),
     taux: [mnt(t('Montant annuel', 'Annual amount'), TAXE_HABITATION.montantAnnuel, t('par an', 'per year'))],
-    motsCles: ['habitation', 'occupant', 'locataire', 'housing tax', 'tenant'],
+    situations: [
+      t('J\'occupe un logement comme locataire ou propriétaire', 'I occupy a home as tenant or owner'),
+    ],
+    liens: ['patrimoine-foncier-bati', 'revenu-foncier'],
+    motsCles: ['habitation', 'occupant', 'locataire', 'housing tax', 'tenant', 'logement', 'loyer', 'home', 'rent'],
   }),
   simple({
     id: 'taxe-speciale-equipement',
@@ -1454,7 +1633,11 @@ const titreV = [
     definition: t('Taxe assise sur le chiffre d’affaires des entreprises aux régimes réels.', 'Tax on the turnover of businesses under actual-profit regimes.'),
     assiette: t('Chiffre d’affaires hors taxes.', 'Turnover excluding tax.'),
     taux: [pct(t('Taux unique', 'Single rate'), PRELEVEMENTS.taxeSpecialeEquipement.taux)],
-    motsCles: ['équipement', 'chiffre d’affaires', 'equipment', 'turnover'],
+    situations: [
+      t('Mon entreprise relève d\'un régime réel', 'My business is under an actual-profit regime'),
+    ],
+    liens: ['bic', 'imf'],
+    motsCles: ['équipement', 'chiffre d’affaires', 'equipment', 'turnover', 'entreprise', 'société', 'company'],
     calculateur: 'prelevements',
   }),
   simple({
@@ -1465,7 +1648,11 @@ const titreV = [
     definition: t('Taxe additionnelle sur les produits du tabac, affectée au développement du sport.', 'Additional tax on tobacco products, earmarked for sport development.'),
     assiette: t('Prix de vente hors taxes des produits du tabac.', 'Price excluding tax of tobacco products.'),
     taux: [pct(t('Taux unique', 'Single rate'), ACCISES.tabacSport)],
-    motsCles: ['tabac', 'sport', 'tobacco', 'sport'],
+    situations: [
+      t('Je produis ou j\'importe du tabac', 'I produce or import tobacco'),
+    ],
+    liens: ['taxe-tabacs', 'taxe-solidarite-sida'],
+    motsCles: ['tabac', 'sport', 'tobacco', 'sport', 'usine', 'importation', 'factory', 'import'],
     calculateur: 'accises',
   }),
   simple({
@@ -1476,7 +1663,11 @@ const titreV = [
     definition: t('Taxe instituée au profit du Fonds national de lutte contre le SIDA.', 'Tax levied for the national AIDS fund.'),
     assiette: t('Prix de vente sortie usine des produits du tabac.', 'Ex-works selling price of tobacco products.'),
     taux: [pct(t('Taux unique', 'Single rate'), ACCISES.tabacSolidariteSida)],
-    motsCles: ['SIDA', 'solidarité', 'tabac', 'AIDS', 'solidarity'],
+    situations: [
+      t('Je produis ou j\'importe du tabac', 'I produce or import tobacco'),
+    ],
+    liens: ['taxe-tabacs', 'taxe-tabac-sport'],
+    motsCles: ['SIDA', 'solidarité', 'tabac', 'AIDS', 'solidarity', 'usine', 'importation', 'factory', 'import'],
     calculateur: 'accises',
   }),
   simple({
@@ -1503,7 +1694,10 @@ const titreV = [
       mnt(t('Arme de salon', 'Parlour weapon'), ARMES.salon),
       mnt(t('Revolver ou pistolet', 'Revolver or pistol'), ARMES.revolverPistolet),
     ],
-    motsCles: ['arme', 'fusil', 'chasse', 'pistolet', 'weapon', 'gun', 'hunting'],
+    situations: [
+      t('Je détiens une arme de chasse', 'I own a hunting weapon'),
+    ],
+    motsCles: ['arme', 'fusil', 'chasse', 'pistolet', 'weapon', 'gun', 'hunting', 'permis', 'détention', 'permit'],
   }),
   simple({
     id: 'taxes-forestieres',
@@ -1524,7 +1718,11 @@ const titreV = [
       pct(t('Taxe de reboisement, sur la valeur mercuriale des grumes exportées', 'Reforestation tax, on the reference value of exported logs'), FORESTIERES.reboisement),
       pct(t('Taxe spéciale pour la préservation et le développement forestier (Art. 1134)', 'Special forest preservation and development tax (art. 1134)'), FORESTIERES.preservationDeveloppement),
     ],
-    motsCles: ['forêt', 'bois', 'grume', 'reboisement', 'forest', 'timber', 'logging'],
+    situations: [
+      t('J\'exploite une concession forestière', 'I operate a forest concession'),
+    ],
+    liens: ['patrimoine-foncier-non-bati'],
+    motsCles: ['forêt', 'bois', 'grume', 'reboisement', 'forest', 'timber', 'logging', 'scierie', 'abattage', 'logging', 'sawmill'],
   }),
   simple({
     id: 'taxe-transports-prives',
@@ -1546,7 +1744,12 @@ const titreV = [
         PRELEVEMENTS.taxeTransportPriveMarchandises.majorationParTonne,
       ),
     ],
-    motsCles: ['transport', 'camion', 'marchandises', 'tonnage', 'truck', 'freight'],
+    situations: [
+      t('Je transporte mes propres marchandises', 'I carry my own goods'),
+      t('J\'ai un camion de livraison', 'I own a delivery truck'),
+    ],
+    liens: ['patente', 'vignettes'],
+    motsCles: ['transport', 'camion', 'marchandises', 'tonnage', 'truck', 'freight', 'camion', 'livraison', 'poids lourd', 'truck', 'delivery'],
     calculateur: 'prelevements',
   }),
   simple({
@@ -1563,7 +1766,11 @@ const titreV = [
       pct(t('Taux', 'Rate'), PRELEVEMENTS.redevanceEvaluationImmobiliere.taux),
       mnt(t('Minimum de perception', 'Collection floor'), PRELEVEMENTS.redevanceEvaluationImmobiliere.minimum),
     ],
-    motsCles: ['évaluation', 'expertise', 'immobilier', 'valuation', 'appraisal'],
+    situations: [
+      t('Je demande une expertise immobilière à la DGI', 'I request a property valuation from the tax authority'),
+    ],
+    liens: ['vente-immeubles', 'patrimoine-foncier-bati'],
+    motsCles: ['évaluation', 'expertise', 'immobilier', 'valuation', 'appraisal', 'estimation', 'valeur', 'estimate', 'value'],
     calculateur: 'prelevements',
   }),
   simple({
@@ -1577,7 +1784,11 @@ const titreV = [
     definition: t('Taxe parafiscale destinée au développement des nouvelles technologies en zones rurales.', 'Parafiscal levy funding new technologies in rural areas.'),
     assiette: t('Chiffre d’affaires mensuel hors taxes.', 'Monthly turnover excluding tax.'),
     taux: [pct(t('Taux unique', 'Single rate'), PRELEVEMENTS.taxeNouvellesTechnologiesRurales.taux)],
-    motsCles: ['téléphonie', 'rural', 'mobile money', 'telecom', 'rural'],
+    situations: [
+      t('J\'exploite un réseau de téléphonie ou de transfert d\'argent', 'I operate a telephone or money-transfer network'),
+    ],
+    liens: ['taxe-telecoms', 'prelevement-culture'],
+    motsCles: ['téléphonie', 'rural', 'mobile money', 'telecom', 'rural', 'opérateur', 'réseau', 'operator', 'network'],
     calculateur: 'prelevements',
   }),
   simple({
@@ -1588,7 +1799,11 @@ const titreV = [
     definition: t('Taxe parafiscale destinée à soutenir la création culturelle et artistique.', 'Parafiscal levy supporting cultural and artistic creation.'),
     assiette: t('Chiffre d’affaires mensuel.', 'Monthly turnover.'),
     taux: [pct(t('Taux unique', 'Single rate'), PRELEVEMENTS.prelevementCulture.taux)],
-    motsCles: ['culture', 'téléphonie', 'artiste', 'culture', 'telecom'],
+    situations: [
+      t('J\'exploite un réseau de téléphonie', 'I operate a telephone network'),
+    ],
+    liens: ['taxe-telecoms', 'taxe-nt-rurales'],
+    motsCles: ['culture', 'téléphonie', 'artiste', 'culture', 'telecom', 'opérateur', 'réseau', 'operator', 'network'],
     calculateur: 'prelevements',
   }),
   simple({
@@ -1602,7 +1817,11 @@ const titreV = [
     definition: t('Taxe sectorielle assise sur le chiffre d’affaires mensuel.', 'Sector tax on monthly turnover.'),
     assiette: t('Chiffre d’affaires mensuel hors taxes.', 'Monthly turnover excluding tax.'),
     taux: [pct(t('Taux unique', 'Single rate'), PRELEVEMENTS.taxeTelecoms.taux)],
-    motsCles: ['télécom', 'TIC', 'transfert d’argent', 'mobile money', 'telecom', 'ICT'],
+    situations: [
+      t('J\'exploite un service de transfert d\'argent mobile', 'I operate a mobile money service'),
+    ],
+    liens: ['taxe-communications-telephoniques', 'taxe-nt-rurales', 'prelevement-culture'],
+    motsCles: ['télécom', 'TIC', 'transfert d’argent', 'mobile money', 'telecom', 'ICT', 'opérateur', 'réseau', 'operator', 'network'],
     calculateur: 'prelevements',
   }),
   simple({
@@ -1613,7 +1832,10 @@ const titreV = [
     definition: t('Taxe spécifique au tonnage exporté.', 'Specific tax per tonne exported.'),
     assiette: t('Tonnage exporté.', 'Tonnage exported.'),
     taux: [mnt(t('Ferraille ou sous-produits ferreux exportés', 'Scrap or ferrous by-products exported'), SECTORIELLES.ferrailleExport.montantParTonne, t('par tonne', 'per tonne'))],
-    motsCles: ['ferraille', 'export', 'métal', 'scrap', 'export'],
+    situations: [
+      t('J\'exporte de la ferraille', 'I export scrap metal'),
+    ],
+    motsCles: ['ferraille', 'export', 'métal', 'scrap', 'export', 'exportateur', 'recyclage', 'exporter', 'recycling'],
   }),
   {
     id: 'taxe-environnement',
@@ -1641,7 +1863,11 @@ const titreV = [
       mnt(t('Hydrocarbures non méthaniques, solvants et composés organiques', 'Non-methane hydrocarbons, solvents and organic compounds'), ENVIRONNEMENT.hydrocarburesNonMethaniques),
     ],
     exonerations: [t('Les véhicules d’occasion de moins de cinq ans.', 'Used vehicles less than five years old.')],
-    motsCles: ['environnement', 'pollution', 'véhicule occasion', 'mégot', 'environment', 'used vehicle'],
+    situations: [
+      t('J\'importe un véhicule d\'occasion', 'I import a used vehicle'),
+    ],
+    liens: ['vignettes'],
+    motsCles: ['environnement', 'pollution', 'véhicule occasion', 'mégot', 'environment', 'used vehicle', 'importation', 'voiture', 'occasion', 'douane', 'import', 'used car', 'customs'],
   },
   simple({
     id: 'taxe-emballages',
@@ -1651,7 +1877,11 @@ const titreV = [
     definition: t('Taxe spécifique au poids d’emballage mis sur le marché.', 'Specific tax on the weight of packaging placed on the market.'),
     assiette: t('Poids d’emballage en kilogrammes.', 'Weight of packaging in kilograms.'),
     taux: [mnt(t('Emballage plastique, métal, verre ou carton', 'Plastic, metal, glass or cardboard packaging'), SECTORIELLES.emballages.montantParKg, t('par kilogramme', 'per kilogram'))],
-    motsCles: ['emballage', 'plastique', 'carton', 'packaging', 'plastic'],
+    situations: [
+      t('Je produis ou j\'importe des emballages', 'I produce or import packaging'),
+    ],
+    liens: ['taxe-environnement'],
+    motsCles: ['emballage', 'plastique', 'carton', 'packaging', 'plastic', 'bouteille', 'sachet', 'carton', 'bottle', 'bag', 'box'],
   }),
   {
     id: 'taxe-tourisme',
@@ -1667,7 +1897,11 @@ const titreV = [
     assiette: t('Montant hors taxes de la facture adressée au client.', 'Amount excluding tax of the invoice issued to the customer.'),
     taux: [pct(t('Taux unique', 'Single rate'), SECTORIELLES.tourisme.taux)],
     exonerations: [t('Les entreprises relevant de la taxe d’Etat de l’entreprenant.', 'Businesses under the State entrepreneur tax.')],
-    motsCles: ['tourisme', 'hôtel', 'restaurant', 'maquis', 'casino', 'tourism', 'hotel', 'restaurant'],
+    situations: [
+      t('Je tiens un hôtel, un restaurant ou un maquis', 'I run a hotel, restaurant or eatery'),
+    ],
+    liens: ['licences', 'patente'],
+    motsCles: ['tourisme', 'hôtel', 'restaurant', 'maquis', 'casino', 'tourism', 'hotel', 'restaurant', 'hébergement', 'clientèle', 'accommodation', 'guests'],
   },
   simple({
     id: 'taxe-communications-telephoniques',
@@ -1680,7 +1914,11 @@ const titreV = [
     definition: t('Taxe sur le prix des communications téléphoniques et des accès internet.', 'Tax on the price of telephone calls and internet access.'),
     assiette: t('Prix hors taxe de la communication.', 'Price of the communication excluding tax.'),
     taux: [pct(t('Taux unique', 'Single rate'), SECTORIELLES.communicationsTelephoniques.taux)],
-    motsCles: ['communication', 'téléphone', 'internet', 'appel', 'phone', 'internet', 'call'],
+    situations: [
+      t('Je paie une facture de téléphone ou d\'internet', 'I pay a phone or internet bill'),
+    ],
+    liens: ['taxe-telecoms'],
+    motsCles: ['communication', 'téléphone', 'internet', 'appel', 'phone', 'internet', 'call', 'abonnement', 'forfait', 'crédit', 'subscription', 'plan', 'airtime'],
   }),
   {
     id: 'taxe-titres-transport-aerien',
@@ -1697,7 +1935,10 @@ const titreV = [
       mnt(t('Autres destinations', 'Other destinations'), SECTORIELLES.titresTransportAerien.autresDestinations, t('par titre', 'per ticket')),
     ],
     exonerations: [t('Les titres de transport gratuits.', 'Free tickets.')],
-    motsCles: ['avion', 'billet', 'vol', 'aérien', 'flight', 'ticket', 'air'],
+    situations: [
+      t('J\'achète un billet d\'avion', 'I am buying a plane ticket'),
+    ],
+    motsCles: ['avion', 'billet', 'vol', 'aérien', 'flight', 'ticket', 'air', 'voyage', 'voyager', 'travel', 'trip'],
   },
   simple({
     id: 'taxe-excedent-cautions',
@@ -1710,7 +1951,11 @@ const titreV = [
     ),
     assiette: t('Excédent du montant perçu.', 'The excess amount collected.'),
     taux: [pct(t('Taux appliqué à l’excédent', 'Rate applied to the excess'), SECTORIELLES.excedentCautionsLoyers.taux)],
-    motsCles: ['caution', 'avance', 'loyer', 'bailleur', 'deposit', 'rent advance'],
+    situations: [
+      t('Je demande une caution à mon locataire', 'I ask my tenant for a deposit'),
+    ],
+    liens: ['revenu-foncier', 'bail'],
+    motsCles: ['caution', 'avance', 'loyer', 'bailleur', 'deposit', 'rent advance', 'garantie', 'avance', 'loyer', 'guarantee', 'advance'],
   }),
   simple({
     id: 'taxe-vod',
@@ -1723,7 +1968,11 @@ const titreV = [
     ),
     assiette: t('Montant hors taxes payé par le client.', 'Amount excluding tax paid by the customer.'),
     taux: [pct(t('Taux unique', 'Single rate'), SECTORIELLES.videoALaDemande.taux)],
-    motsCles: ['vidéo', 'VOD', 'streaming', 'film', 'video', 'streaming'],
+    situations: [
+      t('J\'exploite un service de vidéo à la demande', 'I operate a video-on-demand service'),
+    ],
+    liens: ['taxe-communication-audiovisuelle'],
+    motsCles: ['vidéo', 'VOD', 'streaming', 'film', 'video', 'streaming', 'abonnement', 'plateforme', 'subscription', 'platform'],
   }),
   simple({
     id: 'taxe-cola',
@@ -1733,7 +1982,11 @@ const titreV = [
     definition: t('Taxe spécifique perçue sur les exportations de noix de cola.', 'Specific tax on exports of kola nuts.'),
     assiette: t('Poids exporté.', 'Weight exported.'),
     taux: [mnt(t('Noix de cola exportée', 'Kola nuts exported'), SECTORIELLES.noixDeCola.montantParKg, t('par kilogramme', 'per kilogram'))],
-    motsCles: ['cola', 'export', 'noix', 'kola', 'export'],
+    situations: [
+      t('J\'exporte de la noix de cola', 'I export kola nuts'),
+    ],
+    liens: ['taxe-caoutchouc'],
+    motsCles: ['cola', 'export', 'noix', 'kola', 'export', 'exportateur', 'exporter'],
   }),
   simple({
     id: 'taxe-caoutchouc',
@@ -1743,7 +1996,11 @@ const titreV = [
     definition: t('Taxe assise sur le prix de référence international du caoutchouc sec.', 'Tax based on the international reference price of dry rubber.'),
     assiette: t('Prix de référence du caoutchouc sec sur le marché international.', 'Reference price of dry rubber on the international market.'),
     taux: [pct(t('Taux unique', 'Single rate'), SECTORIELLES.caoutchouc.taux)],
-    motsCles: ['caoutchouc', 'hévéa', 'export', 'rubber', 'export'],
+    situations: [
+      t('J\'exporte du caoutchouc', 'I export rubber'),
+    ],
+    liens: ['taxe-cola'],
+    motsCles: ['caoutchouc', 'hévéa', 'export', 'rubber', 'export', 'exportateur', 'usine', 'exporter'],
   }),
   simple({
     id: 'taxe-jeux-hasard',
@@ -1759,7 +2016,11 @@ const titreV = [
       pct(t('Jeux de hasard', 'Games of chance'), SECTORIELLES.jeuxDeHasard.taux),
       pct(t('Jeux de hasard en ligne et paris sportifs', 'Online games of chance and sports betting'), SECTORIELLES.jeuxDeHasardEnLigne.taux),
     ],
-    motsCles: ['jeu', 'hasard', 'pari', 'loterie', 'casino', 'gambling', 'betting', 'lottery'],
+    situations: [
+      t('J\'exploite un site de paris sportifs ou un casino', 'I run a sports betting site or a casino'),
+    ],
+    liens: ['licences'],
+    motsCles: ['jeu', 'hasard', 'pari', 'loterie', 'casino', 'gambling', 'betting', 'lottery', 'pari', 'parier', 'loto', 'jeu en ligne', 'bet', 'online game'],
   }),
   simple({
     id: 'timbre-fiscal-tabac',
@@ -1804,7 +2065,11 @@ const titreV = [
       }),
       mnt(t('Redevance environnementale annuelle', 'Annual environmental fee'), ETABLISSEMENTS_CLASSES.redevanceAnnuelle, t('par an', 'per year')),
     ],
-    motsCles: ['établissement classé', 'environnement', 'superficie', 'classified establishment', 'environment'],
+    situations: [
+      t('J\'ouvre un établissement classé', 'I am opening a classified establishment'),
+    ],
+    liens: ['taxe-environnement', 'patente'],
+    motsCles: ['établissement classé', 'environnement', 'superficie', 'classified establishment', 'environment', 'usine', 'entrepôt', 'ouverture', 'factory', 'warehouse', 'opening'],
   }),
   simple({
     id: 'prelevement-plateformes',
@@ -1821,7 +2086,12 @@ const titreV = [
     ),
     assiette: t('Montant de la course.', 'Amount of the ride.'),
     taux: [pct(t('Taux unique, libératoire de la patente transport', 'Single rate, discharging the transport business licence'), SECTORIELLES.plateformesTransport.taux)],
-    motsCles: ['plateforme', 'VTC', 'course', 'taxi', 'transport', 'platform', 'ride-hailing'],
+    situations: [
+      t('Je suis chauffeur sur une plateforme de VTC', 'I drive for a ride-hailing platform'),
+      t('Je transporte des clients via une application', 'I carry passengers through an app'),
+    ],
+    liens: ['patente', 'vignettes'],
+    motsCles: ['plateforme', 'VTC', 'course', 'taxi', 'transport', 'platform', 'ride-hailing', 'chauffeur', 'uber', 'yango', 'application', 'taxi', 'livreur', 'driver', 'app', 'delivery'],
   }),
   simple({
     id: 'redevance-terrains-industriels',
@@ -1908,7 +2178,12 @@ const titreV = [
       ),
       t('Les ventes portant sur l’eau, l’électricité, le gaz et les produits pétroliers.', 'Sales of water, electricity, gas and petroleum products.'),
     ],
-    motsCles: ['AIRSI', 'acompte', 'informel', 'importateur', 'prepayment', 'informal sector'],
+    situations: [
+      t('Je m\'approvisionne chez un grossiste ou un importateur', 'I buy from a wholesaler or importer'),
+      t('Un prélèvement apparaît sur ma facture d\'achat', 'A withholding appears on my purchase invoice'),
+    ],
+    liens: ['acompte-prestataires', 'tce', 'tee', 'rme'],
+    motsCles: ['AIRSI', 'acompte', 'informel', 'importateur', 'prepayment', 'informal sector', 'grossiste', 'fournisseur', 'achat', 'revendeur', 'crédit téléphonique', 'wholesaler', 'supplier', 'reseller'],
     calculateur: 'prelevements',
   },
   simple({
@@ -1926,7 +2201,11 @@ const titreV = [
     ),
     assiette: t('Sommes brutes versées au prestataire.', 'Gross amounts paid to the provider.'),
     taux: [pct(t('Taux unique', 'Single rate'), PRELEVEMENTS.acomptePrestatairesInformel.taux)],
-    motsCles: ['acompte', 'prestataire', 'retenue', 'informel', 'prepayment', 'service provider'],
+    situations: [
+      t('Je facture une prestation à une grande entreprise', 'I invoice a service to a large company'),
+    ],
+    liens: ['airsi', 'rme', 'tee'],
+    motsCles: ['acompte', 'prestataire', 'retenue', 'informel', 'prepayment', 'service provider', 'facture', 'prestation', 'service', 'invoice', 'freelance'],
     calculateur: 'prelevements',
   }),
   {
@@ -1952,7 +2231,12 @@ const titreV = [
       'Impôt annuel = chiffre d’affaires TTC × 6 % (4 % en cas d’adhésion à un CGA). Le contribuable acquitte le douzième de ce montant chaque 10 du mois.',
       'Annual tax = turnover including tax × 6% (4% for members of an approved management centre). The taxpayer pays one twelfth on the 10th of each month.',
     ),
-    motsCles: ['microentreprise', 'RME', 'forfait', 'CGA', 'micro-enterprise', 'flat tax'],
+    situations: [
+      t('Mon chiffre d\'affaires dépasse 50 millions', 'My turnover exceeds 50 million'),
+      t('Je tiens une comptabilité simplifiée', 'I keep simplified accounts'),
+    ],
+    liens: ['regimes-imposition', 'tee', 'bic'],
+    motsCles: ['microentreprise', 'RME', 'forfait', 'CGA', 'micro-enterprise', 'flat tax', 'petite entreprise', 'PME', 'small business'],
     calculateur: 'bic',
   },
   {
@@ -1982,7 +2266,12 @@ const titreV = [
       'Taxe annuelle = chiffre d’affaires TTC × 5 % (4 % pour le commerce), réduite de moitié en cas d’adhésion à un CGA, acquittée par douzièmes chaque 10 du mois.',
       'Annual tax = turnover including tax × 5% (4% for trading), halved for members of an approved management centre, paid in twelfths on the 10th of each month.',
     ),
-    motsCles: ['entreprenant', 'TEE', 'forfait', 'petite entreprise', 'entrepreneur', 'small business'],
+    situations: [
+      t('Je suis entrepreneur individuel', 'I am a sole trader'),
+      t('Mon chiffre d\'affaires dépasse 5 millions', 'My turnover exceeds 5 million'),
+    ],
+    liens: ['regimes-imposition', 'tce', 'rme', 'airsi'],
+    motsCles: ['entreprenant', 'TEE', 'forfait', 'petite entreprise', 'entrepreneur', 'small business', 'entrepreneur', 'petite activité', 'sole trader', 'self-employed'],
     calculateur: 'bic',
   },
   {
@@ -2010,7 +2299,13 @@ const titreV = [
         'Street, market and itinerant traders, craftspeople and finishers below XOF 1,200,000 may be authorised by the municipal council to pay a daily tax instead.',
       ),
     ],
-    motsCles: ['TCE', 'commune', 'entreprenant', 'petit commerce', 'municipal', 'small trader'],
+    situations: [
+      t('Je tiens un petit commerce de quartier', 'I run a small neighbourhood shop'),
+      t('Je suis coiffeuse, couturière ou artisan', 'I am a hairdresser, seamstress or craftsperson'),
+      t('Je vends au marché ou en étalage', 'I sell at the market or from a stall'),
+    ],
+    liens: ['regimes-imposition', 'tee', 'airsi'],
+    motsCles: ['TCE', 'commune', 'entreprenant', 'petit commerce', 'municipal', 'small trader', 'coiffeuse', 'coiffure', 'couturière', 'couture', 'artisan', 'quartier', 'marché', 'étalage', 'ambulant', 'hairdresser', 'tailor', 'craft', 'market', 'stall', 'street'],
     calculateur: 'bic',
   },
 ];
