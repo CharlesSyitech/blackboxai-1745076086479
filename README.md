@@ -75,7 +75,21 @@ Le classement est vérifié par les tests : 24 questions en vocabulaire fiscal e
 en langage courant doivent renvoyer la bonne fiche en tête, chaque fiche doit être retrouvable
 par son titre comme par ses sigles, et chaque situation décrite doit ramener sa propre fiche.
 
-## Lancer l'application
+## Version publiée
+
+L'application est publiée comme page privée, consultable depuis un navigateur sans rien
+installer : <https://claude.ai/artifact/TGEhQYJz8QiPThXdbYy6pS>
+
+Elle est privée par défaut ; le partage se fait depuis le menu de la page. Pour republier
+après modification :
+
+```sh
+npm run build:artifact   # prépare dist/artifact/index.html
+```
+
+puis republier ce fichier avec les assets du dépôt, en conservant la même URL.
+
+## Lancer l'application en local
 
 Application statique sans dépendance, mais elle utilise les modules ES : elle doit être
 servie en HTTP plutôt qu'ouverte depuis le système de fichiers.

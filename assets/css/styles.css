@@ -20,8 +20,13 @@
   --police-chiffres: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 }
 
+/* Le thème a trois états : « système » n'estampille rien et ne laisse jouer que
+   prefers-color-scheme ; un choix explicite estampille data-theme sur la racine.
+   Le garde :not([data-theme="light"]) laisse le choix clair l'emporter sur un
+   système sombre, et le bloc [data-theme="dark"] fait gagner le choix sombre
+   sur un système clair. Aucun jeton n'est défini uniquement dans ces blocs. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --fond: #16161a;
     --fond-carte: #1f1f24;
     --fond-doux: #26262c;
@@ -35,6 +40,23 @@
     --vert-doux: #16302a;
     --ombre: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 25%);
   }
+}
+
+/* Les mêmes jetons pour un choix sombre explicite, afin qu'il l'emporte aussi
+   sur un système réglé en clair. */
+:root[data-theme='dark'] {
+  --fond: #16161a;
+  --fond-carte: #1f1f24;
+  --fond-doux: #26262c;
+  --texte: #ecebe7;
+  --texte-doux: #a4a19a;
+  --bordure: #34343c;
+  --accent: #f2913f;
+  --accent-fonce: #f2913f;
+  --accent-doux: #3a2a18;
+  --vert: #4bbd8c;
+  --vert-doux: #16302a;
+  --ombre: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 25%);
 }
 
 * {
@@ -66,7 +88,7 @@ h4 {
 .entete {
   background: var(--fond-carte);
   border-bottom: 1px solid var(--bordure);
-  padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px 20px;
+  padding: max(20px, env(safe-area-inset-top, 0px)) 20px 20px;
 }
 
 .entete-contenu {
@@ -799,7 +821,7 @@ h4 {
 .pied {
   border-top: 1px solid var(--bordure);
   background: var(--fond-carte);
-  padding: 22px 20px calc(env(safe-area-inset-bottom, 0px) + 28px);
+  padding: 22px 20px max(28px, env(safe-area-inset-bottom, 0px));
 }
 
 .pied p {
@@ -845,5 +867,14 @@ h4 {
 
   .panneau-corps {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
