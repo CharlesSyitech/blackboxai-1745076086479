@@ -1,0 +1,15 @@
+name: cgescar_core
+description: >-
+  Règles métier pures (sans Flutter) de C-GESCAR Mobile : formules de
+  référence (annexe C), saisie et formats des nombres, profils et droits,
+  file d'opérations hors ligne. Tous les résultats affichés sont
+  « provisoires » : le serveur recalcule à la validation (P5).
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dev_dependencies:
+  test: ^1.25.0
+  lints: ^4.0.0

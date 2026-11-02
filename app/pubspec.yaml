@@ -1,0 +1,38 @@
+name: cgescar_mobile
+description: "C-GESCAR Mobile — client Flutter (Android / iOS) du backend C-GESCAR."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cgescar_core:
+    path: ../packages/cgescar_core
+
+  supabase_flutter: ^2.8.0
+  go_router: ^14.6.0
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.3.2
+  sqflite: ^2.4.0
+  path: ^1.9.0
+  http: ^1.2.2
+  connectivity_plus: ^6.1.0
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^5.2.3
+  signature: ^5.5.0
+  geolocator: ^13.0.1
+  screen_brightness: ^1.0.1
+  local_auth: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

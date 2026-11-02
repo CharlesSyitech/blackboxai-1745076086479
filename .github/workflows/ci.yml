@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: stable
+      - name: Règles métier (annexe C)
+        working-directory: packages/cgescar_core
+        run: |
+          dart pub get
+          dart analyze
+          dart test
+      - name: App Flutter
+        working-directory: app
+        run: |
+          flutter pub get
+          flutter analyze
+          flutter test
