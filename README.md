@@ -64,3 +64,13 @@ cd app && flutter test                  # routage par profil, widgets
    `driverLogin` (l'app attend un `refresh_token`).
 5. **Jeu de données de référence** pour vérifier que chaque formule donne
    exactement le même résultat que le web (§13).
+
+## Aperçu web (revue visuelle, sans serveur)
+
+`app/lib/preview_main.dart` affiche quelques écrans avec des valeurs
+d'exemple signalées comme telles, sans connexion au backend :
+
+```bash
+cd app
+flutter build web --release -t lib/preview_main.dart --web-renderer html --no-web-resources-cdn
+```

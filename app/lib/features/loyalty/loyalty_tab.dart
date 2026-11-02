@@ -101,7 +101,7 @@ class _CardsState extends State<_Cards> {
               ]),
             ),
             const SizedBox(height: 12),
-            _LoyaltyCardView(
+            LoyaltyCardView(
               companyName: '${company?['name'] ?? 'C-GESCAR'}',
               points: points,
               tier: '${card?['tier'] ?? 'silver'}',
@@ -123,11 +123,11 @@ class _CardsState extends State<_Cards> {
       );
 }
 
-class _LoyaltyCardView extends StatelessWidget {
+class LoyaltyCardView extends StatelessWidget {
   final String companyName;
   final int points;
   final String tier;
-  const _LoyaltyCardView({required this.companyName, required this.points, required this.tier});
+  const LoyaltyCardView({super.key, required this.companyName, required this.points, required this.tier});
 
   @override
   Widget build(BuildContext context) {

@@ -36,6 +36,9 @@ class Services {
   static Services of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<ServicesScope>()!.services;
 
+  static Services? maybeOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<ServicesScope>()?.services;
+
   void dispose() {
     _net?.cancel();
     session.dispose();

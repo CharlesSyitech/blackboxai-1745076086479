@@ -27,12 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
   bool get _looksLikeEmail => _id.text.contains('@');
 
   Future<void> _submit() async {
-    final services = Services.of(context);
     setState(() {
       _busy = true;
       _message = null;
     });
     try {
+      final services = Services.maybeOf(context);
+      if (services == null) throw 'Aperçu : connexion au serveur désactivée.';
       if (_driver) {
         if (!RegExp(r'^\d{6}$').hasMatch(_secret.text)) {
           throw 'Le code PIN comporte 6 chiffres.';
